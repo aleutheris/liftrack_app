@@ -1,0 +1,43 @@
+{
+  "days": [
+    {
+      "id": "day-1",
+      "name": "Day 1 — type A",
+      "exercises": [
+        { "exercise": "leg-press", "sets": 4, "reps": 10 },
+        { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
+        { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "pallof-press", "sets": 3, "reps": 12, "per": "side" },
+        { "exercise": "standing-calf-raise", "sets": 3, "reps": 12 }
+      ]
+    },
+    {
+      "id": "day-2",
+      "name": "Day 2 — type B",
+      "exercises": [
+        { "exercise": "bulgarian-split-squat", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "dumbbell-romanian-deadlift", "sets": 4, "reps": 10 },
+        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
+        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
+        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
+        { "exercise": "knee-raise", "sets": 3, "reps": 12 },
+        { "exercise": "standing-calf-raise", "sets": 3, "reps": 12 }
+      ]
+    },
+    {
+      "id": "day-3",
+      "name": "Day 3 — type A",
+      "exercises": [
+        { "exercise": "goblet-squat", "sets": 4, "reps": 10 },
+        { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
+        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
+        { "exercise": "seated-cable-row", "sets": 4, "reps": 10 },
+        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "ab-roller", "sets": 3, "reps": 8 },
+        { "exercise": "standing-calf-raise", "sets": 3, "reps": 12 }
+      ]
+    }
+  ]
+}

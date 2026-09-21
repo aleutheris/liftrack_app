@@ -1,0 +1,36 @@
+/* The single source of colours, type sizes and spacing. The contrast ratios noted are against the
+   background each colour is used on; REQ-QR-260001 asks ≥ 7:1 for the numbers, ≥ 4.5:1 elsewhere. */
+:root {
+  color-scheme: light;
+
+  --color-page: #f3f4f6;
+  --color-surface: #ffffff;
+  --color-border: #c9cdd3;
+  --color-picture-backdrop: #e5e7eb;
+  --color-text: #1a1a1a; /* 17.4:1 on surface, 15.8:1 on page */
+  --color-text-muted: #4a4a4a; /* 8.9:1 on surface, 8.0:1 on page */
+  --color-number: #000000; /* 21:1 on surface */
+  --color-action: #0b4f9c;
+  --color-on-action: #ffffff; /* 8.0:1 on action */
+  --color-action-disabled: #e3e5e8;
+  --color-on-action-disabled: #4a4a4a; /* 7.0:1 on action-disabled */
+  --color-focus: #b45309; /* 5.0:1 against the surface the ring sits on */
+
+  --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --text-body: 1rem; /* 16 px: the floor for every piece of text */
+  --text-lead: 1.125rem;
+  --text-subheading: 1.25rem;
+  --text-heading: 1.5rem;
+  --text-number: 1.75rem; /* 28 px: sets and reps need ≥ 24 px */
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --radius: 0.5rem;
+  --content-width: 40rem;
+
+  --tap-target: 3rem; /* 48 px: the smallest hit area REQ-QR-260001 allows */
+  --pager-bar-height: 4.5rem; /* the buttons and the position on one row */
+  --pager-bar-height-stacked: 5.25rem; /* large text: the position on a row of its own above them */
+}

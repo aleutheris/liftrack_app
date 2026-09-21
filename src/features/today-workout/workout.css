@@ -1,0 +1,141 @@
+/* A content check can report several problems; each keeps its own line. */
+.load-error {
+  white-space: pre-line;
+}
+
+.day-name {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-heading);
+  line-height: 1.25;
+}
+
+.exercises {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exercise {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.exercise__name {
+  margin: 0;
+  font-size: var(--text-subheading);
+  line-height: 1.3;
+}
+
+.prescription {
+  margin: var(--space-1) 0 var(--space-2);
+  font-size: var(--text-lead);
+}
+
+.prescription__number {
+  color: var(--color-number);
+  font-size: var(--text-number);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.exercise__cue {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.exercise__pictures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.exercise__pictures img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Real photos come in any shape; every picture gets the same 4:3 frame. */
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--color-picture-backdrop);
+  border-radius: calc(var(--radius) / 2);
+}
+
+/* Fixed to the bottom of the viewport. It is a container, so the bar inside can restack itself when
+   large text leaves it too narrow for one row. */
+.pager {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  container: pager / inline-size;
+}
+
+.pager__bar {
+  display: grid;
+  /* A label may wrap between words; minmax keeps its column from getting narrower than the
+     longest word, which the buttons' min-width alone would allow. */
+  grid-template-columns: minmax(min-content, auto) 1fr minmax(min-content, auto);
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--pager-bar-height);
+  /* Full-width bar; on a wide screen its buttons line up with the content column. */
+  padding: 0 max(var(--space-4), calc((100% - var(--content-width)) / 2 + var(--space-4)));
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.pager__position {
+  margin: 0;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.pager__button {
+  min-width: var(--tap-target);
+  min-height: var(--tap-target);
+  padding: 0 var(--space-3);
+  color: var(--color-on-action);
+  background: var(--color-action);
+  border: 0;
+  border-radius: var(--radius);
+  font-weight: 600;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.pager__button:disabled {
+  color: var(--color-on-action-disabled);
+  background: var(--color-action-disabled);
+  cursor: default;
+}
+
+.pager__button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Large text leaves the bar under 20rem wide (it is measured in rem, so it follows the text size):
+   the position then takes a row of its own above the buttons. */
+@container pager (width < 20rem) {
+  .pager__bar {
+    grid-template-columns: minmax(min-content, 1fr) minmax(min-content, 1fr);
+    align-content: center;
+    row-gap: var(--space-1);
+    height: var(--pager-bar-height-stacked);
+    padding: 0 var(--space-1);
+  }
+
+  .pager__position {
+    grid-row: 1;
+    grid-column: 1 / -1;
+  }
+
+  .pager__button {
+    grid-row: 2;
+    padding: 0 var(--space-1);
+  }
+}

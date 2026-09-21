@@ -1,0 +1,419 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+scalar JSON
+
+type Query {
+    retrieve(labels: [String], uuid: String, categories: [CategoryFilterInput!]): [AtomOutput!]
+    signin(email: String!, password: String!): String!
+    signinGoogle(idToken: String!): String!
+    # The authenticated caller's own account + its linked auth-method kinds (BI-260075 / ICR-260011).
+    # Owner-scoped: resolves to the session's user; there is no arbitrary user(id) lookup.
+    me: User!
+    listLabels(labelsPrefix: String!): [String!]!
+    schemaInfo: SchemaInfo!
+    discoverOperations(prefix: String, limit: Int): [OperationFunction!]!
+    # The whitelisted COLLECT queries with their required constants (ICR-260018) — derived from the
+    # server's registry, never hand-maintained. With OperationFunction's arity/type metadata this lets
+    # a client reject a malformed operation before sending it.
+    collectQueries: [CollectQueryInfo!]!
+    listAtomGrants(atomUuid: ID!): [AtomGrantOutput!]!
+    listMyWorkspaces: [WorkspaceOutput!]!
+    listWorkspaceMembers(workspaceUuid: ID!): [WorkspaceMemberOutput!]!
+    retrieveWorkspace(selector: WorkspaceSelector!): WorkspaceOutput
+    listAtomsSharedToWorkspace(workspaceUuid: ID!): [ID!]!
+    retrieveCategoryDimensions(selector: CategoryDimensionSelector): [CategoryDimensionOutput!]!
+    retrieveCategoryValues(selector: CategoryValueSelector): [CategoryValueOutput!]!
+    # Drill-down browse (ADR-260047 §9). Focus on a value (atoms UNDER it + its child values) or a
+    # dimension (atoms across it + its root values) — exactly one of valueKey/dimensionKey required.
+    # Atoms and child counts are access-scoped (never reveal atoms outside the caller's scope).
+    retrieveCategoryBrowse(valueKey: String, dimensionKey: String, limit: Int, offset: Int, childLimit: Int, childOffset: Int): CategoryBrowseOutput!
+    # Taxonomy grant inspection (BI-260081) — owner-only.
+    listCategoryDimensionGrants(key: String!): [CategoryGrantOutput!]!
+    listCategoryValueGrants(key: String!): [CategoryGrantOutput!]!
+}
+
+# Access-control enums (ADR-260043). AccessLevel is what can be GRANTED (never OWNER);
+# EffectiveAccessLevel is what a caller HOLDS on an atom (includes OWNER).
+enum AccessLevel {
+    EDITOR
+    VIEWER
+}
+
+enum EffectiveAccessLevel {
+    OWNER
+    EDITOR
+    VIEWER
+}
+
+enum PrincipalType {
+    USER
+    WORKSPACE
+}
+
+enum WorkspaceRole {
+    ADMIN
+    EDITOR
+    VIEWER
+}
+
+type SchemaInfo {
+    schemaVersion: String!
+    schemaHash: String!
+    releasedAt: String!
+}
+
+# The authenticated caller's own account (BI-260075). authMethods lists the linked method KINDS only
+# ("password" / "google") — never hashes or tokens. Returned only by `me` (owner-scoped).
+type User {
+    username: String!
+    email: String!
+    emailVerified: Boolean!
+    authMethods: [String!]!
+}
+
+type OperationFunction {
+    name: String!
+    description: String
+    # Arity/type metadata (ICR-260018), read from the operation catalog: the accepted argument-count
+    # range (maxArity null = unbounded) and whether every argument must be numeric.
+    minArity: Int!
+    maxArity: Int
+    numericOnly: Boolean!
+}
+
+# A whitelisted COLLECT query (ICR-260018): its name — COLLECT's single argument — and the constants
+# keys it requires, each with its declared type and, for list types, the minimum item count.
+type CollectQueryInfo {
+    name: String!
+    description: String!
+    constants: [ConstantSpec!]!
+}
+
+type ConstantSpec {
+    key: String!
+    type: String!
+    minItems: Int
+}
+
+type Mutation {
+    beginSignup(email: String!): Boolean!
+    completeSignup(email: String!, code: String!, password: String!, username: String!): String!
+    logout: Boolean!
+    revokeAllSessions: Boolean!
+    requestPasswordReset(email: String!): Boolean!
+    confirmPasswordReset(token: String!, newPassword: String!): Boolean!
+    requestEmailChange(newEmail: String!): Boolean!
+    confirmEmailChange(code: String!): Boolean!
+    # User-managed auth methods (BI-260077/078 / ICR-260011): deliberately link Google to the caller's
+    # own account (signinGoogle no longer silently links an existing account), and set/replace the
+    # caller's password (a Google-only account thereby gains password sign-in).
+    linkGoogle(idToken: String!): Boolean!
+    setPassword(newPassword: String!): Boolean!
+    # Remove a linked method ("password" / "google"); refuses to remove the last one (no self-lockout).
+    unlinkAuthMethod(method: String!): Boolean!
+    change(selector: Selector, inputs: [AtomInput]!, remark: String): [String]!
+    destroy(selector: DestroySelector!): DestroyOutcome!
+    transferAtomOwnership(atomUuid: ID!, toUsername: String!): Boolean!
+    deleteMyAccount: Boolean!
+    shareAtom(atomUuid: ID!, principal: String!, principalType: PrincipalType!, level: AccessLevel!): Boolean!
+    revokeAtomAccess(atomUuid: ID!, principal: String!, principalType: PrincipalType!): Boolean!
+    createWorkspace(key: String!, name: String!, description: String): WorkspaceOutput!
+    updateWorkspace(uuid: ID!, name: String, description: String): WorkspaceOutput!
+    dissolveWorkspace(uuid: ID!): Boolean!
+    addWorkspaceMember(workspaceUuid: ID!, username: String!, role: WorkspaceRole!): Boolean!
+    removeWorkspaceMember(workspaceUuid: ID!, username: String!): Boolean!
+    updateWorkspaceMemberRole(workspaceUuid: ID!, username: String!, role: WorkspaceRole!): Boolean!
+    # Dimension hierarchy (ADR-260047): the schema is declared via UNDER_CATDIM (child -> parent),
+    # single-parent (a tree) for v1. parentDimensionKeys/childDimensionKeys wire the new dimension
+    # into the schema atomically; child wiring runs the full connect validation.
+    createCategoryDimension(key: String!, displayName: String!, description: String, parentDimensionKeys: [String!], childDimensionKeys: [String!]): CategoryDimensionOutput!
+    # Value containment (ADR-260047 §2): parentValueKeys/childValueKeys wire the new value into the
+    # hierarchy atomically; each parent must comply with the dimension schema (the parent value's
+    # dimension must be the immediate parent dimension) → CAT-VALUE-PARENT-DIMENSION-MISMATCH.
+    createCategoryValue(key: String!, displayName: String!, description: String, dimensionKey: String!, parentValueKeys: [String!], childValueKeys: [String!]): CategoryValueOutput!
+    # Update exposes only mutable fields. key/dimensionKey are immutable (CR-18) and are
+    # intentionally NOT arguments here — do not add them; immutability is enforced by omission.
+    updateCategoryDimension(key: String!, displayName: String, description: String): CategoryDimensionOutput!
+    updateCategoryValue(key: String!, displayName: String, description: String): CategoryValueOutput!
+    # Add/remove UNDER_CATDIM edges. A second parent → CAT-MULTIPLE-PARENTS-UNSUPPORTED; a loop →
+    # CAT-DIMENSION-CYCLE. disconnect to no parent makes the dimension a root.
+    connectCategoryDimensions(dimensionKey: String!, parentDimensionKeys: [String!], childDimensionKeys: [String!]): CategoryDimensionOutput!
+    disconnectCategoryDimensions(dimensionKey: String!, parentDimensionKeys: [String!], childDimensionKeys: [String!]): CategoryDimensionOutput!
+    # Add/remove UNDER_CATVAL edges. A second parent → CAT-MULTIPLE-PARENTS-UNSUPPORTED; a parent not
+    # in the value's dimension's immediate parent dimension → CAT-VALUE-PARENT-DIMENSION-MISMATCH.
+    connectCategoryValues(valueKey: String!, parentValueKeys: [String!], childValueKeys: [String!]): CategoryValueOutput!
+    disconnectCategoryValues(valueKey: String!, parentValueKeys: [String!], childValueKeys: [String!]): CategoryValueOutput!
+    deleteCategoryDimension(key: String!): Boolean!
+    deleteCategoryValue(key: String!): Boolean!
+    # Taxonomy sharing / transfer (BI-260081), mirroring the atom surface. Principal is a username
+    # (USER) or workspace key (WORKSPACE); all owner-only.
+    shareCategoryDimension(key: String!, principal: String!, principalType: PrincipalType!, level: AccessLevel!): Boolean!
+    shareCategoryValue(key: String!, principal: String!, principalType: PrincipalType!, level: AccessLevel!): Boolean!
+    revokeCategoryDimensionAccess(key: String!, principal: String!, principalType: PrincipalType!): Boolean!
+    revokeCategoryValueAccess(key: String!, principal: String!, principalType: PrincipalType!): Boolean!
+    transferCategoryDimensionOwnership(key: String!, toUsername: String!): Boolean!
+    transferCategoryValueOwnership(key: String!, toUsername: String!): Boolean!
+}
+
+type DestroyOutcome {
+    requested: [String!]!
+    deleted: [String!]!
+    notFound: [String!]!
+}
+
+type AtomGrantOutput {
+    principalUuid: ID!
+    principalType: PrincipalType!
+    principalName: String!
+    level: AccessLevel!
+    grantedAt: String!
+    grantedBy: ID!
+}
+
+type WorkspaceOutput {
+    uuid: ID!
+    key: String!
+    name: String!
+    description: String
+    createdAt: String!
+    updatedAt: String!
+    memberCount: Int!
+}
+
+type WorkspaceMemberOutput {
+    userUuid: ID!
+    username: String!
+    email: String!
+    role: WorkspaceRole!
+    joinedAt: String!
+}
+
+input WorkspaceSelector {
+    uuid: ID
+    key: String
+}
+
+input Selector {
+    labels: [String]
+    uuid: String
+    title: String
+    content: JSON
+    description: String
+    operation: String
+    constants: JSON
+    uuids: [String]
+}
+
+input DestroySelector {
+    uuid: String
+    uuids: [String]
+}
+
+input AtomInput {
+    labels: [String!]!
+    bonds: [BondInput]
+    properties: PropertiesInput
+    # Category assignments (ADR-260046, ADR-260047, FR-17). Present (incl. []) replaces all current
+    # assignments; omitted leaves them unchanged (the `bonds` precedent).
+    categories: [CategoryAssignmentInput!]
+}
+
+input BondInput {
+    uuid: ID!
+    name: String!
+    direction: String!
+}
+
+input PropertiesInput {
+    shellies: ShelliesInput
+    nuclearies: NucleariesInput
+}
+
+input ShelliesInput {
+    uuid: ID
+}
+
+input NucleariesInput {
+    title: String
+    content: JSON
+    description: String
+    operation: String
+    constants: JSON
+    declaredType: String
+    typeMode: String
+}
+
+type AtomOutput {
+    labels: [String]
+    bonds: [BondOutput]
+    properties: PropertiesOutput
+    ownerUuid: ID!
+    accessLevel: EffectiveAccessLevel!
+    errorCode: String
+    evaluationStatus: String
+    cycleNodes: [String]
+    cycleEdges: JSON
+    originNodeUuid: String
+    affectedNodeUuid: String
+    causes: [String]
+    categories: [CategoryAssignmentOutput!]!
+}
+
+type BondOutput {
+    uuid: ID!
+    name: String!
+    direction: String!
+    required: Boolean
+}
+
+type PropertiesOutput {
+    shellies: ShelliesOutput
+    nuclearies: NucleariesOutput
+}
+
+type ShelliesOutput {
+    uuid: ID!
+    changes(limit: Int = 5, offset: Int = 0): [ChangeEvent!]
+}
+
+type ChangeEvent {
+    timestamp: String!
+    eventType: String!
+    userId: String!
+    propertyChanges: [PropertyChange!]!
+    remark: String
+}
+
+type PropertyChange {
+    field: String!
+    oldValue: JSON
+    newValue: JSON
+    metrics: PropertyChangeMetrics
+}
+
+type PropertyChangeMetrics {
+    removedCount: Int!
+    addedCount: Int!
+    totalMembersAfter: Int!
+}
+
+type NucleariesOutput {
+    title: String!
+    content: JSON
+    description: String
+    operation: String
+    constants: JSON
+    declaredType: String
+    effectiveType: String
+    typeMode: String
+    typeState: String
+}
+
+# --- Categorization taxonomy: Dimension/Value model (ADR-260046, ADR-260047, FR-16, OR-70) ---
+# Granularity comes from the explicit dimension schema (UNDER_CATDIM) — there is no `level`.
+
+type CategoryDimensionOutput {
+    uuid: ID!
+    key: String!
+    displayName: String!
+    description: String
+    # The dimension's parent(s) in the schema. ≤1 now (single-parent tree); list shape is DAG-ready.
+    parentDimensionKeys: [String!]!
+    # Ownership/access (ADR-260050, BI-260081): the owner's handle and the caller's effective level.
+    ownerUsername: String!
+    accessLevel: EffectiveAccessLevel!
+    createdAt: String!
+    updatedAt: String!
+}
+
+type CategoryValueOutput {
+    uuid: ID!
+    key: String!
+    displayName: String!
+    description: String
+    dimensionKey: String!
+    # The value's parent(s) in the containment hierarchy. ≤1 now (single-parent tree); DAG-ready.
+    parentValueKeys: [String!]!
+    ownerUsername: String!
+    accessLevel: EffectiveAccessLevel!
+    createdAt: String!
+    updatedAt: String!
+}
+
+# A grant on a taxonomy node (ADR-260050, BI-260081) — mirrors AtomGrantOutput.
+type CategoryGrantOutput {
+    principalUuid: ID!
+    principalType: PrincipalType!
+    principalName: String!
+    level: AccessLevel!
+    grantedAt: String!
+    grantedBy: ID!
+}
+
+# Boolean selectors are positive filters only: `true` narrows to matching nodes; `false` (and
+# absent) is a no-op, NOT an inverse filter. The complement (e.g. "non-root") is intentionally
+# out of scope here.
+input CategoryDimensionSelector {
+    key: String
+    uuid: ID
+    parentDimensionKey: String   # children-of: dimensions whose parent is this dimension
+    isRoot: Boolean              # true → only dimensions with no parent (false/absent = no-op)
+    isEmpty: Boolean             # true → only dimensions with no values (false/absent = no-op)
+    limit: Int
+    offset: Int
+}
+
+input CategoryValueSelector {
+    key: String
+    uuid: ID
+    dimensionKey: String         # all values in a dimension
+    parentValueKey: String       # children-of: values whose parent value is this value
+    isRoot: Boolean              # true → only values with no parent value (false/absent = no-op)
+    isUnused: Boolean            # true → only values referenced by no atom (false/absent = no-op)
+    limit: Int
+    offset: Int
+}
+
+# --- Atom categorization (ADR-260046, ADR-260047, FR-17) ---
+# An atom is categorized at the single most specific value it is known to belong to; broader
+# dimensions are derived ancestors. The dimension is derived from the value (one dimension per
+# value). The object wrapper is kept for future per-assignment fields.
+
+input CategoryAssignmentInput {
+    valueKey: String!
+}
+
+# retrieve filter: AND across entries, OR within an entry's valueKeys. `includeDescendants`
+# (default false = exact) also matches atoms at any descendant of a value via UNDER_CATVAL.
+input CategoryFilterInput {
+    dimensionKey: String!
+    valueKeys: [String!]!
+    includeDescendants: Boolean
+}
+
+type CategoryAssignmentOutput {
+    dimensionKey: String!
+    valueKey: String!
+}
+
+# --- Drill-down browse (ADR-260047 §9, FR-17, OR-71) ---
+
+type CategoryBrowseOutput {
+    # The focus value (null when browsing a dimension's roots).
+    value: CategoryValueOutput
+    # Immediate next level below the focus (a value's child values, or a dimension's root values),
+    # paginated, each with an access-scoped count of atoms UNDER it.
+    children: [CategoryChildCount!]!
+    # Atoms UNDER the focus (paginated, access-scoped). "UNDER" = the value (or, for a dimension
+    # focus, any of its values) or any descendant — the same meaning in both modes, consistent with
+    # the subtree child counts.
+    atoms: [AtomOutput!]!
+}
+
+type CategoryChildCount {
+    value: CategoryValueOutput!
+    atomCount: Int!
+}

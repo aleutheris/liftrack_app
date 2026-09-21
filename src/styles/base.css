@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  /* The day pager is fixed to the bottom of the viewport; this keeps the last exercise and the
+     footer scrollable clear of it, at its taller large-text height too. */
+  padding-bottom: var(--pager-bar-height-stacked);
+  background: var(--color-page);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+button {
+  font: inherit;
+}
+
+.page,
+.build {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+
+.build {
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.build p {
+  margin: 0;
+}

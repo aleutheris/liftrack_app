@@ -1,0 +1,23 @@
+# Dependencies and build output
+node_modules
+dist
+coverage
+
+# Test output
+/test-results/
+/playwright-report/
+/blob-report/
+
+# Local-only files
+*.local
+.env
+*.log
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+
+# The owner's private programme notes — never committed (the repository is public)
+program-context.md

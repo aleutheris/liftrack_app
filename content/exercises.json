@@ -1,0 +1,97 @@
+{
+  "leg-press": {
+    "name": "Leg press",
+    "cue": "Feet mid-platform, knees track over toes",
+    "pictures": ["leg-press-1.svg", "leg-press-2.svg"]
+  },
+  "seated-leg-curl": {
+    "name": "Seated leg curl",
+    "cue": "Slow on the way back, 3 seconds",
+    "pictures": ["seated-leg-curl-1.svg", "seated-leg-curl-2.svg"]
+  },
+  "dumbbell-floor-press": {
+    "name": "Dumbbell floor press, neutral grip",
+    "cue": "Upper arms rest on floor briefly each rep",
+    "pictures": ["dumbbell-floor-press-1.svg", "dumbbell-floor-press-2.svg"]
+  },
+  "neutral-grip-lat-pulldown": {
+    "name": "Neutral-grip lat pulldown",
+    "cue": "Elbows to ribs, not behind you",
+    "pictures": ["neutral-grip-lat-pulldown-1.svg", "neutral-grip-lat-pulldown-2.svg"]
+  },
+  "cable-pushdown": {
+    "name": "Cable pushdown, rope",
+    "cue": "Elbows pinned to sides",
+    "pictures": ["cable-pushdown-1.svg", "cable-pushdown-2.svg"]
+  },
+  "pallof-press": {
+    "name": "Pallof press",
+    "cue": "Resist the rotation, don't twist",
+    "pictures": ["pallof-press-1.svg", "pallof-press-2.svg"]
+  },
+  "standing-calf-raise": {
+    "name": "Standing calf raise",
+    "cue": "Full stretch at the bottom",
+    "pictures": ["standing-calf-raise-1.svg", "standing-calf-raise-2.svg"]
+  },
+  "bulgarian-split-squat": {
+    "name": "Bulgarian split squat",
+    "cue": "Dumbbells at sides. Start light.",
+    "pictures": ["bulgarian-split-squat-1.svg", "bulgarian-split-squat-2.svg"]
+  },
+  "dumbbell-romanian-deadlift": {
+    "name": "Dumbbell Romanian deadlift",
+    "cue": "Hips back, soft knees, neutral grip",
+    "pictures": ["dumbbell-romanian-deadlift-1.svg", "dumbbell-romanian-deadlift-2.svg"]
+  },
+  "machine-chest-press": {
+    "name": "Machine chest press",
+    "cue": "Stop when elbows reach torso level",
+    "pictures": ["machine-chest-press-1.svg", "machine-chest-press-2.svg"]
+  },
+  "chest-down-dumbbell-row": {
+    "name": "Chest-down dumbbell row, 30–45° incline bench",
+    "cue": "Chest stays on bench, elbow stops at ribs",
+    "pictures": ["chest-down-dumbbell-row-1.svg", "chest-down-dumbbell-row-2.svg"]
+  },
+  "cable-external-rotation": {
+    "name": "Cable external rotation, elbow at side",
+    "cue": "Light. Elbow pinned to ribs, only forearm moves",
+    "pictures": ["cable-external-rotation-1.svg", "cable-external-rotation-2.svg"]
+  },
+  "knee-raise": {
+    "name": "Knee raise, power tower",
+    "cue": "Arms supported, curl the pelvis, no swing",
+    "pictures": ["knee-raise-1.svg", "knee-raise-2.svg"]
+  },
+  "goblet-squat": {
+    "name": "Goblet squat",
+    "cue": "Or Smith front squat. Elbows under weight, chest tall",
+    "pictures": ["goblet-squat-1.svg", "goblet-squat-2.svg"]
+  },
+  "hip-thrust": {
+    "name": "Hip thrust",
+    "cue": "Or 45° back extension if no bench",
+    "pictures": ["hip-thrust-1.svg", "hip-thrust-2.svg"]
+  },
+  "flat-dumbbell-press": {
+    "name": "Flat dumbbell press, partial depth",
+    "cue": "Stop at torso level — never let elbows drop below",
+    "pictures": ["flat-dumbbell-press-1.svg", "flat-dumbbell-press-2.svg"]
+  },
+  "seated-cable-row": {
+    "name": "Seated cable row, neutral grip",
+    "cue": "Chest up, elbows stop at ribs",
+    "pictures": ["seated-cable-row-1.svg", "seated-cable-row-2.svg"]
+  },
+  "close-grip-floor-press": {
+    "name": "Close-grip floor press",
+    "cue": "Hands shoulder-width, elbows tucked",
+    "pictures": ["close-grip-floor-press-1.svg", "close-grip-floor-press-2.svg"]
+  },
+  "ab-roller": {
+    "name": "Ab roller, kneeling, partial range",
+    "cue": "Stop when arms reach shoulder height",
+    "pictures": ["ab-roller-1.svg", "ab-roller-2.svg"]
+  }
+}
