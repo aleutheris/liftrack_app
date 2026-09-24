@@ -411,7 +411,7 @@ none of it may be assumed shipped.** Nothing in Liftrack's MVP requires any of i
 ## Verification
 
 Boundary checks, per `framework.md` §5 (end-to-end and contract checks are the primary
-verification). **None of these has been built or run — Liftrack has no code.** Each is written to
+verification). **None of these has been built or run — no Liftrack code calls the backend yet.** Each is written to
 be provable against a live deployment with a disposable test account.
 
 - **V1 — Version handshake.** `schemaInfo` returns a parseable semver; it satisfies the

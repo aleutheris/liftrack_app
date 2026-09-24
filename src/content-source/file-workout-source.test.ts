@@ -9,13 +9,18 @@ describe('fileWorkoutSource', () => {
     expect(plan.days.map((day) => day.id)).toEqual(rawPlan.days.map((day) => day.id))
   })
 
-  it('gives every exercise two pictures the build can serve', async () => {
+  it('gives every exercise two picture slots, each either a photo the build serves or missing', async () => {
     const plan = await fileWorkoutSource.loadPlan()
-    const pictures = plan.days.flatMap((day) => day.prescriptions.flatMap((row) => row.exercise.pictures))
+    const exercises = plan.days.flatMap((day) => day.prescriptions.map((row) => row.exercise))
 
-    expect(pictures.length).toBeGreaterThan(0)
-    pictures.forEach((picture) =>
-      expect(picture.src).toMatch(/\/content\/pictures\/[\w-]+\.(webp|jpe?g|png|avif|svg)(\?|$)/),
-    )
+    expect(exercises.length).toBeGreaterThan(0)
+    exercises.forEach((exercise) => expect(exercise.pictures).toHaveLength(2))
+    // Empty while the owner is still taking the photos; each one added must resolve to a served file.
+    exercises
+      .flatMap((exercise) => exercise.pictures)
+      .filter((picture) => picture !== null)
+      .forEach((picture) =>
+        expect(picture.src).toMatch(/\/content\/pictures\/[\w-]+\.(webp|jpe?g|png|avif|svg)(\?|$)/),
+      )
   })
 })

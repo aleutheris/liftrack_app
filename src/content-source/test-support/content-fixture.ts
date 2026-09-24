@@ -30,7 +30,7 @@ const VALID = {
   },
   // Picture file name → bytes; exactly at the budget, tiny, and unknown (null) are all valid.
   pictureSizes: {
-    'leg-press-1.webp': 102_400,
+    'leg-press-1.webp': 40_960,
     'leg-press-2.jpg': null,
     'pallof-press-1.png': 1,
     'pallof-press-2.svg': 800,

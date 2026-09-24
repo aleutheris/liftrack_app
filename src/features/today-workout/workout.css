@@ -57,11 +57,28 @@
   display: block;
   width: 100%;
   height: auto;
-  /* Real photos come in any shape; every picture gets the same 4:3 frame. */
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  /* Real photos come in any shape. A square frame fits an upright or a sideways photo about equally
+     well, and the whole photo is shown inside it: cropping to fill would cut a standing lifter's
+     head or feet off. The frame keeps its size, so the picture's shape never moves the page. */
+  aspect-ratio: 1;
+  object-fit: contain;
   background: var(--color-picture-backdrop);
   border-radius: calc(var(--radius) / 2);
+}
+
+/* A slot whose photo has not been added yet: the same frame, marked as empty rather than left out,
+   so the card keeps its shape and the gap is plainly a missing photo. */
+.exercise__missing {
+  display: grid;
+  place-content: center;
+  margin: 0;
+  padding: var(--space-2);
+  aspect-ratio: 1;
+  color: var(--color-text-muted);
+  background: var(--color-picture-backdrop);
+  border: 2px dashed var(--color-border);
+  border-radius: calc(var(--radius) / 2);
+  text-align: center;
 }
 
 /* Fixed to the bottom of the viewport. It is a container, so the bar inside can restack itself when

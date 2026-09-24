@@ -8,9 +8,9 @@ source of truth for each learning's status**; do not restate it in overview docu
 This index sits beside [`learnings/`](learnings/), which is durable knowledge and deliberately
 kept outside `evolution/`.
 
-**No learnings are recorded yet.** Liftrack has no application code and has made no live call
-to the Crystord Engine, so nothing has been discovered in operation that could be written down
-here. The table stays empty until it has.
+**No learnings are recorded yet.** Liftrack has made no live call to the Crystord Engine, and its
+first slice (EPIC-260007) captures what it learned at its implementation review, which is still
+open. The table stays empty until then.
 
 ## Index
 

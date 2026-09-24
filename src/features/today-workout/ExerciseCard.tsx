@@ -42,19 +42,27 @@ function PrescriptionLine({ prescription }: { readonly prescription: Prescriptio
 function Pictures({ exercise, eager }: { readonly exercise: Exercise; readonly eager: boolean }) {
   return (
     <div className="exercise__pictures">
-      {exercise.pictures.map((picture, index) => (
-        // Explicit dimensions reserve the space before the picture arrives, so nothing jumps.
-        <img
-          key={index}
-          src={picture.src}
-          alt={picture.alt}
-          width={400}
-          height={300}
-          loading={eager ? 'eager' : 'lazy'}
-          fetchPriority={eager ? 'high' : undefined}
-          decoding="async"
-        />
-      ))}
+      {exercise.pictures.map((picture, index) =>
+        picture === null ? (
+          // Said plainly and kept in the layout: the day is usable, and the gap is visible at a
+          // glance rather than looking like a picture that failed to load.
+          <p className="exercise__missing" key={index} data-testid="missing-picture">
+            Photo {index + 1} missing
+          </p>
+        ) : (
+          // A square reserves the frame's own space before the picture arrives, so nothing jumps.
+          <img
+            key={index}
+            src={picture.src}
+            alt={picture.alt}
+            width={400}
+            height={400}
+            loading={eager ? 'eager' : 'lazy'}
+            fetchPriority={eager ? 'high' : undefined}
+            decoding="async"
+          />
+        ),
+      )}
     </div>
   )
 }

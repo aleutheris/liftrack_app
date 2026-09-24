@@ -20,11 +20,14 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./src/test-setup.ts'],
-    include: ['src/**/*.test.{ts,tsx}'],
+    include: ['src/**/*.test.{ts,tsx}', 'scripts/**/*.test.ts'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'text-summary', 'json-summary'],
-      include: ['src/**/*.{ts,tsx}'],
+      // scripts/check-live-site.ts stays out: it fetches the live site and retries as soon as it is
+      // imported, so nothing can import it. What it decides — which files a page references, whether
+      // each was served properly, how long to keep retrying — lives in the two files named here.
+      include: ['src/**/*.{ts,tsx}', 'scripts/page-assets.ts', 'scripts/retry-window.ts'],
       exclude: ['src/**/*.test.{ts,tsx}', 'src/test-setup.ts', 'src/main.tsx', 'src/vite-env.d.ts'],
       // EPIC-260007: full coverage, enforced in CI so it cannot slip unnoticed.
       thresholds: { statements: 100, branches: 100, functions: 100, lines: 100 },

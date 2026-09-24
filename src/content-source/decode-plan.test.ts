@@ -68,6 +68,19 @@ describe('decodePlan', () => {
     expect(dayTwo?.prescriptions[0]?.exercise).not.toHaveProperty('cue')
   })
 
+  // Photos arrive one at a time, so a slot may be empty; the page shows it as missing.
+  it.each<[said: string, pictures: string[] | undefined, slots: unknown[]]>([
+    ['one picture', ['leg-press-1.webp'], [{ src: '/assets/leg-press-1.webp', alt: 'Leg press — picture 1 of 2' }, null]],
+    ['an empty list', [], [null, null]],
+    ['no pictures field', undefined, [null, null]],
+  ])('leaves a slot empty for an exercise with %s', (_said, pictures, slots) => {
+    const withPictures: RawCatalogue = { ...catalogue, 'leg-press': { name: 'Leg press', ...(pictures && { pictures }) } }
+
+    const [day] = decodePlan(withPictures, plan, pictureUrl).days
+
+    expect(day?.prescriptions[0]?.exercise.pictures).toEqual(slots)
+  })
+
   it('refuses a row naming an exercise the catalogue lacks, rather than decoding an incomplete plan', () => {
     const unchecked: RawPlan = {
       days: [{ id: 'day-1', name: 'Day 1', exercises: [{ exercise: 'squat', sets: 1, reps: 1 }] }],

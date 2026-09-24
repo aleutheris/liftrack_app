@@ -1,13 +1,15 @@
 // @vitest-environment node
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { repeatedKeys } from './repeated-keys'
 import { unsafePictureNames } from './validate-catalogue'
 import { validateContent } from './validate-content'
 
 // The CI content check (ADR-260008): the repository's own content/, read from disk — the one place
-// the 100 KB picture budget, the picture file names and the raw JSON text can all be checked.
-const contentDir = join(process.cwd(), 'content')
+// the picture budgets, the picture file names and the raw JSON text can all be checked.
+// Found from this file rather than the working directory, so the check runs the same from any folder.
+const contentDir = fileURLToPath(new URL('../../content/', import.meta.url))
 const picturesDir = join(contentDir, 'pictures')
 const CONTENT_FILES = ['exercises.json', 'plan.json'] as const
 

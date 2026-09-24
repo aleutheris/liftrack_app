@@ -16,8 +16,8 @@ describe('validateContent', () => {
     expect(validateContent(content)).toEqual([])
   })
 
-  it('accepts a picture of exactly 102400 bytes', () => {
-    expect(validateContent(contentWith([['pictureSizes', 'leg-press-1.webp'], 102_400]))).toEqual([])
+  it('accepts a picture of exactly 40960 bytes', () => {
+    expect(validateContent(contentWith([['pictureSizes', 'leg-press-1.webp'], 40_960]))).toEqual([])
   })
 
   it('checks only that a picture exists when its size is unknown, as in the browser', () => {

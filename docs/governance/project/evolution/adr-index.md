@@ -5,8 +5,8 @@ Status values are defined in
 [`artifact-model.md`](../../generic/process/artifact-model.md) — this index is the **single
 source of truth for each ADR's status**; do not restate it in overview documents.
 
-Each ADR's status is in its row, not in this sentence. No ADR here has been implemented yet —
-Liftrack has no application code.
+Each ADR's status is in its row, not in this sentence. Only ADR-260007 and ADR-260008 have been
+implemented, by EPIC-260007's first slice; the epic records how far its review has got.
 
 ## Index
 
@@ -19,7 +19,7 @@ Liftrack has no application code.
 | `ADR-260005` | Session token storage and re-authentication in a static browser client | `Proposed` | [`ADR-260005.md`](adr/ADR-260005.md) | REQ-FR-260001, REQ-CR-260002; EPIC-260003 | Where the engine's expiring bearer token lives when there is no server to set a cookie, and how a mid-workout expiry is handled without losing the entry being typed. |
 | `ADR-260006` | Capability-adaptive use of an evolving backend contract | `Proposed` | [`ADR-260006.md`](adr/ADR-260006.md) | REQ-CR-260001, REQ-CR-260003, REQ-FR-260003; ICR-260001, ICR-260003; EPIC-260006 | How Liftrack works within today's contract while keeping each workaround thin, named and removable, and pushes its own needs into the engine's ICR pipeline instead of absorbing them. |
 | `ADR-260007` | Frontend stack — TypeScript, React and Vite | `Accepted` | [`ADR-260007.md`](adr/ADR-260007.md) | REQ-OR-260001, REQ-QR-260002; ADR-260002, ADR-260008; EPIC-260007 | **Accepted 2026-09-21** — chosen by the owner in session over plain HTML/CSS/JS, Astro and Svelte. Same toolchain and Pages workflow as `crystord_app`; two flagged differences (Node pinned from `.nvmrc` in CI, checks before publishing). |
-| `ADR-260008` | First-slice workout content from repository files, behind a replaceable source | `Accepted` | [`ADR-260008.md`](adr/ADR-260008.md) | REQ-FR-260003, REQ-QR-260001, REQ-QR-260002; ADR-260001, ADR-260007; `liftrack-atom-shape-contract.md`; EPIC-260007 | Two JSON files and a picture folder mirroring ADR-260001, bundled and checked at build time; today by weekday (the owner's choice). **Accepted 2026-09-21** at EPIC-260007's plan review. |
+| `ADR-260008` | First-slice workout content from repository files, behind a replaceable source | `Accepted` | [`ADR-260008.md`](adr/ADR-260008.md) | REQ-FR-260003, REQ-QR-260001, REQ-QR-260002; ADR-260001, ADR-260007; `liftrack-atom-shape-contract.md`; EPIC-260007 | Two JSON files and a picture folder mirroring ADR-260001, bundled and checked at build time; every planned day paged in file order (the owner's amendment, which replaced the weekday rule). **Accepted 2026-09-21** at EPIC-260007's plan review. |
 
 ## Superseded
 

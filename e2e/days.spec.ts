@@ -21,8 +21,15 @@ async function expectExercise(item: Locator, exercise: ExpectedExercise, isFirst
   await expect(article.getByTestId('prescription')).toHaveText(exercise.prescription)
   await expect(article.getByTestId('sets')).toHaveText(exercise.sets)
   await expect(article.getByTestId('reps')).toHaveText(exercise.reps)
-  await expect(article.getByRole('img')).toHaveCount(2)
+  // Two slots, always: the photos taken so far, and a plain marker for each one still to come, so a
+  // day is shown in full whether or not its photos exist yet.
+  await expect(article.getByRole('img')).toHaveCount(exercise.photos)
+  await expect(article.getByTestId('missing-picture')).toHaveCount(2 - exercise.photos)
   for (const number of [1, 2]) {
+    if (number > exercise.photos) {
+      await expect(article.getByText(`Photo ${number} missing`, { exact: true })).toBeVisible()
+      continue
+    }
     const picture = article.getByRole('img', { name: `${exercise.name} — picture ${number} of 2`, exact: true })
     await expect(picture).toHaveJSProperty('loading', isFirst ? 'eager' : 'lazy')
     // A file of its own, not inlined into the script, or lazy loading would save nothing.
@@ -70,9 +77,9 @@ test('"Previous day" pages back to the first day, in reverse order', async ({ pa
   if (!last) throw new Error('content/plan.json has no days')
   await page.goto(`#${last.id}`)
   await expect(view.heading).toHaveText(last.name)
-  for (let index = days.length - 2; index >= 0; index--) {
+  for (const [index, day] of [...days.entries()].slice(0, -1).reverse()) {
     await view.previous.tap()
-    await expect(view.heading).toHaveText(days[index].name)
+    await expect(view.heading).toHaveText(day.name)
     await expect(view.position).toHaveText(`Day ${index + 1} of ${days.length}`)
   }
   await expect(view.previous).toBeDisabled()

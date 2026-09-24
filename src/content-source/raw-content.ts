@@ -10,8 +10,8 @@ export type RawReps = number | { readonly min: number; readonly max: number }
 export interface RawExercise {
   readonly name: string
   readonly cue?: string
-  /** Two file names in content/pictures/, in order. */
-  readonly pictures: readonly [string, string]
+  /** Up to two file names in content/pictures/, in order; absent until a photo is added. */
+  readonly pictures?: readonly string[]
 }
 
 /** content/exercises.json: exercise slug → exercise. */

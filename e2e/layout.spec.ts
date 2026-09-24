@@ -12,6 +12,9 @@ const days = readExpectedDays()
 const buildCommit = process.env.GITHUB_SHA?.slice(0, 7) ?? 'local'
 const minimumTouchTarget = 48
 const minimumTouchGap = 8
+const uprightPicture =
+  'data:image/svg+xml,' +
+  encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900"></svg>')
 
 type Box = { x: number; y: number; width: number; height: number }
 
@@ -141,6 +144,32 @@ for (const scale of [1.5, 2]) {
     await expectLastExerciseClear(page, view)
   })
 }
+
+// A phone photo is as often upright as sideways, and the frame shows all of it either way: cropping
+// to fill would cut a standing lifter's head or feet off. Swapping one in must not move the page.
+test('shows a picture of any shape whole, in a frame that keeps its size', async ({ page }) => {
+  const view = dayPage(page)
+  await page.goto('./')
+  // The first slot of the day, whether it holds a photo or the marker for one still to come: both
+  // sit in the frame the page's own stylesheet gives them, which is what this measures.
+  const slot = view.exercises.first().getByRole('article').locator('img, [data-testid="missing-picture"]').first()
+  const frame = await slot.boundingBox()
+  if (!frame) throw new Error('the first picture slot is not rendered')
+  expect(Math.abs(frame.width - frame.height), 'the frame is square, in px').toBeLessThanOrEqual(0.5)
+  const upright = await slot.evaluate(async (element: HTMLElement, source) => {
+    // A photo put into that same frame: the page has none of its own until the owner adds them.
+    const img = element.tagName === 'IMG' ? (element as HTMLImageElement) : new Image()
+    if (img !== element) element.replaceWith(img)
+    img.src = source
+    await img.decode()
+    const { width, height } = img.getBoundingClientRect()
+    return { fit: getComputedStyle(img).objectFit, tall: img.naturalHeight > img.naturalWidth, width, height }
+  }, uprightPicture)
+  expect(upright.tall, 'the picture swapped in is upright').toBe(true)
+  expect(upright.fit, 'the whole picture is shown, not cropped to fill').toBe('contain')
+  expect(Math.abs(upright.width - frame.width), 'frame width, unchanged by an upright picture').toBeLessThanOrEqual(0.5)
+  expect(Math.abs(upright.height - frame.height), 'frame height, unchanged').toBeLessThanOrEqual(0.5)
+})
 
 test('the footer shows which build is live, uncovered', async ({ page }) => {
   const view = dayPage(page)

@@ -13,10 +13,13 @@ export function decodePlan(catalogue: RawCatalogue, plan: RawPlan, pictureUrl: P
 }
 
 function decodeExercise(slug: string, raw: RawExercise, pictureUrl: PictureUrl): Exercise {
-  const picture = (index: 0 | 1) => ({
-    src: pictureUrl(raw.pictures[index]),
-    alt: `${raw.name} — picture ${index + 1} of 2`,
-  })
+  // A slot whose photo has not been added yet stays empty; the page shows it as missing.
+  const picture = (index: 0 | 1) => {
+    const fileName = raw.pictures?.[index]
+    return fileName === undefined
+      ? null
+      : { src: pictureUrl(fileName), alt: `${raw.name} — picture ${index + 1} of 2` }
+  }
   return {
     key: slug,
     name: raw.name,

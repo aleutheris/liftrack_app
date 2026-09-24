@@ -7,7 +7,8 @@ source of truth for each contract's status**; do not restate it in overview docu
 
 **Both contracts below are `Proposed`.** Neither has been confirmed by the parties it names:
 the Crystord boundary contract describes an interface Liftrack has not yet called, and the atom
-shape contract describes a data shape ADR-260001 has not yet had accepted.
+shape contract still has two open unknowns (its O1 and O2) that only a live probe of the backend
+can close.
 
 ## Index
 

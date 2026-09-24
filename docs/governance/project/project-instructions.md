@@ -4,12 +4,14 @@ Instantiated from `docs/governance/generic/process/project-instructions.md`. Thi
 project instantiation details only; foundational policy lives in the generic governance tree
 (do not duplicate it here).
 
-> **Ratification note (2026-09-21).** Liftrack is greenfield: no application code, no scaffold and
-> no package manifest exist. Three ADRs are accepted — the workout domain model (ADR-260001), the
-> frontend stack (ADR-260007) and the first slice's content source (ADR-260008); every other record is unratified, and the indexes hold each status.
-> The six original epics are parked, and the first slice is EPIC-260007 (`evolution/epic-index.md`).
-> Sections 2 and 5 below describe the **intended** instantiation, not a built one, and name the ADR
-> whose acceptance would make them binding; §7 marks which of its lines are decided.
+> **Ratification note (2026-09-21).** Three ADRs are accepted — the workout domain model
+> (ADR-260001), the frontend stack (ADR-260007) and the first slice's content source (ADR-260008);
+> every other record is unratified, and the indexes hold each status. The six original epics are
+> parked, and the first slice is EPIC-260007 (`evolution/epic-index.md`). That slice is built — a
+> Vite + React + TypeScript page reading its content from files, published to GitHub Pages by a
+> GitHub Actions pipeline — and sections 2 and 5 below open with what it built. The rest of those
+> two sections describes the **intended** instantiation for the later epics and names the ADR whose
+> acceptance would make it binding; §7 marks which of its lines are decided.
 
 ## Source of Truth (Do Not Duplicate)
 
@@ -52,9 +54,13 @@ source files above.
 
 ## 2. Architecture Instantiation
 
-No code exists. The following is the intended instantiation — the shape ADR-260002 would ratify and
-EPIC-260002 would build — recorded here so the first commit has a boundary to land inside rather
-than a structure discovered afterwards.
+The first slice (EPIC-260007) is built inside this boundary: `src/app-shell/` composes the page and
+shows the build id; `src/features/today-workout/` is the read-only day pager and day view;
+`src/workout/` holds the domain types and the source interface, and imports nothing; and
+`src/content-source/` is the interim file-backed source described below, handed to the app only by
+`src/main.tsx`. `src/architecture.test.ts` fails the unit suite on any import that crosses these
+boundaries. Everything else in this section is still the intended instantiation — the shape
+ADR-260002 would ratify and EPIC-260002 and the later epics would build.
 
 - Major modules and responsibilities: `app-shell` (routing, layout, the boot-time schema handshake,
   the global re-auth interrupt); `session-access` (sign-in, sign-out, token lifecycle —
@@ -157,11 +163,16 @@ All contract changes must use `docs/governance/generic/templates/interface-chang
 
 ## 5. Delivery Instantiation
 
-**No CI, no pipeline and no deployment exist today.** The following is the target that ADR-260002
-would ratify and EPIC-260002 would build; it is written as a target so the first pipeline is
-reviewed against a recorded intent. The first pipeline is a reduced one, built by EPIC-260007: lint,
-type check, tests, build and deploy, with no backend configuration. The backend-facing gates below
-stay with EPIC-260002.
+**The first pipeline exists, built by EPIC-260007** (`.github/workflows/deploy.yml`, on every push
+to `main`), with no backend configuration. It runs three jobs, each only if the one before passed:
+`build`, with read-only rights — lint, strict type check, the unit, component and content checks at
+100% coverage, the build, and the end-to-end check on that build served under a sub-path; `deploy`,
+the only job allowed to publish — to GitHub Pages; and `check-live-site`, read-only again — it
+fetches the live page and every file its HTML references, and requires the deployed commit's build
+id in the served JavaScript, retrying while the Pages cache may still serve the previous build. A
+failure before `deploy` publishes nothing. The rest of this section is the target that ADR-260002
+would ratify and EPIC-260002 would build, written as a target so the backend-facing gates are
+reviewed against a recorded intent.
 
 - Branching constraints for this project: direct-to-main with small, reversible commits
   (single-maintainer project); `main` must remain deployable at all times, because rollback is a
@@ -270,7 +281,8 @@ Project-specific instantiation:
   a parked epic resumes, on every adopted backend schema version, and thereafter per milestone.
   ADR-260001, ADR-260007 and ADR-260008 are already decided.
 - Epic ownership: the repository owner writes and maintains epics and their inline task checklists.
-  No epic has yet passed the plan-review gate, so no task list is authoritative.
+  Only an epic that has passed the plan-review gate (`Ready` or `Done` in `evolution/epic-index.md`)
+  has an authoritative task list.
 
 ## 9. Loading Matrix Instantiation
 

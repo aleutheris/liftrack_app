@@ -5,9 +5,9 @@ QR, OR, CR}`), one row per record. Status values are defined in
 [`artifact-model.md`](../../generic/process/artifact-model.md) — this index is the **single
 source of truth for each requirement's status**; do not restate it in overview documents.
 
-**Every requirement below is `Proposed`.** None has been ratified by the repository owner, and
-none has been built — Liftrack has no application code yet. `Related` lists the ADRs and epics
-each requirement traces to.
+**Every requirement below is `Proposed`.** None has been ratified by the repository owner. Only
+EPIC-260007's first slice builds any of them, and only in part — its Links say which parts.
+`Related` lists the ADRs and epics each requirement traces to.
 
 ## Index
 

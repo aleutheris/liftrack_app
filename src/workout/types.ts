@@ -11,18 +11,21 @@ export interface RepTarget {
   readonly max: number
 }
 
-export interface Picture {
+interface Picture {
   readonly src: string
   readonly alt: string
 }
+
+/** A picture of how to do the exercise, or `null` where no photo has been added yet (ADR-260008). */
+type PictureSlot = Picture | null
 
 export interface Exercise {
   readonly key: string
   readonly name: string
   /** One-line coaching cue — `exercise/v1`'s description in the backend shape. */
   readonly cue?: string
-  /** Exactly two pictures of how to do the exercise, in order. */
-  readonly pictures: readonly [Picture, Picture]
+  /** Two picture slots, in order; a slot without a photo is shown as missing, not hidden. */
+  readonly pictures: readonly [PictureSlot, PictureSlot]
 }
 
 export interface Prescription {

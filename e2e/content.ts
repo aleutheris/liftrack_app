@@ -22,6 +22,7 @@ interface ContentDay {
 interface ContentExercise {
   name: string
   cue?: string
+  pictures?: string[]
 }
 
 export interface ExpectedExercise {
@@ -30,6 +31,8 @@ export interface ExpectedExercise {
   sets: string
   reps: string
   prescription: string
+  /** How many of the exercise's two picture slots hold a photo; the rest show as missing. */
+  photos: number
 }
 
 export interface ExpectedDay {
@@ -58,6 +61,7 @@ function expectedExercise(row: ContentRow, catalogue: Record<string, ContentExer
     sets: String(row.sets),
     reps,
     prescription: `${row.sets} ${counted(row.sets, 'set')} × ${reps} ${counted(max, 'rep')}${per}`,
+    photos: exercise.pictures?.length ?? 0,
   }
 }
 

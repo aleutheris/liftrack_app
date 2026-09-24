@@ -4,16 +4,11 @@ import type { PlannedDays } from '../use-day-in-fragment'
 
 // Test fixtures only: the page is checked against a fake source, never the real content.
 
-export function exercise(key: string, name: string, cue?: string): Exercise {
-  return {
-    key,
-    name,
-    cue,
-    pictures: [
-      { src: `/pictures/${key}-1.webp`, alt: `${name} — picture 1 of 2` },
-      { src: `/pictures/${key}-2.webp`, alt: `${name} — picture 2 of 2` },
-    ],
-  }
+/** `photos` is how many of the two slots hold a picture; the rest are still to be taken. */
+export function exercise(key: string, name: string, cue?: string, photos: 0 | 1 | 2 = 2): Exercise {
+  const picture = (slot: 1 | 2) =>
+    slot > photos ? null : { src: `/pictures/${key}-${slot}.webp`, alt: `${name} — picture ${slot} of 2` }
+  return { key, name, cue, pictures: [picture(1), picture(2)] }
 }
 
 export function prescription(

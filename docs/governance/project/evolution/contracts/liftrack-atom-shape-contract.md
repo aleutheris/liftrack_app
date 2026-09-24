@@ -397,7 +397,7 @@ server-side in any shape, because an atom takes at most one value per category d
 
 ## Verification
 
-Shape checks, per `framework.md` §5. **None has been built or run — Liftrack has no code.** Each
+Shape checks, per `framework.md` §5. **None has been built or run — no Liftrack code calls the backend yet.** Each
 is written to be provable end-to-end against a disposable account, and each pairs a negative
 assertion with a positive control.
 

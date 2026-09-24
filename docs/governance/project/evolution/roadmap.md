@@ -8,8 +8,11 @@ link it. Kept short by design.
 
 ## Current shape
 
-Greenfield. **There is no application code, no scaffold and no package manifest** — the repository
-holds governance, the vendored backend contract in `../../../backend/`, and nothing else.
+**Only the first slice is built** (EPIC-260007): a Vite + React + TypeScript page that pages
+through the planned workout days read from `content/`, behind the source interface the backend
+adapter will implement, published to GitHub Pages by a GitHub Actions pipeline that checks each
+commit before publishing and checks the live site after. Beside it the repository holds governance
+and the vendored backend contract in `../../../backend/`. No code calls the backend yet.
 
 What exists is a first instantiation of governance v2.0.0 (2026-09-12), and **little of it is
 ratified**: the owner has accepted the workout domain model (ADR-260001, 2026-09-12) and the

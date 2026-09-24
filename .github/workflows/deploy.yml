@@ -1,17 +1,18 @@
 name: Deploy to GitHub Pages
 
-# Every push to main is checked and, only if every check passes, published. A failing step ends
-# the job, so a commit whose content or code fails a check never reaches the site (EPIC-260007).
+# Every push to main is checked and, only if every check passes, published; then the live site is
+# checked. A failing step ends its job and skips the jobs after it, so a commit whose content or
+# code fails a check never reaches the site (EPIC-260007).
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+# Read-only unless a job says otherwise. Only the deploy job can publish, so dependency install
+# scripts and the test runners never run with the rights to change the site.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 # One deploy at a time. A newer push cancels an older run still in progress; the newest commit wins.
 concurrency:
@@ -19,10 +20,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -65,13 +63,55 @@ jobs:
           path: playwright-report/
           retention-days: 14
 
-      - uses: actions/configure-pages@v6
-        with:
-          enablement: false
-
+      # The dist/ that passed every check above is the one the deploy job publishes.
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
+  deploy:
+    needs: build
+    permissions:
+      pages: write # configure-pages reads the Pages site; deploy-pages publishes to it
+      id-token: write # deploy-pages proves the deployment comes from this workflow
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # Calls the Pages API, so it runs here, where the rights are. Fails if Pages is not enabled.
+      - uses: actions/configure-pages@v6
+        with:
+          enablement: false
+
       - uses: actions/deploy-pages@v5
         id: deployment
+
+  # A separate job, so the check runs with read-only rights. It fetches the page as a phone would
+  # and fails the run unless every file the HTML references loads and the JavaScript names this
+  # commit (REQ-OR-260001). The pictures are checked by the end-to-end step, before the deploy.
+  check-live-site:
+    needs: deploy
+    runs-on: ubuntu-latest
+    # A backstop only. The check's own window closes at 720 s, and the attempt running then is never
+    # cut off: at worst it adds the page plus its three files at the 10 s request timeout each, about
+    # 40 s. So a real run, checkout and Node included, ends around 13 min — roughly two minutes under
+    # this cap, which is therefore hit by a hung job, not by a slow site.
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+
+      # Pages' CDN keeps a page for up to 600 s (max-age=600) and ignores query strings, so it may
+      # answer with the previous build for that long. Retries 20 s apart within a 720 s window, which
+      # leaves room for an attempt that starts after those 600 s are up.
+      - name: Check the live site
+        run: node scripts/check-live-site.ts
+        env:
+          PAGE_URL: ${{ needs.deploy.outputs.page_url }}
+          CHECK_DEADLINE_SECONDS: 720
+          CHECK_INTERVAL_SECONDS: 20

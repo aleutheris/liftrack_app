@@ -1,14 +1,23 @@
-import { readExpectedDays } from './content'
+import { readExpectedDays, type ExpectedDay } from './content'
 import { dayPage, scrollToPageEnd } from './day-page'
 import { expect, test } from './fixtures'
 
 const days = readExpectedDays()
-const [first, second] = days
+const first = days[0]
+if (!first) throw new Error('content/plan.json has no days')
+
+/** The day after the first. The tests that move to it are skipped while the plan has only one day. */
+function secondDay(): ExpectedDay {
+  const second = days[1]
+  if (!second) throw new Error('content/plan.json has only one day')
+  return second
+}
 
 test.describe('the day kept in the URL fragment', () => {
-  test.skip(!second, 'needs at least two planned days to move between')
+  test.skip(days.length < 2, 'needs at least two planned days to move between')
 
   test('a reload stays on the day being viewed', async ({ page }) => {
+    const second = secondDay()
     const view = dayPage(page)
     await page.goto('./')
     await view.next.tap()
@@ -19,6 +28,7 @@ test.describe('the day kept in the URL fragment', () => {
   })
 
   test('paging replaces the fragment instead of adding history entries', async ({ page }) => {
+    const second = secondDay()
     const view = dayPage(page)
     await page.goto('./')
     await expect(view.heading).toHaveText(first.name)
@@ -31,6 +41,7 @@ test.describe('the day kept in the URL fragment', () => {
   })
 
   test('a fragment edited by hand is followed', async ({ page }) => {
+    const second = secondDay()
     const view = dayPage(page)
     await page.goto('./')
     await expect(view.heading).toHaveText(first.name)
@@ -41,6 +52,7 @@ test.describe('the day kept in the URL fragment', () => {
   })
 
   test('changing the day scrolls back to the top', async ({ page }) => {
+    const second = secondDay()
     const view = dayPage(page)
     await page.goto('./')
     await expect(view.heading).toHaveText(first.name)

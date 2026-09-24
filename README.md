@@ -87,13 +87,17 @@ src/
   styles/                      tokens.css (every colour) and the base page styles
   architecture.test.ts         fails the tests if an import crosses a module boundary
 e2e/                           end-to-end checks on the built site (Playwright)
+scripts/                       the live-site check CI runs after each deploy, and its tests
+  check-live-site.ts           fetches the published page and every file it references
+  page-assets.ts               what a page references, and how each must be served
+  retry-window.ts              how long the check keeps retrying
 public/                        copied into the build as-is (favicon)
 index.html                     the page shell Vite builds from
 package.json, .nvmrc           scripts, dependencies, Node version
 vite.config.ts, tsconfig*.json, eslint.config.js, playwright.config.ts
                                build, type-check, lint and end-to-end settings
 .github/
-  workflows/deploy.yml         checks, builds, tests and publishes to GitHub Pages
+  workflows/deploy.yml         checks and builds, publishes to Pages, then checks the live site
   copilot-instructions.md      thin pointer to docs/governance/
 docs/
   backend/                     vendored backend evidence (read-only)
@@ -125,8 +129,9 @@ actually relies on.
 
 ### Run it locally
 
-You need Node 22.13 or later on the 22 line (`.nvmrc` says `22`, so `nvm use` and CI take the
-newest 22.x) and npm.
+You need Node 22.18 or later on the 22 line (`package.json` asks for `>=22.18`; `.nvmrc` says
+`22`, so `nvm use` and CI take the newest 22.x) and npm. 22.18 is the first version that runs a
+`.ts` file with `node` unflagged, which the live-site check needs.
 
 ```sh
 nvm use        # switch to the Node version in .nvmrc
@@ -144,8 +149,8 @@ CI runs these in this order, and publishes only if all of them pass.
 | --- | --- |
 | `npm run lint` | ESLint over the whole repository |
 | `npm run typecheck` | TypeScript, strict mode |
-| `npm test` | unit and component tests, the content check (100 KB picture budget included), the module boundaries |
-| `npm run test:coverage` | the same tests, failing if any line or branch of `src/` goes untested |
+| `npm test` | unit and component tests, the content check (both picture budgets included), the module boundaries |
+| `npm run test:coverage` | the same tests, failing if any line or branch of `src/`, or of the two `scripts/` modules the live-site check is built from, goes untested |
 | `npm run build` | builds the site into `dist/` |
 | `npm run test:e2e` | end-to-end checks on the built site (Playwright) |
 
@@ -155,6 +160,8 @@ way GitHub Pages serves a project site, on a 360 × 640 touch screen, and checks
 
 - every day in `content/plan.json`, opened at its own address, shows the right exercises, cues,
   sets, reps and both pictures loaded, and tapping "Next day" reaches every day in order;
+- every picture is shown whole in a square frame that keeps its size, so an upright photo is
+  neither cropped nor able to move the page;
 - a reload keeps the day, and an unknown `#…` shows the first day;
 - the text sizes, contrast and button sizes meet `REQ-QR-260001`, and with the browser's text
   size at 150% and 200% the paging buttons still show their labels in full;
@@ -164,6 +171,16 @@ way GitHub Pages serves a project site, on a 360 × 640 touch screen, and checks
 
 Before the first end-to-end run on a new machine, install the browser: `npx playwright install
 chromium`. When a check fails, `npx playwright show-report` opens the report.
+
+After publishing, CI checks the live site with `scripts/check-live-site.ts` (see
+[Deploying](#deploying)). To run that check by hand against the live site:
+
+```sh
+PAGE_URL=<site>/ GITHUB_SHA=<commit> CHECK_DEADLINE_SECONDS=0 CHECK_INTERVAL_SECONDS=0 node scripts/check-live-site.ts
+```
+
+Both settings are required. A deadline of 0 leaves no room for a second attempt, so that is the
+one-shot form; CI gives the check a retry window instead, described below.
 
 ### Editing the workout days
 
@@ -202,46 +219,78 @@ an exercise, add an entry under a key that is not in the file yet:
   earlier entry, so the content check rejects any key repeated inside one object.
 - `name` — shown above the exercise's pictures.
 - `cue` — optional, one line. Leave the field out rather than leaving it empty.
-- `pictures` — exactly two file names from `content/pictures/`, in the order they are shown.
+- `pictures` — optional: up to two different file names from `content/pictures/`, in the order
+  they are shown. Leave the field out until a photo exists; the page shows "Photo 1 missing" in
+  that slot and the day works as usual.
 
 **Invalid content fails CI and is never published.** The content check rejects a plan with no
 days; a day id that is not a slug or is used twice; a day with no name or no exercises; an
 exercise key that `exercises.json` does not have; sets or reps that are not whole numbers of 1 or
 more; a range whose `min` is above its `max`; a `per` other than leg, arm or side; a key in
-`exercises.json` that is not a slug; an exercise without a name or without exactly two pictures;
-an empty cue; a picture file that is missing, too large, of the wrong type or not plainly named;
-any field not listed above, so a misspelt key is caught; and any key repeated inside one object,
-in either file. Run `npm test` to see the same result before you push.
+`exercises.json` that is not a slug; an exercise without a name, with more than two pictures or
+naming the same picture file twice; an empty cue; a picture file that is missing, too large,
+of the wrong type or not plainly named; a day whose pictures weigh too much together; any field
+not listed above, so a misspelt key is caught; and any key repeated inside one object, in either
+file. Run `npm test` to see the same result before you push.
 
 ### Adding pictures
 
 Each exercise has two pictures in `content/pictures/`:
 
-- at most **100 KB each** — a phone photo is several megabytes and must be resized first;
+- at most **40 KB each** — a phone photo is several megabytes and must be resized first;
+- and at most **600 KB for one day's pictures together**, a file counting once where two of the
+  day's exercises share it; a seven-exercise day has 14 pictures, so about 40 KB each is the
+  working figure, and at that size the per-picture limit is the one that binds — the day total
+  catches a day that grows, with an eighth exercise or with exercises that stop sharing pictures;
 - `.webp`, `.jpg`, `.jpeg`, `.png`, `.avif` or `.svg`;
 - named with letters, digits, `.`, `_` and `-` only, starting with a letter or digit, and placed
   directly in `content/pictures/`, not in a folder — for every file there, used or not, as the
   build reads them all;
-- about 800 px wide is plenty. WebP or JPEG at medium quality usually lands well under the budget
-  (for example `cwebp -q 75 -resize 800 0 photo.jpg -o goblet-squat-1.webp`, or squoosh.app);
-- the page shows each picture at 4:3 and crops to fill, so a landscape 4:3 photo loses nothing.
+- about 600 px on its longest side is plenty — the page shows each picture in a frame about
+  143 CSS px wide, so 600 px is more than even a 3× phone screen displays. WebP or JPEG at medium
+  quality at that size usually lands under 40 KB (for example
+  `cwebp -q 70 -resize 600 0 photo.jpg -o goblet-squat-1.webp`,
+  `magick photo.jpg -resize 600x600 -strip -quality 70 goblet-squat-1.webp`, or squoosh.app);
+  check the result with `ls -l content/pictures/` and re-encode at a lower quality if it is over.
+  `-strip` matters for `magick`: without it the phone's own metadata and its embedded thumbnail
+  are copied into the picture;
+- **any shape** — upright, sideways or square. The page gives every picture the same square frame
+  and shows all of it inside, so nothing is cropped and no photo needs trimming first.
 
-The pictures start as placeholders. To replace one: add the new file to `content/pictures/`, put
-its name in place of the placeholder's in the exercise's `pictures` in `content/exercises.json`,
-and delete the placeholder file.
+`npm test` and CI check both limits against the real files, so a picture over 40 KB, or a day
+whose pictures pass 600 KB together, fails the build and is never published.
+
+No exercise has photos yet, so every card shows "Photo 1 missing" and "Photo 2 missing". To add
+one: put the file in `content/pictures/` and add its name to that exercise's `pictures` in
+`content/exercises.json`. Do it for one exercise or all of them — the days keep working meanwhile.
+A name whose file is not there fails the build, so a typo never reaches the phone as a silent gap.
 
 ### Deploying
 
 1. Create the GitHub repository and push this one to it.
 2. In the repository's **Settings → Pages**, set **Source** to **GitHub Actions**.
-3. Push to `main`. The workflow in `.github/workflows/deploy.yml` lints, type-checks, runs the
-   tests and the content check, builds, runs the end-to-end checks on that build, and only then
-   publishes. You can also start it by hand from the **Actions** tab. If any step fails, nothing
-   is published and the site keeps the previous build; a failed end-to-end run attaches its report
-   to the workflow run.
+3. Push to `main`. The workflow in `.github/workflows/deploy.yml` runs three jobs, each only if
+   the one before passed. You can also start it by hand from the **Actions** tab.
+   - **build** lints, type-checks, runs the tests and the content check, builds, and runs the
+     end-to-end checks on that build. It has read-only rights, so neither the installed packages
+     nor the tests can change the site. If it fails, nothing is published and the site keeps the
+     previous build; a failed end-to-end run attaches its report to the workflow run.
+   - **deploy** publishes the build that passed to GitHub Pages. It is the only job with the
+     rights to publish.
+   - **check-live-site** then checks the published site, with read-only rights: the page and
+     every file its HTML references (the scripts, the stylesheet and the icon) must load with the
+     right content type, and the JavaScript must carry this commit's build id — the one the footer
+     shows. The pictures are not fetched here; the end-to-end checks cover them, on the same build,
+     before it is published. GitHub Pages can keep serving the previous build for up to 10 minutes
+     after a deploy, so the check retries every 20 s while another attempt would still finish
+     inside a 12-minute window, and stops at the first pass; each request times out after 10 s, so
+     one stalled request cannot eat the window. When the window runs out it reports what it found
+     and fails on its own, rather than being cut off by the job's timeout. If it fails, the new
+     build **is** published but is wrong or not yet served; its log names what it expected and what
+     it found.
 4. The site is at `https://<owner>.github.io/<repository>/`. The footer's build id (`Build
-   <commit> · <time>`) tells you which commit is live — compare it with the latest commit on
-   `main`.
+   <commit> · <time>`) tells you which commit is live. The live-site check already compares it with
+   the commit that was pushed, so checking it by eye is optional.
 
 **Everything published is public**: the plan, the cues and the pictures can be seen by anyone who
 has the address. Nothing private belongs in `content/`.

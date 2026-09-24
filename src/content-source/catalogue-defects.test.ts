@@ -37,16 +37,16 @@ describe('validateContent — exercises.json and picture defects', () => {
       `${AT}.cue: expected a non-empty string, found ""`,
     ],
     [
-      'an exercise with one picture', [...LEG_PRESS, 'pictures'], ['leg-press-1.webp'],
-      `${AT}.pictures: expected a list of exactly two picture files, found ["leg-press-1.webp"]`,
-    ],
-    [
       'an exercise with three pictures', [...LEG_PRESS, 'pictures'], ['a.webp', 'b.webp', 'c.webp'],
-      `${AT}.pictures: expected a list of exactly two picture files, found ["a.webp","b.webp","c.webp"]`,
+      `${AT}.pictures: expected a list of up to two picture files, found ["a.webp","b.webp","c.webp"]`,
     ],
     [
-      'an exercise with no pictures', [...LEG_PRESS, 'pictures'], undefined,
-      `${AT}.pictures: expected a list of exactly two picture files, found nothing`,
+      'pictures written as one file name rather than a list', [...LEG_PRESS, 'pictures'], 'leg-press-1.webp',
+      `${AT}.pictures: expected a list of up to two picture files, found "leg-press-1.webp"`,
+    ],
+    [
+      'an exercise with the same picture twice', [...LEG_PRESS, 'pictures', 1], 'leg-press-1.webp',
+      `${AT}.pictures: both pictures are "leg-press-1.webp"; use two different files`,
     ],
     [
       'a picture with an empty file name', [...LEG_PRESS, 'pictures', 0], '',
@@ -61,11 +61,46 @@ describe('validateContent — exercises.json and picture defects', () => {
       `${AT}.pictures[1]: "leg-press-2.jpg" is not in content/pictures/`,
     ],
     [
-      'a picture over 100 KB', ['pictureSizes', 'leg-press-1.webp'], 102_401,
-      `${AT}.pictures[0]: "leg-press-1.webp" is 102401 bytes, over the 102400-byte picture budget`,
+      'a picture over 40 KB', ['pictureSizes', 'leg-press-1.webp'], 40_961,
+      `${AT}.pictures[0]: "leg-press-1.webp" is 40961 bytes, over the 40960-byte picture budget`,
     ],
   ])('rejects %s', (_defect, path, value, problem) => {
     expect(validateContent(contentWith([path, value]))).toEqual([problem])
+  })
+
+  it('passes two different pictures, even ones whose names differ only in the extension', () => {
+    const content = contentWith(
+      [[...LEG_PRESS, 'pictures', 1], 'leg-press-1.jpg'],
+      [['pictureSizes', 'leg-press-1.jpg'], 900],
+    )
+
+    expect(validateContent(content)).toEqual([])
+  })
+
+  it('reports what is wrong with a picture used twice once, not once per use', () => {
+    const content = contentWith([[...LEG_PRESS, 'pictures'], ['leg-press-3.webp', 'leg-press-3.webp']])
+
+    expect(validateContent(content)).toEqual([
+      `${AT}.pictures: both pictures are "leg-press-3.webp"; use two different files`,
+      `${AT}.pictures[0]: "leg-press-3.webp" is not in content/pictures/`,
+    ])
+  })
+
+  it('reports two empty picture names as two missing names, not as the same picture twice', () => {
+    expect(validateContent(contentWith([[...LEG_PRESS, 'pictures'], ['', '']]))).toEqual([
+      `${AT}.pictures[0]: expected a picture file name, found ""`,
+      `${AT}.pictures[1]: expected a picture file name, found ""`,
+    ])
+  })
+
+  // A photo that has not been taken yet is simply absent: the page shows that slot as missing, so no
+  // day is held back waiting for a picture. A name that IS given must still be a file (below).
+  it.each<[said: string, pictures: unknown]>([
+    ['no pictures field at all', undefined],
+    ['an empty list of pictures', []],
+    ['one picture and one still to come', ['leg-press-1.webp']],
+  ])('accepts an exercise with %s', (_said, pictures) => {
+    expect(validateContent(contentWith([[...LEG_PRESS, 'pictures'], pictures]))).toEqual([])
   })
 
   it('rejects a picture whose extension is not an allowed image type, even when the file exists', () => {

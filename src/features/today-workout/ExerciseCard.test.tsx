@@ -20,6 +20,18 @@ describe('ExerciseCard', () => {
     expect(screen.queryByTestId('cue')).not.toBeInTheDocument()
   })
 
+  // The owner adds photos one at a time, and a day must never wait for them.
+  it.each<[photos: 0 | 1 | 2, missing: string[]]>([
+    [2, []],
+    [1, ['Photo 2 missing']],
+    [0, ['Photo 1 missing', 'Photo 2 missing']],
+  ])('with %i of its photos taken, says which are missing', (photos, missing) => {
+    render(<ExerciseCard prescription={prescription(exercise('row', 'Cable row', undefined, photos), 3, 10)} eager />)
+
+    expect(screen.queryAllByTestId('missing-picture').map((slot) => slot.textContent)).toEqual(missing)
+    expect(screen.queryAllByRole('img')).toHaveLength(2 - missing.length)
+  })
+
   it('shows both pictures, in order, with their alt text and reserved dimensions', () => {
     render(<ExerciseCard prescription={prescription(legPress, 4, 10)} eager />)
     const pictures = screen.getAllByRole('img')
@@ -33,7 +45,7 @@ describe('ExerciseCard', () => {
     ])
     for (const picture of pictures) {
       expect(picture).toHaveAttribute('width', '400')
-      expect(picture).toHaveAttribute('height', '300')
+      expect(picture).toHaveAttribute('height', '400')
       expect(picture).toHaveAttribute('decoding', 'async')
     }
   })
