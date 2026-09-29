@@ -11,7 +11,7 @@ import { validateContent } from './validate-content'
 // Found from this file rather than the working directory, so the check runs the same from any folder.
 const contentDir = fileURLToPath(new URL('../../content/', import.meta.url))
 const picturesDir = join(contentDir, 'pictures')
-const CONTENT_FILES = ['exercises.json', 'plan.json'] as const
+const CONTENT_FILES = ['exercises.json', 'exercise-groups.json', 'plan.json'] as const
 
 function readText(fileName: string): string {
   return readFileSync(join(contentDir, fileName), 'utf8')
@@ -35,6 +35,7 @@ describe('the content in content/', () => {
   it('has no problem the content check knows of', () => {
     const problems = validateContent({
       exercises: JSON.parse(readText('exercises.json')),
+      groups: JSON.parse(readText('exercise-groups.json')),
       plan: JSON.parse(readText('plan.json')),
       pictureSizes: pictureSizes(),
     })

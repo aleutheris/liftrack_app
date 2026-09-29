@@ -1,78 +1,314 @@
 {
   "leg-press": {
     "name": "Leg press",
-    "cue": "Feet mid-platform, knees track over toes"
-  },
-  "seated-leg-curl": {
-    "name": "Seated leg curl",
-    "cue": "Slow on the way back, 3 seconds"
-  },
-  "dumbbell-floor-press": {
-    "name": "Dumbbell floor press, neutral grip",
-    "cue": "Upper arms rest on floor briefly each rep"
-  },
-  "neutral-grip-lat-pulldown": {
-    "name": "Neutral-grip lat pulldown",
-    "cue": "Elbows to ribs, not behind you"
-  },
-  "cable-pushdown": {
-    "name": "Cable pushdown, rope",
-    "cue": "Elbows pinned to sides"
-  },
-  "pallof-press": {
-    "name": "Pallof press",
-    "cue": "Resist the rotation, don't twist"
-  },
-  "standing-calf-raise": {
-    "name": "Standing calf raise",
-    "cue": "Full stretch at the bottom"
-  },
-  "bulgarian-split-squat": {
-    "name": "Bulgarian split squat",
-    "cue": "Dumbbells at sides. Start light."
-  },
-  "dumbbell-romanian-deadlift": {
-    "name": "Dumbbell Romanian deadlift",
-    "cue": "Hips back, soft knees, neutral grip"
-  },
-  "machine-chest-press": {
-    "name": "Machine chest press",
-    "cue": "Stop when elbows reach torso level"
-  },
-  "chest-down-dumbbell-row": {
-    "name": "Chest-down dumbbell row, 30–45° incline bench",
-    "cue": "Chest stays on bench, elbow stops at ribs"
-  },
-  "cable-external-rotation": {
-    "name": "Cable external rotation, elbow at side",
-    "cue": "Light. Elbow pinned to ribs, only forearm moves"
-  },
-  "knee-raise": {
-    "name": "Knee raise, power tower",
-    "cue": "Arms supported, curl the pelvis, no swing"
+    "group": "legs-knee-dominant-bilateral",
+    "cue": "Feet mid-platform, knees track over toes",
+    "pictures": [
+      "leg-press-1.jpg", "leg-press-2.jpg"
+    ]
   },
   "goblet-squat": {
     "name": "Goblet squat",
-    "cue": "Or Smith front squat. Elbows under weight, chest tall"
+    "group": "legs-knee-dominant-bilateral",
+    "cue": "Elbows inside the knees, chest tall",
+    "pictures": [
+      "goblet-squat-1.jpg"
+    ]
+  },
+  "back-squat": {
+    "name": "Back squat, bar on upper back",
+    "group": "legs-knee-dominant-bilateral",
+    "cue": "Hands wide so the shoulders aren't pulled back; chest tall",
+    "pictures": [
+      "back-squat-1.jpg"
+    ]
+  },
+  "dumbbell-squat": {
+    "name": "Dumbbell squat",
+    "group": "legs-knee-dominant-bilateral",
+    "cue": "Dumbbells hang at your sides, neutral grip; chest tall",
+    "pictures": [
+      "dumbbell-squat-1.jpg"
+    ]
+  },
+  "bulgarian-split-squat": {
+    "name": "Bulgarian split squat",
+    "group": "legs-knee-dominant-unilateral",
+    "cue": "Dumbbells at your sides, never front-racked. Start light",
+    "pictures": [
+      "bulgarian-split-squat-1.jpg"
+    ]
+  },
+  "reverse-lunge": {
+    "name": "Reverse lunge",
+    "group": "legs-knee-dominant-unilateral",
+    "cue": "Step back, not forward; dumbbells at your sides",
+    "pictures": [
+      "reverse-lunge-1.jpg"
+    ]
+  },
+  "step-up": {
+    "name": "Step-up, knee-height box",
+    "group": "legs-knee-dominant-unilateral",
+    "cue": "Drive through the working leg, don't push off the trailing foot",
+    "pictures": [
+      "step-up-1.jpg"
+    ]
+  },
+  "single-leg-press": {
+    "name": "Single-leg press",
+    "group": "legs-knee-dominant-unilateral",
+    "cue": "Control the negative",
+    "pictures": [
+      "single-leg-press-1.jpg"
+    ]
+  },
+  "seated-leg-curl": {
+    "name": "Seated leg curl",
+    "group": "legs-hip-hamstring",
+    "cue": "Slow on the way back, 3 seconds",
+    "pictures": [
+      "seated-leg-curl-1.jpg"
+    ]
+  },
+  "dumbbell-romanian-deadlift": {
+    "name": "Dumbbell Romanian deadlift",
+    "group": "legs-hip-hamstring",
+    "cue": "Hips back, soft knees, neutral grip",
+    "pictures": [
+      "dumbbell-romanian-deadlift-1.jpg"
+    ]
+  },
+  "prone-leg-curl": {
+    "name": "Prone leg curl",
+    "group": "legs-hip-hamstring",
+    "cue": "Hips stay pressed into the pad; slow on the way back",
+    "pictures": [
+      "prone-leg-curl-1.jpg"
+    ]
   },
   "hip-thrust": {
     "name": "Hip thrust",
-    "cue": "Or 45° back extension if no bench"
+    "group": "legs-hip-hamstring",
+    "cue": "Chin tucked, ribs down; don't arch the lower back at the top",
+    "pictures": [
+      "hip-thrust-1.jpg"
+    ]
+  },
+  "back-extension-45": {
+    "name": "45° back extension",
+    "group": "legs-hip-hamstring",
+    "cue": "Hinge at the hips, not the lower back",
+    "pictures": [
+      "back-extension-45-1.jpg"
+    ]
+  },
+  "dumbbell-floor-press": {
+    "name": "Dumbbell floor press, neutral grip",
+    "group": "chest",
+    "cue": "Upper arms rest on floor briefly each rep",
+    "pictures": [
+      "dumbbell-floor-press-1.jpg"
+    ]
+  },
+  "machine-chest-press": {
+    "name": "Machine chest press",
+    "group": "chest",
+    "cue": "Stop when elbows reach torso level",
+    "pictures": [
+      "machine-chest-press-1.jpg"
+    ]
   },
   "flat-dumbbell-press": {
     "name": "Flat dumbbell press, partial depth",
-    "cue": "Stop at torso level — never let elbows drop below"
+    "group": "chest",
+    "cue": "Stop at torso level, never let elbows drop below",
+    "pictures": [
+      "flat-dumbbell-press-1.jpg"
+    ]
+  },
+  "elevated-push-up": {
+    "name": "Elevated-hands push-up",
+    "group": "chest",
+    "cue": "Hands raised on a bench or low bar; keeps elbows from traveling behind the torso",
+    "pictures": [
+      "elevated-push-up-1.jpg"
+    ]
+  },
+  "neutral-grip-lat-pulldown": {
+    "name": "Neutral-grip lat pulldown",
+    "group": "back",
+    "cue": "Elbows to ribs, don't drive them behind you",
+    "pictures": [
+      "neutral-grip-lat-pulldown-1.jpg"
+    ]
+  },
+  "chest-down-dumbbell-row": {
+    "name": "Chest-down dumbbell row, 30–45° incline bench",
+    "group": "back",
+    "cue": "Chest stays on the bench; elbow stops at the ribs",
+    "pictures": [
+      "chest-down-dumbbell-row-1.jpg"
+    ]
   },
   "seated-cable-row": {
     "name": "Seated cable row, neutral grip",
-    "cue": "Chest up, elbows stop at ribs"
+    "group": "back",
+    "cue": "Chest up, elbows stop at the ribs",
+    "pictures": [
+      "seated-cable-row-1.jpg"
+    ]
+  },
+  "half-kneeling-cable-row": {
+    "name": "Half-kneeling single-arm cable row",
+    "group": "back",
+    "cue": "Elbow stops at the ribs, same as the other rows",
+    "pictures": [
+      "half-kneeling-cable-row-1.jpg"
+    ]
+  },
+  "cable-pushdown": {
+    "name": "Cable pushdown, rope or bar",
+    "group": "triceps",
+    "cue": "Elbows pinned to your sides",
+    "pictures": [
+      "cable-pushdown-1.jpg"
+    ]
   },
   "close-grip-floor-press": {
     "name": "Close-grip floor press",
-    "cue": "Hands shoulder-width, elbows tucked"
+    "group": "triceps",
+    "cue": "Hands shoulder-width, elbows tucked in, dumbbells angled slightly toward each other",
+    "pictures": [
+      "close-grip-floor-press-1.jpg"
+    ]
+  },
+  "machine-triceps-extension": {
+    "name": "Machine triceps extension",
+    "group": "triceps",
+    "cue": "Elbows fixed, don't let them drift",
+    "pictures": [
+      "machine-triceps-extension-1.jpg"
+    ]
+  },
+  "dumbbell-kickback": {
+    "name": "Dumbbell kickback",
+    "group": "triceps",
+    "cue": "Upper arm parallel to the floor, only the forearm moves",
+    "pictures": [
+      "dumbbell-kickback-1.jpg"
+    ]
+  },
+  "cable-external-rotation": {
+    "name": "Cable external rotation, elbow at side",
+    "group": "shoulder-health",
+    "cue": "Elbow pinned to the ribs, only the forearm moves",
+    "pictures": [
+      "cable-external-rotation-1.jpg", "cable-external-rotation-2.jpg"
+    ]
+  },
+  "rear-delt-fly": {
+    "name": "Chest-supported rear delt fly",
+    "group": "shoulder-health",
+    "cue": "Incline bench 30–45°, arms hang then arc out to the sides",
+    "pictures": [
+      "rear-delt-fly-1.jpg"
+    ]
+  },
+  "band-pull-apart": {
+    "name": "Band pull-apart",
+    "group": "shoulder-health",
+    "cue": "Arms straight, pull the band apart at chest height",
+    "pictures": [
+      "band-pull-apart-1.jpg"
+    ]
+  },
+  "prone-y-t-raise": {
+    "name": "Prone Y and T raise, very light",
+    "group": "shoulder-health",
+    "cue": "Thumbs up on the Y, arms straight out to the sides on the T",
+    "pictures": [
+      "prone-y-t-raise-1.jpg"
+    ]
+  },
+  "pallof-press": {
+    "name": "Pallof press",
+    "group": "core",
+    "cue": "Resist the rotation, don't twist",
+    "pictures": [
+      "pallof-press-1.jpg"
+    ]
+  },
+  "cable-chop": {
+    "name": "Cable chop / lift",
+    "group": "core",
+    "cue": "Arms stay in front, rotate from the torso",
+    "pictures": [
+      "cable-chop-1.jpg"
+    ]
+  },
+  "plank": {
+    "name": "Plank",
+    "group": "core",
+    "cue": "Long holds, ribs down, don't let the hips sag",
+    "pictures": [
+      "plank-1.jpg"
+    ]
+  },
+  "dead-bug": {
+    "name": "Dead bug",
+    "group": "core",
+    "cue": "Lower back stays flat against the floor",
+    "pictures": [
+      "dead-bug-1.jpg"
+    ]
   },
   "ab-roller": {
     "name": "Ab roller, kneeling, partial range",
-    "cue": "Stop when arms reach shoulder height"
+    "group": "core",
+    "cue": "Stop when arms reach shoulder height, build range slowly",
+    "pictures": [
+      "ab-roller-1.jpg"
+    ]
+  },
+  "side-plank": {
+    "name": "Side plank",
+    "group": "core",
+    "cue": "Hips stacked, don't rotate forward or back",
+    "pictures": [
+      "side-plank-1.jpg"
+    ]
+  },
+  "suitcase-carry": {
+    "name": "Suitcase carry",
+    "group": "core",
+    "cue": "Shoulders level, don't lean",
+    "pictures": [
+      "suitcase-carry-1.jpg"
+    ]
+  },
+  "knee-raise": {
+    "name": "Knee raise, power tower",
+    "group": "core",
+    "cue": "Arms supported, curl the pelvis, don't swing",
+    "pictures": [
+      "knee-raise-1.jpg"
+    ]
+  },
+  "cable-crunch": {
+    "name": "Cable crunch",
+    "group": "core",
+    "cue": "Hands stay by your head, arms don't move; curl from the ribs, not the hips",
+    "pictures": [
+      "cable-crunch-1.jpg"
+    ]
+  },
+  "standing-calf-raise": {
+    "name": "Standing calf raise",
+    "group": "calves",
+    "cue": "Full stretch at the bottom",
+    "pictures": [
+      "standing-calf-raise-1.jpg"
+    ]
   }
 }

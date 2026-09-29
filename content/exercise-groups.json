@@ -1,0 +1,11 @@
+{
+  "legs-knee-dominant-bilateral": { "name": "Legs — knee-dominant, bilateral" },
+  "legs-knee-dominant-unilateral": { "name": "Legs — knee-dominant, unilateral" },
+  "legs-hip-hamstring": { "name": "Legs — hip/hamstring-dominant" },
+  "chest": { "name": "Chest" },
+  "back": { "name": "Back" },
+  "triceps": { "name": "Triceps" },
+  "shoulder-health": { "name": "Shoulder health" },
+  "core": { "name": "Core" },
+  "calves": { "name": "Calves" }
+}

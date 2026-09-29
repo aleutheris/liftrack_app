@@ -1,22 +1,40 @@
 import { isObject } from './json-checks'
 import type { RawCatalogue, RawPlan } from './raw-content'
-import { validateCatalogue, type PictureSizes } from './validate-catalogue'
+import { validateCatalogue, validateGroups, type PictureSizes } from './validate-catalogue'
 import { validateDayPictures } from './validate-day-pictures'
 import { validatePlan } from './validate-plan'
 
 export interface ContentFiles {
   /** content/exercises.json, parsed. */
   readonly exercises: unknown
+  /** content/exercise-groups.json, parsed — extra info about an exercise; may be absent entirely. */
+  readonly groups?: unknown
   /** content/plan.json, parsed. */
   readonly plan: unknown
-  /** The browser cannot read file sizes, so there only existence is checked; CI checks the sizes. */
+  /** The browser cannot read file sizes, so there each is null; CI reads them from disk. */
   readonly pictureSizes: PictureSizes
 }
 
+export interface ContentCheckOptions {
+  /**
+   * Whether a picture exercises.json names but content/pictures/ lacks is a problem. It is in CI, which
+   * gates the deploy, so a typo is caught; the page shows that slot as missing instead (ADR-260008).
+   */
+  readonly picturesMustExist?: boolean
+}
+
 /** Every way the content departs from ADR-260008's format, as messages naming file and field. */
-export function validateContent({ exercises, plan, pictureSizes }: ContentFiles): string[] {
+export function validateContent(
+  { exercises, groups, plan, pictureSizes }: ContentFiles,
+  { picturesMustExist = true }: ContentCheckOptions = {},
+): string[] {
+  const groupSlugs = new Set(isObject(groups) ? Object.keys(groups) : [])
   const exerciseSlugs = new Set(isObject(exercises) ? Object.keys(exercises) : [])
-  const problems = [...validateCatalogue(exercises, pictureSizes), ...validatePlan(plan, exerciseSlugs)]
+  const problems = [
+    ...validateGroups(groups),
+    ...validateCatalogue(exercises, groupSlugs, { sizes: pictureSizes, mustExist: picturesMustExist }),
+    ...validatePlan(plan, exerciseSlugs),
+  ]
   if (problems.length > 0) {
     return problems
   }

@@ -81,6 +81,17 @@ describe('decodePlan', () => {
     expect(day?.prescriptions[0]?.exercise.pictures).toEqual(slots)
   })
 
+  it('leaves a slot empty for a picture the build serves no file for', () => {
+    const served = (fileName: string) => (fileName === 'leg-press-1.webp' ? undefined : pictureUrl(fileName))
+
+    const [day] = decodePlan(catalogue, plan, served).days
+
+    expect(day?.prescriptions[0]?.exercise.pictures).toEqual([
+      null,
+      { src: '/assets/leg-press-2.webp', alt: 'Leg press — picture 2 of 2' },
+    ])
+  })
+
   it('refuses a row naming an exercise the catalogue lacks, rather than decoding an incomplete plan', () => {
     const unchecked: RawPlan = {
       days: [{ id: 'day-1', name: 'Day 1', exercises: [{ exercise: 'squat', sets: 1, reps: 1 }] }],

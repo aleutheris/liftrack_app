@@ -16,7 +16,8 @@ const DAY_PICTURE_BYTES_MAX = 600 * 1024
 /**
  * One problem per day of content/plan.json whose pictures weigh more together than a cold open can
  * afford. Runs on content the catalogue and plan checks have passed, so every row names an exercise
- * of the catalogue and every picture is a file of content/pictures/.
+ * of the catalogue; in CI every picture is also a file of content/pictures/, while on the page one
+ * that is not is shown as missing and so weighs nothing.
  */
 export function validateDayPictures(
   catalogue: RawCatalogue,

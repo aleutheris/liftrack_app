@@ -9,6 +9,8 @@ export type RawReps = number | { readonly min: number; readonly max: number }
 /** An entry of content/exercises.json. */
 export interface RawExercise {
   readonly name: string
+  /** A slug of content/exercise-groups.json; absent until the exercise is classified. */
+  readonly group?: string
   readonly cue?: string
   /** Up to two file names in content/pictures/, in order; absent until a photo is added. */
   readonly pictures?: readonly string[]
@@ -16,6 +18,14 @@ export interface RawExercise {
 
 /** content/exercises.json: exercise slug → exercise. */
 export type RawCatalogue = Readonly<Record<string, RawExercise>>
+
+/** An entry of content/exercise-groups.json — just a display name; extra info about an exercise. */
+export interface RawGroup {
+  readonly name: string
+}
+
+/** content/exercise-groups.json: group slug → group. */
+export type RawGroupCatalogue = Readonly<Record<string, RawGroup>>
 
 /** A row of a planned day; `exercise` is a slug of content/exercises.json. */
 export interface RawRow {

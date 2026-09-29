@@ -6,10 +6,19 @@ const VALID = {
   exercises: {
     'leg-press': {
       name: 'Leg press',
+      group: 'legs',
       cue: 'Feet mid-platform, knees track over toes',
       pictures: ['leg-press-1.webp', 'leg-press-2.jpg'],
     },
-    'pallof-press': { name: 'Pallof press', pictures: ['pallof-press-1.png', 'pallof-press-2.svg'] },
+    'pallof-press': {
+      name: 'Pallof press',
+      group: 'core',
+      pictures: ['pallof-press-1.png', 'pallof-press-2.svg'],
+    },
+  },
+  groups: {
+    legs: { name: 'Legs' },
+    core: { name: 'Core' },
   },
   plan: {
     days: [
@@ -48,6 +57,7 @@ export function contentWith(...edits: readonly Edit[]): ContentFiles {
   edits.forEach(([path, value]) => setAt(content, path, value))
   return {
     exercises: content.exercises,
+    groups: content.groups,
     plan: content.plan,
     pictureSizes: new Map(Object.entries(content.pictureSizes as Record<string, number | null>)),
   }

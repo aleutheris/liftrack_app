@@ -103,6 +103,23 @@ describe('validateContent — exercises.json and picture defects', () => {
     expect(validateContent(contentWith([[...LEG_PRESS, 'pictures'], pictures]))).toEqual([])
   })
 
+  // The page shows such a slot as missing (file-source.ts); CI, which gates the deploy, catches the typo.
+  it('lets the page pass a picture named but not in content/pictures/, which CI still rejects', () => {
+    const content = contentWith([['pictureSizes', 'leg-press-2.jpg'], undefined])
+
+    expect(validateContent(content, { picturesMustExist: false })).toEqual([])
+    expect(validateContent(content)).toEqual([`${AT}.pictures[1]: "leg-press-2.jpg" is not in content/pictures/`])
+  })
+
+  it('keeps a picture name the format forbids a problem where a missing file is not', () => {
+    const content = contentWith([[...LEG_PRESS, 'pictures'], ['leg press.webp', 'leg-press-2.gif']])
+
+    expect(validateContent(content, { picturesMustExist: false })).toEqual([
+      `${AT}.pictures[0]: "leg press.webp" ${NOT_PLAIN}`,
+      `${AT}.pictures[1]: "leg-press-2.gif" is not a .webp, .jpg, .jpeg, .png, .avif, .svg file`,
+    ])
+  })
+
   it('rejects a picture whose extension is not an allowed image type, even when the file exists', () => {
     const content = contentWith(
       [[...LEG_PRESS, 'pictures', 0], 'leg-press-1.gif'],

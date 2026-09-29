@@ -200,9 +200,9 @@ reviewed against a recorded intent.
 Requirement taxonomy and record naming follow `framework-reference.md` §2 and `artifact-model.md`
 — record the project-specific decisions only:
 
-- Requirement ID allocation: the repository owner assigns `REQ-FR/QR/OR/CR` IDs from the project's
-  single shared `26xxxx` sequence (shared with ADR, EPIC and ICR numbering); the record file and its
-  row in `evolution/requirement-index.md` are created in the same change, index first.
+- Requirement ID allocation: the repository owner assigns `REQ-FR/QR/OR/CR` records; automation
+  welcome. The record file and its row in `evolution/requirement-index.md` are created in the same
+  change, index first.
 - Portability acceptance checks: runs in current mobile Safari and Chrome on a phone at the widths
   REQ-QR-260001 states; no server runtime of any kind; the endpoint and the pinned schema range come
   from build-time configuration and appear in no component.

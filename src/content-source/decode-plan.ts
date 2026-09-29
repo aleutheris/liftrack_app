@@ -1,8 +1,8 @@
 import type { Exercise, PlannedDay, Prescription, RepTarget, WorkoutPlan } from '../workout/types'
 import type { RawCatalogue, RawDay, RawExercise, RawPlan, RawReps, RawRow } from './raw-content'
 
-/** Resolves a file name in content/pictures/ to the URL the build serves it at. */
-type PictureUrl = (fileName: string) => string
+/** Resolves a file name in content/pictures/ to the URL the build serves it at; undefined if none. */
+type PictureUrl = (fileName: string) => string | undefined
 
 /** Turns content that validateContent has passed into the domain plan, in file order. */
 export function decodePlan(catalogue: RawCatalogue, plan: RawPlan, pictureUrl: PictureUrl): WorkoutPlan {
@@ -13,12 +13,12 @@ export function decodePlan(catalogue: RawCatalogue, plan: RawPlan, pictureUrl: P
 }
 
 function decodeExercise(slug: string, raw: RawExercise, pictureUrl: PictureUrl): Exercise {
-  // A slot whose photo has not been added yet stays empty; the page shows it as missing.
+  // A slot whose photo has not been added yet — not named, or named with no file — stays empty; the
+  // page shows it as missing.
   const picture = (index: 0 | 1) => {
     const fileName = raw.pictures?.[index]
-    return fileName === undefined
-      ? null
-      : { src: pictureUrl(fileName), alt: `${raw.name} — picture ${index + 1} of 2` }
+    const src = fileName === undefined ? undefined : pictureUrl(fileName)
+    return src === undefined ? null : { src, alt: `${raw.name} — picture ${index + 1} of 2` }
   }
   return {
     key: slug,

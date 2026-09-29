@@ -260,10 +260,16 @@ Each exercise has two pictures in `content/pictures/`:
 `npm test` and CI check both limits against the real files, so a picture over 40 KB, or a day
 whose pictures pass 600 KB together, fails the build and is never published.
 
-No exercise has photos yet, so every card shows "Photo 1 missing" and "Photo 2 missing". To add
-one: put the file in `content/pictures/` and add its name to that exercise's `pictures` in
-`content/exercises.json`. Do it for one exercise or all of them — the days keep working meanwhile.
-A name whose file is not there fails the build, so a typo never reaches the phone as a silent gap.
+For now each exercise's first picture is a placeholder — the same photo of dumbbells, copied under
+the name `content/exercises.json` gives it — and every second slot shows "Photo 2 missing". To put
+in the real photo, overwrite that file under the same name; nothing else changes. To add a second
+picture, put the file in `content/pictures/` and add its name to that exercise's `pictures`. A new
+placeholder must be copied from one of those files, not from `default_pic.jpg` in the project root,
+which at 136 KB is over the 40 KB limit.
+
+A picture whose name is given but whose file is not there shows on the page as "Photo N missing",
+like an empty slot, so the days always load. `npm test` and CI still fail it, so a typo is never
+published — run `npm test` before you push, as the page alone will not show the mistake.
 
 ### Deploying
 
