@@ -1,12 +1,12 @@
 import { validateContent, type ContentFiles } from './validate-content'
 
 // Negative controls for the pictures one workout needs (REQ-QR-260002, EPIC-260007). Every workout in
-// content/plan.json has seven exercises, so 14 pictures, which cannot reach the 600 KB workout budget
-// while each picture stays inside its own 40 KB budget: eight exercises is the smallest workout that can
+// content/plan.json has seven exercises, so 14 pictures, which cannot reach the 1500 KB workout budget
+// while each picture stays inside its own 100 KB budget: eight exercises is the smallest workout that can
 // break the total on pictures the picture check accepts.
 const EXERCISES = 8
-// Sixteen pictures of this size are 614400 bytes — the workout budget to the byte.
-const EVEN_SHARE = 38_400
+// Sixteen pictures of this size are 1536000 bytes — the workout budget to the byte.
+const EVEN_SHARE = 96_000
 
 interface Workout {
   /** How many exercises the workout prescribes, each naming two pictures. */
@@ -48,11 +48,11 @@ function entriesOf(workout: number, { exercises, shared = false }: Workout): Ent
 
 function overBudget(index: number, bytes: number): string {
   const at = `plan.json workouts[${index}]: workout "workout-${index + 1}"`
-  return `${at} needs ${bytes} bytes of pictures, over the 614400-byte workout budget`
+  return `${at} needs ${bytes} bytes of pictures, over the 1536000-byte workout budget`
 }
 
 describe('validateContent — the pictures one workout needs', () => {
-  it('accepts a workout whose pictures are exactly the 614400-byte budget', () => {
+  it('accepts a workout whose pictures are exactly the 1536000-byte budget', () => {
     expect(validateContent(contentOf([{ exercises: EXERCISES }], () => EVEN_SHARE))).toEqual([])
   })
 
@@ -61,15 +61,15 @@ describe('validateContent — the pictures one workout needs', () => {
       file === 'd1p0.webp' ? EVEN_SHARE + 1 : EVEN_SHARE,
     )
 
-    expect(validateContent(content)).toEqual([overBudget(0, 614_401)])
+    expect(validateContent(content)).toEqual([overBudget(0, 1_536_001)])
   })
 
   it('counts a file two exercises of one workout share once, as the browser fetches it once', () => {
-    // Fifteen files at the 40960-byte picture budget are 614400 bytes, so the workout that shares one
-    // fits, where the workout of sixteen separate files is 40960 bytes over.
+    // Fifteen files at the 102400-byte picture budget are 1536000 bytes, so the workout that shares one
+    // fits, where the workout of sixteen separate files is 102400 bytes over.
     const workouts = [{ exercises: EXERCISES, shared: true }, { exercises: EXERCISES }]
 
-    expect(validateContent(contentOf(workouts, () => 40_960))).toEqual([overBudget(1, 655_360)])
+    expect(validateContent(contentOf(workouts, () => 102_400))).toEqual([overBudget(1, 1_638_400)])
   })
 
   it('leaves a size it cannot read out of the total, as every size is unknown in the browser', () => {
@@ -77,8 +77,8 @@ describe('validateContent — the pictures one workout needs', () => {
   })
 
   it('does not count a size it cannot read as a picture of the full budget', () => {
-    // Fifteen pictures one byte over an even share are 576015 bytes; counting the sixteenth, whose
-    // size is unknown, as a 40960-byte picture would put the workout over.
+    // Fifteen pictures one byte over an even share are 1440015 bytes; counting the sixteenth, whose
+    // size is unknown, as a 102400-byte picture would put the workout over.
     const content = contentOf([{ exercises: EXERCISES }], (file) =>
       file === 'd1p0.webp' ? null : EVEN_SHARE + 1,
     )
@@ -87,14 +87,14 @@ describe('validateContent — the pictures one workout needs', () => {
   })
 
   it('reports a picture over its own budget without a workout total resting on that picture', () => {
-    // The workout comes to 616961 bytes, over its budget — but the one picture is the fix, and the total
+    // The workout comes to 1542401 bytes, over its budget — but the one picture is the fix, and the total
     // changes the moment it is resized, so a workout message here would be noise.
     const content = contentOf([{ exercises: EXERCISES }], (file) =>
-      file === 'd1p0.webp' ? 40_961 : EVEN_SHARE,
+      file === 'd1p0.webp' ? 102_401 : EVEN_SHARE,
     )
 
     expect(validateContent(content)).toEqual([
-      'exercises.json d1-exercise-1.pictures[0]: "d1p0.webp" is 40961 bytes, over the 40960-byte picture budget',
+      'exercises.json d1-exercise-1.pictures[0]: "d1p0.webp" is 102401 bytes, over the 102400-byte picture budget',
     ])
   })
 })

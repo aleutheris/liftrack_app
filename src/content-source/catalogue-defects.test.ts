@@ -61,8 +61,8 @@ describe('validateContent — exercises.json and picture defects', () => {
       `${AT}.pictures[1]: "leg-press-2.jpg" is not in content/pictures/`,
     ],
     [
-      'a picture over 40 KB', ['pictureSizes', 'leg-press-1.webp'], 40_961,
-      `${AT}.pictures[0]: "leg-press-1.webp" is 40961 bytes, over the 40960-byte picture budget`,
+      'a picture over 100 KB', ['pictureSizes', 'leg-press-1.webp'], 102_401,
+      `${AT}.pictures[0]: "leg-press-1.webp" is 102401 bytes, over the 102400-byte picture budget`,
     ],
   ])('rejects %s', (_defect, path, value, problem) => {
     expect(validateContent(contentWith([path, value]))).toEqual([problem])

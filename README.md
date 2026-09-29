@@ -237,10 +237,10 @@ file. Run `npm test` to see the same result before you push.
 
 Each exercise has two pictures in `content/pictures/`:
 
-- at most **40 KB each** — a phone photo is several megabytes and must be resized first;
-- and at most **600 KB for one workout's pictures together**, a file counting once where two of the
-  workout's exercises share it; a seven-exercise workout has 14 pictures, so about 40 KB each is the
-  working figure, and at that size the per-picture limit is the one that binds — the workout total
+- at most **100 KB each** — a phone photo is several megabytes and must be resized first;
+- and at most **1500 KB for one workout's pictures together**, a file counting once where two of the
+  workout's exercises share it; a seven-exercise workout has 14 pictures, so 100 KB each is the
+  ceiling, and at that size the per-picture limit is the one that binds — the workout total
   catches a workout that grows, with an eighth exercise or with exercises that stop sharing pictures;
 - `.webp`, `.jpg`, `.jpeg`, `.png`, `.avif` or `.svg`;
 - named with letters, digits, `.`, `_` and `-` only, starting with a letter or digit, and placed
@@ -248,7 +248,7 @@ Each exercise has two pictures in `content/pictures/`:
   build reads them all;
 - about 600 px on its longest side is plenty — the page shows each picture in a frame about
   143 CSS px wide, so 600 px is more than even a 3× phone screen displays. WebP or JPEG at medium
-  quality at that size usually lands under 40 KB (for example
+  quality at that size usually lands under 40 KB, well inside the limit and faster to open (for example
   `cwebp -q 70 -resize 600 0 photo.jpg -o goblet-squat-1.webp`,
   `magick photo.jpg -resize 600x600 -strip -quality 70 goblet-squat-1.webp`, or squoosh.app);
   check the result with `ls -l content/pictures/` and re-encode at a lower quality if it is over.
@@ -257,15 +257,22 @@ Each exercise has two pictures in `content/pictures/`:
 - **any shape** — upright, sideways or square. The page gives every picture the same square frame
   and shows all of it inside, so nothing is cropped and no photo needs trimming first.
 
-`npm test` and CI check both limits against the real files, so a picture over 40 KB, or a workout
-whose pictures pass 600 KB together, fails the build and is never published.
+`npm test` and CI check both limits against the real files, so a picture over 100 KB, or a workout
+whose pictures pass 1500 KB together, fails the build and is never published.
+
+The limits were 40 KB and 600 KB until 2026-09-29, which held a workout's cold open on a slow mobile
+connection (1.6 Mbps) to about 4 s. They were raised so real photos can go in without resizing first;
+on that connection a workout of 100 KB pictures shows its text in about 1 s but takes about 7 s to
+finish loading. To lower them again, change `PICTURE_BYTES_MAX` in
+`src/content-source/validate-catalogue.ts` and `WORKOUT_PICTURE_BYTES_MAX` in
+`src/content-source/validate-workout-pictures.ts`.
 
 For now each exercise's first picture is a placeholder — the same photo of dumbbells, copied under
 the name `content/exercises.json` gives it — and every second slot shows "Photo 2 missing". To put
 in the real photo, overwrite that file under the same name; nothing else changes. To add a second
 picture, put the file in `content/pictures/` and add its name to that exercise's `pictures`. A new
 placeholder must be copied from one of those files, not from `default_pic.jpg` in the project root,
-which at 136 KB is over the 40 KB limit.
+which at 136 KB is over the 100 KB limit.
 
 A picture whose name is given but whose file is not there shows on the page as "Photo N missing",
 like an empty slot, so the workouts always load. `npm test` and CI still fail it, so a typo is never

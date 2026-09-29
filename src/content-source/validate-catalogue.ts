@@ -10,10 +10,11 @@ export interface PictureFiles {
 }
 
 const PICTURE_EXTENSIONS = ['.webp', '.jpg', '.jpeg', '.png', '.avif', '.svg']
-// The picture budget of EPIC-260007, derived from REQ-QR-260002's 1.6 Mbps (about 200 KB/s): 40 KB
-// is about 0.2 s. A picture is shown in a frame about 143 CSS px wide, so even a 3x phone screen
-// shows 429 device px and a 600 px export — comfortably inside 40 KB — loses nothing visible.
-const PICTURE_BYTES_MAX = 40 * 1024
+// The picture budget. EPIC-260007 derived 40 KB from REQ-QR-260002's 1.6 Mbps (about 200 KB/s), about
+// 0.2 s a picture; the owner raised it to 100 KB on 2026-09-29, about 0.5 s, to publish photos without
+// resizing them first, and may lower it again. A picture is shown in a frame about 143 CSS px wide, so
+// even a 3x phone screen shows 429 device px: a 600 px export loses nothing visible.
+const PICTURE_BYTES_MAX = 100 * 1024
 // The build imports every picture by its path, where '#' or '?' breaks the import, and it reads no
 // subfolders. Keeping names to these characters rules both out.
 const PLAIN_FILE_NAME = /^[A-Za-z0-9][A-Za-z0-9._-]*$/
