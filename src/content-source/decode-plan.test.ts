@@ -11,18 +11,18 @@ const catalogue: RawCatalogue = {
 }
 
 const plan: RawPlan = {
-  days: [
+  workouts: [
     {
-      id: 'day-1',
-      name: 'Day 1 — type A',
+      id: 'workout-1',
+      name: 'Workout 1 — type A',
       exercises: [
         { exercise: 'leg-press', sets: 4, reps: 10 },
         { exercise: 'pallof-press', sets: 3, reps: { min: 8, max: 12 }, per: 'side' },
       ],
     },
     {
-      id: 'day-2',
-      name: 'Day 2 — type B',
+      id: 'workout-2',
+      name: 'Workout 2 — type B',
       exercises: [{ exercise: 'pallof-press', sets: 1, reps: 1, per: 'arm' }],
     },
   ],
@@ -32,31 +32,31 @@ const pictureUrl = (fileName: string) => `/assets/${fileName}`
 
 describe('decodePlan', () => {
   const decoded = decodePlan(catalogue, plan, pictureUrl)
-  const [dayOne, dayTwo] = decoded.days
+  const [workoutOne, workoutTwo] = decoded.workouts
 
-  it('keeps the days and each day’s rows in file order', () => {
-    expect(decoded.days.map((day) => [day.id, day.name])).toEqual([
-      ['day-1', 'Day 1 — type A'],
-      ['day-2', 'Day 2 — type B'],
+  it('keeps the workouts and each workout’s rows in file order', () => {
+    expect(decoded.workouts.map((workout) => [workout.id, workout.name])).toEqual([
+      ['workout-1', 'Workout 1 — type A'],
+      ['workout-2', 'Workout 2 — type B'],
     ])
-    expect(dayOne?.prescriptions.map((row) => row.exercise.key)).toEqual(['leg-press', 'pallof-press'])
+    expect(workoutOne?.prescriptions.map((row) => row.exercise.key)).toEqual(['leg-press', 'pallof-press'])
   })
 
   it('turns a single rep count into a target whose min equals its max, and keeps a range', () => {
-    expect(dayOne?.prescriptions.map((row) => [row.sets, row.reps])).toEqual([
+    expect(workoutOne?.prescriptions.map((row) => [row.sets, row.reps])).toEqual([
       [4, { min: 10, max: 10 }],
       [3, { min: 8, max: 12 }],
     ])
   })
 
   it('keeps per where the content sets it, and leaves it out elsewhere', () => {
-    expect(dayOne?.prescriptions[0]).not.toHaveProperty('per')
-    expect(dayOne?.prescriptions[1]?.per).toBe('side')
-    expect(dayTwo?.prescriptions[0]?.per).toBe('arm')
+    expect(workoutOne?.prescriptions[0]).not.toHaveProperty('per')
+    expect(workoutOne?.prescriptions[1]?.per).toBe('side')
+    expect(workoutTwo?.prescriptions[0]?.per).toBe('arm')
   })
 
   it('decodes an exercise with its slug as key, its cue when it has one, and two described pictures', () => {
-    expect(dayOne?.prescriptions[0]?.exercise).toEqual({
+    expect(workoutOne?.prescriptions[0]?.exercise).toEqual({
       key: 'leg-press',
       name: 'Leg press',
       cue: 'Feet mid-platform, knees track over toes',
@@ -65,7 +65,7 @@ describe('decodePlan', () => {
         { src: '/assets/leg-press-2.webp', alt: 'Leg press — picture 2 of 2' },
       ],
     })
-    expect(dayTwo?.prescriptions[0]?.exercise).not.toHaveProperty('cue')
+    expect(workoutTwo?.prescriptions[0]?.exercise).not.toHaveProperty('cue')
   })
 
   // Photos arrive one at a time, so a slot may be empty; the page shows it as missing.
@@ -76,17 +76,17 @@ describe('decodePlan', () => {
   ])('leaves a slot empty for an exercise with %s', (_said, pictures, slots) => {
     const withPictures: RawCatalogue = { ...catalogue, 'leg-press': { name: 'Leg press', ...(pictures && { pictures }) } }
 
-    const [day] = decodePlan(withPictures, plan, pictureUrl).days
+    const [workout] = decodePlan(withPictures, plan, pictureUrl).workouts
 
-    expect(day?.prescriptions[0]?.exercise.pictures).toEqual(slots)
+    expect(workout?.prescriptions[0]?.exercise.pictures).toEqual(slots)
   })
 
   it('leaves a slot empty for a picture the build serves no file for', () => {
     const served = (fileName: string) => (fileName === 'leg-press-1.webp' ? undefined : pictureUrl(fileName))
 
-    const [day] = decodePlan(catalogue, plan, served).days
+    const [workout] = decodePlan(catalogue, plan, served).workouts
 
-    expect(day?.prescriptions[0]?.exercise.pictures).toEqual([
+    expect(workout?.prescriptions[0]?.exercise.pictures).toEqual([
       null,
       { src: '/assets/leg-press-2.webp', alt: 'Leg press — picture 2 of 2' },
     ])
@@ -94,7 +94,7 @@ describe('decodePlan', () => {
 
   it('refuses a row naming an exercise the catalogue lacks, rather than decoding an incomplete plan', () => {
     const unchecked: RawPlan = {
-      days: [{ id: 'day-1', name: 'Day 1', exercises: [{ exercise: 'squat', sets: 1, reps: 1 }] }],
+      workouts: [{ id: 'workout-1', name: 'Workout 1', exercises: [{ exercise: 'squat', sets: 1, reps: 1 }] }],
     }
 
     expect(() => decodePlan(catalogue, unchecked, pictureUrl)).toThrow(

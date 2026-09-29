@@ -5,13 +5,16 @@ Registry of Liftrack's interface change requests (`icr/ICR-YYNNNN.md`), one row 
 [`artifact-model.md`](../../generic/process/artifact-model.md) — this index is the **single
 source of truth for each request's status**; do not restate it in overview documents.
 
-**Every request below is raised by Liftrack as a *consumer* of the Crystord Engine GraphQL
-boundary, and Liftrack cannot decide any of them.** The interface belongs to the Crystord
-Engine project; its project owner is the decision authority, and an approval is recorded in
-that project's own ICR log. These records exist so that Liftrack's asks are argued, costed and
-auditable on the consumer side — what it needs, why today's contract cannot give it, what it
-does in the meantime, and how the workaround is removed when the ask lands. Both are
+**ICR-260001 and ICR-260003 are raised by Liftrack as a *consumer* of the Crystord Engine
+GraphQL boundary, and Liftrack cannot decide either of them.** The interface belongs to the
+Crystord Engine project; its project owner is the decision authority, and an approval is
+recorded in that project's own ICR log. These records exist so that Liftrack's asks are argued,
+costed and auditable on the consumer side — what it needs, why today's contract cannot give it,
+what it does in the meantime, and how the workaround is removed when the ask lands. Both are
 `Open`: filed as drafts, neither submitted to or decided by the engine's owner.
+
+**ICR-260004 is different: it changes Liftrack's own one-party contract**
+(`liftrack-atom-shape-contract.md`), so the repository owner decides it alone.
 
 They are sequenced deliberately (see each record's §7): the documentation half of ICR-260001
 first, because it costs the engine one paragraph and no schema text; then ICR-260003 while the
@@ -36,6 +39,7 @@ as "engine ICR-…" throughout; they are not records in this index.
 | --- | --- | --- | --- | --- | --- |
 | `ICR-260001` | Make `retrieve` result bounds reachable and truncation detectable | `Open` | [`ICR-260001.md`](icr/ICR-260001.md) | Interface: `crystord-graphql-contract.md` (`Query.retrieve`); REQ-CR-260003, ADR-260006; EPIC-260006 | Two asks, split by cost. **Documentation half (high priority, zero cost):** the published guide documents `listLabels`' 25-item cap and its missing truncation flag, but documents no cap for `retrieve` at all — so the default 25 (`inter_fundamentals.py:1406-1407`, applied `:1419`) reaches clients as silent data loss. One paragraph, no schema text, no version bump. **Signal half (medium):** a client cannot distinguish 25 rows from 25-of-800; asks for a sibling count over the same predicate. **Reachability is *not* asked for here** — engine ICR-260024 already proposes client-reachable `limit`/`offset`, and duplicating it would waste the engine's time. |
 | `ICR-260003` | Atom timestamps and temporal filtering for session-by-date reads | `Open` | [`ICR-260003.md`](icr/ICR-260003.md) | Interface: `crystord-graphql-contract.md` (`Query.retrieve`, `AtomOutput`); REQ-FR-260005, REQ-CR-260003, ADR-260006, ADR-260001; EPIC-260006 | **A consumer endorsement of engine ICR-260024, not a rival proposal — it asks for no new interface shape.** `AtomOutput` carries no timestamp while workspace, dimension and value outputs all do, so "the session for 2026-09-12" is not expressible server-side. Liftrack's contribution is being a named consumer in that request's impact table before it is decided, plus the acceptance criteria it will verify. It also records the limit of the value claim: a created timestamp is record-time, not the date the workout happened, so Liftrack keeps the workout date as its own data and asks the engine for no domain event-time. |
+| `ICR-260004` | Rename the planned day to a planned workout in the atom shape | `Open` | [`ICR-260004.md`](icr/ICR-260004.md) | Interface: `liftrack-atom-shape-contract.md` (label `LiftPlanDay`, rows `planday/v1`); ADR-260001, ADR-260008, REQ-FR-260002, REQ-FR-260003; EPIC-260001 | **Decided by the repository owner alone** — a one-party contract. Follows the owner's 2026-09-29 instruction that "workout is the right wording", already applied to the app, `content/plan.json` and ADR-260008. Free while no atom exists; a rewrite of every affected atom after EPIC-260001's first write, so decide before it. |
 
 No request has been submitted to or decided by the Crystord Engine project owner.
 

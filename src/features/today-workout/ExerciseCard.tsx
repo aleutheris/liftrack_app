@@ -3,7 +3,7 @@ import { describePrescription } from './describe-prescription'
 
 interface ExerciseCardProps {
   readonly prescription: Prescription
-  /** Load the pictures at once and ahead of the others — for the day's first exercise. */
+  /** Load the pictures at once and ahead of the others — for the workout's first exercise. */
   readonly eager: boolean
 }
 
@@ -44,7 +44,7 @@ function Pictures({ exercise, eager }: { readonly exercise: Exercise; readonly e
     <div className="exercise__pictures">
       {exercise.pictures.map((picture, index) =>
         picture === null ? (
-          // Said plainly and kept in the layout: the day is usable, and the gap is visible at a
+          // Said plainly and kept in the layout: the workout is usable, and the gap is visible at a
           // glance rather than looking like a picture that failed to load.
           <p className="exercise__missing" key={index} data-testid="missing-picture">
             Photo {index + 1} missing

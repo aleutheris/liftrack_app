@@ -102,7 +102,7 @@ function validateGroupSlug(location: string, slug: unknown, groupSlugs: Readonly
 
 function validatePictures(location: string, pictures: unknown, files: PictureFiles): string[] {
   // A photo that has not been taken yet is simply absent: the page shows that slot as missing, so a
-  // day is never held back by a picture. A name that IS given but has no file is shown as missing on
+  // workout is never held back by a picture. A name that IS given but has no file is shown as missing on
   // the page too, while CI, which gates the deploy, fails it — so a typo still cannot reach the site.
   if (pictures === undefined) {
     return []

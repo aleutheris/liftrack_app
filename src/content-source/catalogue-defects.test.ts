@@ -17,8 +17,8 @@ describe('validateContent — exercises.json and picture defects', () => {
       'exercises.json Leg Press: "Leg Press" is not a slug such as "leg-press"',
     ],
     [
-      'an entry that is not an object (a stray top-level field)', ['exercises', 'comment'], 'Days 1 to 3',
-      'exercises.json comment: expected an object with "name" and "pictures", found "Days 1 to 3"',
+      'an entry that is not an object (a stray top-level field)', ['exercises', 'comment'], 'Workouts 1 to 3',
+      'exercises.json comment: expected an object with "name" and "pictures", found "Workouts 1 to 3"',
     ],
     [
       'an unknown field on an exercise', [...LEG_PRESS, 'cues'], 'Slow',
@@ -94,7 +94,7 @@ describe('validateContent — exercises.json and picture defects', () => {
   })
 
   // A photo that has not been taken yet is simply absent: the page shows that slot as missing, so no
-  // day is held back waiting for a picture. A name that IS given must still be a file (below).
+  // workout is held back waiting for a picture. A name that IS given must still be a file (below).
   it.each<[said: string, pictures: unknown]>([
     ['no pictures field at all', undefined],
     ['an empty list of pictures', []],
@@ -143,9 +143,9 @@ describe('validateContent — exercises.json and picture defects', () => {
   it('rejects an exercises.json that is not an object, and so every row that names an exercise', () => {
     expect(validateContent(contentWith([['exercises'], ['leg-press']]))).toEqual([
       'exercises.json: expected an object keyed by exercise slug, found ["leg-press"]',
-      'plan.json days[0].exercises[0].exercise: "leg-press" is not in exercises.json',
-      'plan.json days[0].exercises[1].exercise: "pallof-press" is not in exercises.json',
-      'plan.json days[1].exercises[0].exercise: "leg-press" is not in exercises.json',
+      'plan.json workouts[0].exercises[0].exercise: "leg-press" is not in exercises.json',
+      'plan.json workouts[0].exercises[1].exercise: "pallof-press" is not in exercises.json',
+      'plan.json workouts[1].exercises[0].exercise: "leg-press" is not in exercises.json',
     ])
   })
 })

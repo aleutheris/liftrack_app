@@ -12,16 +12,16 @@ const EXERCISES = `{
 }`
 
 const PLAN = `{
-  "days": [
+  "workouts": [
     {
-      "id": "day-1",
-      "name": "Day 1",
+      "id": "workout-1",
+      "name": "Workout 1",
       "exercises": [
         { "exercise": "leg-press", "sets": 4, "reps": 10 },
         { "exercise": "pallof-press", "sets": 3, "reps": { "min": 8, "max": 12 }, "per": "side" }
       ]
     },
-    { "id": "day-2", "name": "Day 2", "exercises": [{ "exercise": "leg-press", "sets": 1, "reps": 5 }] }
+    { "id": "workout-2", "name": "Workout 2", "exercises": [{ "exercise": "leg-press", "sets": 1, "reps": 5 }] }
   ]
 }`
 
@@ -30,7 +30,7 @@ const EXTRA_LEG_PRESS = `"leg-press": { "name": "Hack squat", "pictures": ["a.sv
 describe('repeatedKeys', () => {
   it.each([
     ['exercises.json, whose exercises share their field names', EXERCISES],
-    ['plan.json, whose days and rows share their field names', PLAN],
+    ['plan.json, whose workouts and rows share their field names', PLAN],
     ['a key that appears again only inside a string value', String.raw`{ "a": "5\" wide, \"a\": 1", "b": 2 }`],
     ['values that match keys of their own object', '{ "a": "b", "b": "a" }'],
     ['objects nested in objects with the same key', '{ "a": { "a": { "a": 1 } }, "b": { "a": 2 } }'],
@@ -52,21 +52,21 @@ describe('repeatedKeys', () => {
     ],
     [
       'a field repeated within a row', 'plan.json', PLAN.replace('"per"', '"sets": 4, "per"'),
-      'plan.json days[0].exercises[1]: key "sets" appears twice',
+      'plan.json workouts[0].exercises[1]: key "sets" appears twice',
     ],
     [
       'a field repeated within a range', 'plan.json', PLAN.replace('"max"', '"min": 10, "max"'),
-      'plan.json days[0].exercises[1].reps: key "min" appears twice',
+      'plan.json workouts[0].exercises[1].reps: key "min" appears twice',
     ],
     [
-      'a field repeated within a later day', 'plan.json',
+      'a field repeated within a later workout', 'plan.json',
       PLAN.replace('"reps": 5', '"reps": 5, "exercise": "x"'),
-      'plan.json days[1].exercises[0]: key "exercise" appears twice',
+      'plan.json workouts[1].exercises[0]: key "exercise" appears twice',
     ],
     [
-      'a list of rows given twice to one day', 'plan.json',
-      PLAN.replace('"id": "day-1",', '"exercises": [{ "sets": 1 }], "id": "day-1",'),
-      'plan.json days[0]: key "exercises" appears twice',
+      'a list of rows given twice to one workout', 'plan.json',
+      PLAN.replace('"id": "workout-1",', '"exercises": [{ "sets": 1 }], "id": "workout-1",'),
+      'plan.json workouts[0]: key "exercises" appears twice',
     ],
   ])('reports %s, naming the file, the object and the key', (_case, fileName, text, problem) => {
     expect(repeatedKeys(fileName, text)).toEqual([problem])

@@ -1,35 +1,35 @@
-import { readExpectedDays, type ExpectedDay } from './content'
-import { dayPage, scrollToPageEnd } from './day-page'
+import { readExpectedWorkouts, type ExpectedWorkout } from './content'
+import { workoutPage, scrollToPageEnd } from './workout-page'
 import { expect, test } from './fixtures'
 
-const days = readExpectedDays()
-const first = days[0]
-if (!first) throw new Error('content/plan.json has no days')
+const workouts = readExpectedWorkouts()
+const first = workouts[0]
+if (!first) throw new Error('content/plan.json has no workouts')
 
-/** The day after the first. The tests that move to it are skipped while the plan has only one day. */
-function secondDay(): ExpectedDay {
-  const second = days[1]
-  if (!second) throw new Error('content/plan.json has only one day')
+/** The workout after the first. The tests that move to it are skipped while the plan has only one workout. */
+function secondWorkout(): ExpectedWorkout {
+  const second = workouts[1]
+  if (!second) throw new Error('content/plan.json has only one workout')
   return second
 }
 
-test.describe('the day kept in the URL fragment', () => {
-  test.skip(days.length < 2, 'needs at least two planned days to move between')
+test.describe('the workout kept in the URL fragment', () => {
+  test.skip(workouts.length < 2, 'needs at least two planned workouts to move between')
 
-  test('a reload stays on the day being viewed', async ({ page }) => {
-    const second = secondDay()
-    const view = dayPage(page)
+  test('a reload stays on the workout being viewed', async ({ page }) => {
+    const second = secondWorkout()
+    const view = workoutPage(page)
     await page.goto('./')
     await view.next.tap()
     await expect(page).toHaveURL(new RegExp(`#${second.id}$`))
     await page.reload()
     await expect(view.heading).toHaveText(second.name)
-    await expect(view.position).toHaveText(`Day 2 of ${days.length}`)
+    await expect(view.position).toHaveText(`Workout 2 of ${workouts.length}`)
   })
 
   test('paging replaces the fragment instead of adding history entries', async ({ page }) => {
-    const second = secondDay()
-    const view = dayPage(page)
+    const second = secondWorkout()
+    const view = workoutPage(page)
     await page.goto('./')
     await expect(view.heading).toHaveText(first.name)
     const historyLength = await page.evaluate(() => history.length)
@@ -41,8 +41,8 @@ test.describe('the day kept in the URL fragment', () => {
   })
 
   test('a fragment edited by hand is followed', async ({ page }) => {
-    const second = secondDay()
-    const view = dayPage(page)
+    const second = secondWorkout()
+    const view = workoutPage(page)
     await page.goto('./')
     await expect(view.heading).toHaveText(first.name)
     await page.evaluate((id) => {
@@ -51,9 +51,9 @@ test.describe('the day kept in the URL fragment', () => {
     await expect(view.heading).toHaveText(second.name)
   })
 
-  test('changing the day scrolls back to the top', async ({ page }) => {
-    const second = secondDay()
-    const view = dayPage(page)
+  test('changing the workout scrolls back to the top', async ({ page }) => {
+    const second = secondWorkout()
+    const view = workoutPage(page)
     await page.goto('./')
     await expect(view.heading).toHaveText(first.name)
     await scrollToPageEnd(page)
@@ -64,10 +64,10 @@ test.describe('the day kept in the URL fragment', () => {
   })
 })
 
-test('an unknown fragment shows the first day', async ({ page }) => {
-  const view = dayPage(page)
-  await page.goto('#no-such-day')
+test('an unknown fragment shows the first workout', async ({ page }) => {
+  const view = workoutPage(page)
+  await page.goto('#no-such-workout')
   await expect(view.heading).toHaveText(first.name)
-  await expect(view.position).toHaveText(`Day 1 of ${days.length}`)
+  await expect(view.position).toHaveText(`Workout 1 of ${workouts.length}`)
   await expect(view.previous).toBeDisabled()
 })

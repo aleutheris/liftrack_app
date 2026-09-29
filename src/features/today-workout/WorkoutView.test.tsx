@@ -1,17 +1,17 @@
 import { render, screen, within } from '@testing-library/react'
-import { DayView } from './DayView'
-import { threeDays } from './test-support/fake-plan'
+import { WorkoutView } from './WorkoutView'
+import { threeWorkouts } from './test-support/fake-plan'
 
-const [day1] = threeDays
+const [workout1] = threeWorkouts
 
-describe('DayView', () => {
-  it("heads the page with the day's name", () => {
-    render(<DayView day={day1} />)
-    expect(screen.getByRole('heading', { level: 1, name: 'Day 1 — type A' })).toBeInTheDocument()
+describe('WorkoutView', () => {
+  it("heads the page with the workout's name", () => {
+    render(<WorkoutView workout={workout1} />)
+    expect(screen.getByRole('heading', { level: 1, name: 'Workout 1 — type A' })).toBeInTheDocument()
   })
 
   it('lists the exercises in planned order, one article per list item', () => {
-    render(<DayView day={day1} />)
+    render(<WorkoutView workout={workout1} />)
     const items = within(screen.getByRole('list', { name: 'Exercises' })).getAllByRole('listitem')
     expect(items.map((item) => within(item).getByRole('article'))).toHaveLength(2)
     expect(items.map((item) => within(item).getByRole('heading', { level: 2 }).textContent)).toEqual([
@@ -21,7 +21,7 @@ describe('DayView', () => {
   })
 
   it("loads the first exercise's pictures at once and ahead of the rest, which load lazily", () => {
-    render(<DayView day={day1} />)
+    render(<WorkoutView workout={workout1} />)
     const [first, second] = within(screen.getByRole('list', { name: 'Exercises' })).getAllByRole('listitem')
     for (const picture of within(first!).getAllByRole('img')) {
       expect(picture).toHaveAttribute('loading', 'eager')

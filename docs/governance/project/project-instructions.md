@@ -36,6 +36,11 @@ source files above.
   one-handed, between sets, on an unreliable network, and often after a long idle gap. Plan
   authoring happens off the gym floor, by the same person. There is no coach, no trainee and no
   second account in MVP.
+- Terminology (2026-09-29, the owner: *"workout is the right wording"*): a **workout** is one entry
+  of the plan — its exercises in order, with sets and reps. Records written before that date call it
+  a **day** or **planned day**; from then on a *day* is only a calendar day. What the lifter actually
+  performs on a date is a **session**. The atom-shape contract keeps `LiftPlanDay` and `planday/v1`
+  until ICR-260004 is decided.
 - Constraints:
   - **Static hosting on GitHub Pages** — no server runtime, no request-time environment, no
     response-header control, and a world-readable bundle. Configuration is build-time
@@ -55,7 +60,7 @@ source files above.
 ## 2. Architecture Instantiation
 
 The first slice (EPIC-260007) is built inside this boundary: `src/app-shell/` composes the page and
-shows the build id; `src/features/today-workout/` is the read-only day pager and day view;
+shows the build id; `src/features/today-workout/` is the read-only workout pager and workout view;
 `src/workout/` holds the domain types and the source interface, and imports nothing; and
 `src/content-source/` is the interim file-backed source described below, handed to the app only by
 `src/main.tsx`. `src/architecture.test.ts` fails the unit suite on any import that crosses these

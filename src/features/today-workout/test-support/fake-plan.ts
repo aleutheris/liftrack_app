@@ -1,6 +1,6 @@
-import type { Exercise, PlannedDay, Prescription, RepSide, WorkoutPlan } from '../../../workout/types'
+import type { Exercise, PlannedWorkout, Prescription, RepSide, WorkoutPlan } from '../../../workout/types'
 import type { WorkoutSource } from '../../../workout/workout-source'
-import type { PlannedDays } from '../use-day-in-fragment'
+import type { PlannedWorkouts } from '../use-workout-in-fragment'
 
 // Test fixtures only: the page is checked against a fake source, never the real content.
 
@@ -26,18 +26,18 @@ const legCurl = exercise('seated-leg-curl', 'Seated leg curl')
 const splitSquat = exercise('split-squat', 'Bulgarian split squat', 'Start light')
 const kneeRaise = exercise('knee-raise', 'Knee raise')
 
-export const threeDays: PlannedDays = [
+export const threeWorkouts: PlannedWorkouts = [
   {
-    id: 'day-1',
-    name: 'Day 1 — type A',
+    id: 'workout-1',
+    name: 'Workout 1 — type A',
     prescriptions: [prescription(legPress, 4, 10), prescription(legCurl, 4, 10)],
   },
-  { id: 'day-2', name: 'Day 2 — type B', prescriptions: [prescription(splitSquat, 4, 10, 'leg')] },
-  { id: 'day-3', name: 'Day 3 — type A', prescriptions: [prescription(kneeRaise, 3, { min: 8, max: 12 })] },
+  { id: 'workout-2', name: 'Workout 2 — type B', prescriptions: [prescription(splitSquat, 4, 10, 'leg')] },
+  { id: 'workout-3', name: 'Workout 3 — type A', prescriptions: [prescription(kneeRaise, 3, { min: 8, max: 12 })] },
 ]
 
-export function sourceOf(days: readonly PlannedDay[]): WorkoutSource {
-  return { loadPlan: () => Promise.resolve({ days }) }
+export function sourceOf(workouts: readonly PlannedWorkout[]): WorkoutSource {
+  return { loadPlan: () => Promise.resolve({ workouts }) }
 }
 
 /** A source whose answer the test decides, and when. */
@@ -48,7 +48,7 @@ export function pendingSource() {
   })
   return {
     source: { loadPlan: () => plan } satisfies WorkoutSource,
-    resolve: (days: readonly PlannedDay[]) => settle.resolve({ days }),
+    resolve: (workouts: readonly PlannedWorkout[]) => settle.resolve({ workouts }),
     reject: (reason: unknown) => settle.reject(reason),
   }
 }

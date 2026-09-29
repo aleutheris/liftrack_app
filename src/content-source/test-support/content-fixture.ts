@@ -21,18 +21,18 @@ const VALID = {
     core: { name: 'Core' },
   },
   plan: {
-    days: [
+    workouts: [
       {
-        id: 'day-1',
-        name: 'Day 1 — type A',
+        id: 'workout-1',
+        name: 'Workout 1 — type A',
         exercises: [
           { exercise: 'leg-press', sets: 4, reps: 10 },
           { exercise: 'pallof-press', sets: 3, reps: { min: 8, max: 12 }, per: 'side' },
         ],
       },
       {
-        id: 'day-2',
-        name: 'Day 2 — type B',
+        id: 'workout-2',
+        name: 'Workout 2 — type B',
         exercises: [{ exercise: 'leg-press', sets: 1, reps: { min: 5, max: 5 } }],
       },
     ],
@@ -47,7 +47,7 @@ const VALID = {
 }
 
 export type Path = readonly (string | number)[]
-/** Sets the value at `path` (e.g. `['plan', 'days', 0, 'id']`), or removes it when undefined. */
+/** Sets the value at `path` (e.g. `['plan', 'workouts', 0, 'id']`), or removes it when undefined. */
 export type Edit = readonly [path: Path, value: unknown]
 
 type Node = Record<string | number, unknown>

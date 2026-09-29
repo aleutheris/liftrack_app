@@ -40,8 +40,8 @@ describe('assetsOf', () => {
       'stylesheet https://cdn.example/x.css',
     ])
     // Relative to the page's folder, not to the site root: the page address is the base.
-    const nested = assetsOf('<script src="index.js"></script>', `${site}day/index.html`)
-    expect(nested.map((asset) => asset.url.href)).toEqual([`${site}day/index.js`])
+    const nested = assetsOf('<script src="index.js"></script>', `${site}workout/index.html`)
+    expect(nested.map((asset) => asset.url.href)).toEqual([`${site}workout/index.js`])
   })
 
   it('accepts either quote character, or none', () => {

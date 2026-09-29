@@ -3,7 +3,7 @@
   white-space: pre-line;
 }
 
-.day-name {
+.workout-name {
   margin: 0 0 var(--space-4);
   font-size: var(--text-heading);
   line-height: 1.25;

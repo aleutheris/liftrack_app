@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 
 // Expectations are derived from the content files at test time, never written into the specs:
-// the owner edits the days every week, and a hard-coded day would break on the first such commit.
+// the owner edits the workouts every week, and a hard-coded workout would break on the first such commit.
 // The format itself is enforced by the content check; this reads it as the page should.
 
 type ContentReps = number | { min: number; max: number }
@@ -13,7 +13,7 @@ interface ContentRow {
   per?: string
 }
 
-interface ContentDay {
+interface ContentWorkout {
   id: string
   name: string
   exercises: ContentRow[]
@@ -35,7 +35,7 @@ export interface ExpectedExercise {
   photos: number
 }
 
-export interface ExpectedDay {
+export interface ExpectedWorkout {
   id: string
   name: string
   exercises: ExpectedExercise[]
@@ -65,13 +65,13 @@ function expectedExercise(row: ContentRow, catalogue: Record<string, ContentExer
   }
 }
 
-/** Every planned day in paging order, as the page should show it. */
-export function readExpectedDays(): ExpectedDay[] {
+/** Every planned workout in paging order, as the page should show it. */
+export function readExpectedWorkouts(): ExpectedWorkout[] {
   const catalogue = readContent<Record<string, ContentExercise>>('exercises.json')
-  const { days } = readContent<{ days: ContentDay[] }>('plan.json')
-  return days.map((day) => ({
-    id: day.id,
-    name: day.name,
-    exercises: day.exercises.map((row) => expectedExercise(row, catalogue)),
+  const { workouts } = readContent<{ workouts: ContentWorkout[] }>('plan.json')
+  return workouts.map((workout) => ({
+    id: workout.id,
+    name: workout.name,
+    exercises: workout.exercises.map((row) => expectedExercise(row, catalogue)),
   }))
 }

@@ -26,27 +26,27 @@ describe('validateContent', () => {
 
   it('catches a misspelt key rather than ignoring it', () => {
     const content = contentWith(
-      [['plan', 'days', 0, 'name'], undefined],
-      [['plan', 'days', 0, 'nmae'], 'Day 1 — type A'],
+      [['plan', 'workouts', 0, 'name'], undefined],
+      [['plan', 'workouts', 0, 'nmae'], 'Workout 1 — type A'],
     )
 
     expect(validateContent(content)).toEqual([
-      'plan.json days[0]: unknown field "nmae"',
-      'plan.json days[0].name: expected a non-empty string, found nothing',
+      'plan.json workouts[0]: unknown field "nmae"',
+      'plan.json workouts[0].name: expected a non-empty string, found nothing',
     ])
   })
 
   it('reports every problem in both files, not only the first', () => {
     const content = contentWith(
       [['exercises', 'pallof-press', 'cue'], ''],
-      [['plan', 'days', 1, 'exercises', 0, 'sets'], 0],
-      [['plan', 'days', 1, 'id'], 'day-1'],
+      [['plan', 'workouts', 1, 'exercises', 0, 'sets'], 0],
+      [['plan', 'workouts', 1, 'id'], 'workout-1'],
     )
 
     expect(validateContent(content)).toEqual([
       'exercises.json pallof-press.cue: expected a non-empty string, found ""',
-      'plan.json days[1].exercises[0].sets: expected a positive integer, found 0',
-      'plan.json days[1].id: "day-1" is already used by days[0]',
+      'plan.json workouts[1].exercises[0].sets: expected a positive integer, found 0',
+      'plan.json workouts[1].id: "workout-1" is already used by workouts[0]',
     ])
   })
 })

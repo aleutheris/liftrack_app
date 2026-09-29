@@ -1,5 +1,5 @@
-import type { Exercise, PlannedDay, Prescription, RepTarget, WorkoutPlan } from '../workout/types'
-import type { RawCatalogue, RawDay, RawExercise, RawPlan, RawReps, RawRow } from './raw-content'
+import type { Exercise, PlannedWorkout, Prescription, RepTarget, WorkoutPlan } from '../workout/types'
+import type { RawCatalogue, RawWorkout, RawExercise, RawPlan, RawReps, RawRow } from './raw-content'
 
 /** Resolves a file name in content/pictures/ to the URL the build serves it at; undefined if none. */
 type PictureUrl = (fileName: string) => string | undefined
@@ -9,7 +9,7 @@ export function decodePlan(catalogue: RawCatalogue, plan: RawPlan, pictureUrl: P
   const exercises = new Map(
     Object.entries(catalogue).map(([slug, raw]) => [slug, decodeExercise(slug, raw, pictureUrl)]),
   )
-  return { days: plan.days.map((day) => decodeDay(day, exercises)) }
+  return { workouts: plan.workouts.map((workout) => decodeWorkout(workout, exercises)) }
 }
 
 function decodeExercise(slug: string, raw: RawExercise, pictureUrl: PictureUrl): Exercise {
@@ -28,11 +28,11 @@ function decodeExercise(slug: string, raw: RawExercise, pictureUrl: PictureUrl):
   }
 }
 
-function decodeDay(day: RawDay, exercises: ReadonlyMap<string, Exercise>): PlannedDay {
+function decodeWorkout(workout: RawWorkout, exercises: ReadonlyMap<string, Exercise>): PlannedWorkout {
   return {
-    id: day.id,
-    name: day.name,
-    prescriptions: day.exercises.map((row) => decodeRow(row, exercises)),
+    id: workout.id,
+    name: workout.name,
+    prescriptions: workout.exercises.map((row) => decodeRow(row, exercises)),
   }
 }
 

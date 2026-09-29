@@ -3,79 +3,79 @@ import { validateContent } from './validate-content'
 
 // Negative controls for plan.json (ADR-260008): each case changes one value of valid content, and the
 // check must report exactly that defect.
-const DAY = ['plan', 'days', 0]
-const ROW = [...DAY, 'exercises', 1]
-const AT_ROW = 'plan.json days[0].exercises[1]'
+const WORKOUT = ['plan', 'workouts', 0]
+const ROW = [...WORKOUT, 'exercises', 1]
+const AT_ROW = 'plan.json workouts[0].exercises[1]'
 
 describe('validateContent — plan.json defects', () => {
   it.each<[defect: string, path: Path, value: unknown, problem: string]>([
     [
-      'a plan that is not an object', ['plan'], ['day-1'],
-      'plan.json: expected an object with "days", found ["day-1"]',
+      'a plan that is not an object', ['plan'], ['workout-1'],
+      'plan.json: expected an object with "workouts", found ["workout-1"]',
     ],
     [
       'an unknown top-level field', ['plan', 'version'], 1,
       'plan.json: unknown field "version"',
     ],
     [
-      'no days (an empty list)', ['plan', 'days'], [],
-      'plan.json days: expected a non-empty list of days, found []',
+      'no workouts (an empty list)', ['plan', 'workouts'], [],
+      'plan.json workouts: expected a non-empty list of workouts, found []',
     ],
     [
-      'no days (no field)', ['plan', 'days'], undefined,
-      'plan.json days: expected a non-empty list of days, found nothing',
+      'no workouts (no field)', ['plan', 'workouts'], undefined,
+      'plan.json workouts: expected a non-empty list of workouts, found nothing',
     ],
     [
-      'a day that is not an object', ['plan', 'days', 1], 'day-2',
-      'plan.json days[1]: expected an object with "id", "name" and "exercises", found "day-2"',
+      'a workout that is not an object', ['plan', 'workouts', 1], 'workout-2',
+      'plan.json workouts[1]: expected an object with "id", "name" and "exercises", found "workout-2"',
     ],
     [
-      'an unknown field on a day', [...DAY, 'notes'], 'Heavy',
-      'plan.json days[0]: unknown field "notes"',
+      'an unknown field on a workout', [...WORKOUT, 'notes'], 'Heavy',
+      'plan.json workouts[0]: unknown field "notes"',
     ],
     [
-      'a day id that is not a slug', [...DAY, 'id'], 'Day 1',
-      'plan.json days[0].id: expected a slug such as "day-1", found "Day 1"',
+      'a workout id that is not a slug', [...WORKOUT, 'id'], 'Workout 1',
+      'plan.json workouts[0].id: expected a slug such as "workout-1", found "Workout 1"',
     ],
     [
-      'a day id with text after a space', [...DAY, 'id'], 'day-1 x',
-      'plan.json days[0].id: expected a slug such as "day-1", found "day-1 x"',
+      'a workout id with text after a space', [...WORKOUT, 'id'], 'workout-1 x',
+      'plan.json workouts[0].id: expected a slug such as "workout-1", found "workout-1 x"',
     ],
     [
-      'a day id with a capital letter', [...DAY, 'id'], 'Day-1',
-      'plan.json days[0].id: expected a slug such as "day-1", found "Day-1"',
+      'a workout id with a capital letter', [...WORKOUT, 'id'], 'Workout-1',
+      'plan.json workouts[0].id: expected a slug such as "workout-1", found "Workout-1"',
     ],
     [
-      'a day id with an underscore', [...DAY, 'id'], 'day_1',
-      'plan.json days[0].id: expected a slug such as "day-1", found "day_1"',
+      'a workout id with an underscore', [...WORKOUT, 'id'], 'workout_1',
+      'plan.json workouts[0].id: expected a slug such as "workout-1", found "workout_1"',
     ],
     [
-      'a day id with a double hyphen', [...DAY, 'id'], 'day--1',
-      'plan.json days[0].id: expected a slug such as "day-1", found "day--1"',
+      'a workout id with a double hyphen', [...WORKOUT, 'id'], 'workout--1',
+      'plan.json workouts[0].id: expected a slug such as "workout-1", found "workout--1"',
     ],
     [
-      'a day id ending in a hyphen', [...DAY, 'id'], 'day-1-',
-      'plan.json days[0].id: expected a slug such as "day-1", found "day-1-"',
+      'a workout id ending in a hyphen', [...WORKOUT, 'id'], 'workout-1-',
+      'plan.json workouts[0].id: expected a slug such as "workout-1", found "workout-1-"',
     ],
     [
-      'a day with no id', [...DAY, 'id'], undefined,
-      'plan.json days[0].id: expected a slug such as "day-1", found nothing',
+      'a workout with no id', [...WORKOUT, 'id'], undefined,
+      'plan.json workouts[0].id: expected a slug such as "workout-1", found nothing',
     ],
     [
-      'a day id that appears twice', ['plan', 'days', 1, 'id'], 'day-1',
-      'plan.json days[1].id: "day-1" is already used by days[0]',
+      'a workout id that appears twice', ['plan', 'workouts', 1, 'id'], 'workout-1',
+      'plan.json workouts[1].id: "workout-1" is already used by workouts[0]',
     ],
     [
-      'a day with an empty name', [...DAY, 'name'], ' ',
-      'plan.json days[0].name: expected a non-empty string, found " "',
+      'a workout with an empty name', [...WORKOUT, 'name'], ' ',
+      'plan.json workouts[0].name: expected a non-empty string, found " "',
     ],
     [
-      'a day with no name', [...DAY, 'name'], undefined,
-      'plan.json days[0].name: expected a non-empty string, found nothing',
+      'a workout with no name', [...WORKOUT, 'name'], undefined,
+      'plan.json workouts[0].name: expected a non-empty string, found nothing',
     ],
     [
-      'a day with no exercises', [...DAY, 'exercises'], [],
-      'plan.json days[0].exercises: expected a non-empty list of exercises, found []',
+      'a workout with no exercises', [...WORKOUT, 'exercises'], [],
+      'plan.json workouts[0].exercises: expected a non-empty list of exercises, found []',
     ],
     [
       'a row that is not an object', ROW, 'pallof-press',

@@ -1,13 +1,13 @@
 import type { Locator, Page } from '@playwright/test'
-import { readExpectedDays } from './content'
-import { dayPage, scrollToPageEnd, type DayPage } from './day-page'
+import { readExpectedWorkouts } from './content'
+import { workoutPage, scrollToPageEnd, type WorkoutPage } from './workout-page'
 import { expect, test } from './fixtures'
 import { sampleVisibleText, type TextSample } from './text-audit'
 
 // REQ-QR-260001 measured on the built page at 360 × 640 (the project's viewport), at the default
 // text size and with the browser's text size raised.
 
-const days = readExpectedDays()
+const workouts = readExpectedWorkouts()
 // CI builds and tests with GITHUB_SHA set, so there the footer must name the commit being deployed.
 const buildCommit = process.env.GITHUB_SHA?.slice(0, 7) ?? 'local'
 const minimumTouchTarget = 48
@@ -72,7 +72,7 @@ function boxAndText(element: Locator): Promise<{ box: Box; text: Box }> {
 }
 
 /** Scrolls to the end of the page and checks the last exercise ends above the paging bar. */
-async function expectLastExerciseClear(page: Page, view: DayPage): Promise<Box> {
+async function expectLastExerciseClear(page: Page, view: WorkoutPage): Promise<Box> {
   await scrollToPageEnd(page)
   const [lastExercise, bar] = await Promise.all([view.exercises.last().boundingBox(), pagingBar(view.pager)])
   if (!lastExercise || !bar) throw new Error('the last exercise or the paging bar is not rendered')
@@ -80,23 +80,23 @@ async function expectLastExerciseClear(page: Page, view: DayPage): Promise<Box> 
   return bar
 }
 
-test('every day is legible at arm’s length and fits the screen width', async ({ page }) => {
-  const view = dayPage(page)
+test('every workout is legible at arm’s length and fits the screen width', async ({ page }) => {
+  const view = workoutPage(page)
   const { width } = page.viewportSize() ?? { width: 0 }
   await page.goto('./')
-  for (const [index, day] of days.entries()) {
+  for (const [index, workout] of workouts.entries()) {
     if (index > 0) await view.next.tap()
-    await expect(view.heading).toHaveText(day.name)
+    await expect(view.heading).toHaveText(workout.name)
     const samples = await page.evaluate(sampleVisibleText)
     expect(samples.filter((s) => s.isCount), 'set and rep counts found').not.toHaveLength(0)
-    expect(tooSmall(samples), `text under its minimum size on "${day.name}"`).toEqual([])
-    expect(tooFaint(samples), `text under its minimum contrast on "${day.name}"`).toEqual([])
+    expect(tooSmall(samples), `text under its minimum size on "${workout.name}"`).toEqual([])
+    expect(tooFaint(samples), `text under its minimum contrast on "${workout.name}"`).toEqual([])
     expect(await page.evaluate(() => document.documentElement.scrollWidth), 'page width').toBeLessThanOrEqual(width)
   }
 })
 
 test('the paging buttons are thumb-sized, apart, and in the lower half of the screen', async ({ page }) => {
-  const view = dayPage(page)
+  const view = workoutPage(page)
   const { height } = page.viewportSize() ?? { height: 0 }
   await page.goto('./')
   const [previous, next] = await Promise.all([view.previous.boundingBox(), view.next.boundingBox()])
@@ -111,7 +111,7 @@ test('the paging buttons are thumb-sized, apart, and in the lower half of the sc
 })
 
 test('the paging bar stays at the bottom without covering the last exercise', async ({ page }) => {
-  const view = dayPage(page)
+  const view = workoutPage(page)
   const { height } = page.viewportSize() ?? { height: 0 }
   await page.goto('./')
   await expect(view.exercises.first()).toBeVisible()
@@ -130,12 +130,12 @@ for (const scale of [1.5, 2]) {
   test(`with text at ${scale * 100}%, the paging labels show in full, clear of the last exercise`, async ({ page }) => {
     const cdp = await page.context().newCDPSession(page)
     await cdp.send('Page.setFontSizes', { fontSizes: { standard: 16 * scale } })
-    const view = dayPage(page)
+    const view = workoutPage(page)
     await page.goto('./')
     await expect(view.exercises.first()).toBeVisible()
     const bar = await pagingBar(view.pager)
     if (!bar) throw new Error('no fixed bar around the paging buttons')
-    const items = { '"Previous day"': view.previous, 'the position': view.position, '"Next day"': view.next }
+    const items = { '"Previous workout"': view.previous, 'the position': view.position, '"Next workout"': view.next }
     for (const [name, item] of Object.entries(items)) {
       const { box, text } = await boxAndText(item)
       expect(reachSideways(text, box), `${name}: text wider than its own box, in px`).toBeLessThanOrEqual(0.5)
@@ -148,9 +148,9 @@ for (const scale of [1.5, 2]) {
 // A phone photo is as often upright as sideways, and the frame shows all of it either way: cropping
 // to fill would cut a standing lifter's head or feet off. Swapping one in must not move the page.
 test('shows a picture of any shape whole, in a frame that keeps its size', async ({ page }) => {
-  const view = dayPage(page)
+  const view = workoutPage(page)
   await page.goto('./')
-  // The first slot of the day, whether it holds a photo or the marker for one still to come: both
+  // The first slot of the workout, whether it holds a photo or the marker for one still to come: both
   // sit in the frame the page's own stylesheet gives them, which is what this measures.
   const slot = view.exercises.first().getByRole('article').locator('img, [data-testid="missing-picture"]').first()
   const frame = await slot.boundingBox()
@@ -172,7 +172,7 @@ test('shows a picture of any shape whole, in a frame that keeps its size', async
 })
 
 test('the footer shows which build is live, uncovered', async ({ page }) => {
-  const view = dayPage(page)
+  const view = workoutPage(page)
   await page.goto('./')
   await expect(view.buildId).toHaveText(new RegExp(`^Build ${buildCommit} · \\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2} UTC$`))
   await scrollToPageEnd(page)

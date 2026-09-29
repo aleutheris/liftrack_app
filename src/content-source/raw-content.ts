@@ -27,7 +27,7 @@ export interface RawGroup {
 /** content/exercise-groups.json: group slug → group. */
 export type RawGroupCatalogue = Readonly<Record<string, RawGroup>>
 
-/** A row of a planned day; `exercise` is a slug of content/exercises.json. */
+/** A row of a planned workout; `exercise` is a slug of content/exercises.json. */
 export interface RawRow {
   readonly exercise: string
   readonly sets: number
@@ -35,13 +35,13 @@ export interface RawRow {
   readonly per?: (typeof PER_SIDES)[number]
 }
 
-export interface RawDay {
+export interface RawWorkout {
   readonly id: string
   readonly name: string
   readonly exercises: readonly RawRow[]
 }
 
-/** content/plan.json: the planned days in paging order. */
+/** content/plan.json: the planned workouts in paging order. */
 export interface RawPlan {
-  readonly days: readonly RawDay[]
+  readonly workouts: readonly RawWorkout[]
 }

@@ -1,4 +1,4 @@
-// Building blocks for the content validators. A location reads like "plan.json days[0].id", so a
+// Building blocks for the content validators. A location reads like "plan.json workouts[0].id", so a
 // problem message tells the owner which file and which field to fix.
 
 type JsonObject = Readonly<Record<string, unknown>>

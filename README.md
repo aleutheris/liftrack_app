@@ -11,25 +11,25 @@ correct, in `ADR-260001`.
 Liftrack stores nothing itself. It is a browser client for an existing backend, the **Crystord
 Engine** GraphQL API, which owns the data.
 
-## Current state — the workout days page
+## Current state — the workouts page
 
 The first slice, [`EPIC-260007`](docs/governance/project/evolution/epics/EPIC-260007.md), is a
-static page published to GitHub Pages. It shows the planned workout days, one day per page, in
+static page published to GitHub Pages. It shows the planned workouts, one workout per page, in
 the order they are written in the content files:
 
-- the day's name, then its exercises in order;
+- the workout's name, then its exercises in order;
 - for each exercise: its name, a one-line cue, two pictures of how to do it, and the sets and reps
   — for example "4 sets × 10 reps", "3 sets × 8–12 reps" or "4 sets × 10 reps per leg";
-- "Previous day" and "Next day" buttons in a bar at the bottom of the screen, within thumb reach,
-  with "Day 2 of 3" between them;
-- the day being viewed in the address (`…/#day-2`), so a reload or a phone restoring the tab stays
-  on it; an address naming no day shows the first day;
+- "Previous workout" and "Next workout" buttons in a bar at the bottom of the screen, within thumb reach,
+  with "Workout 2 of 3" between them;
+- the workout being viewed in the address (`…/#workout-2`), so a reload or a phone restoring the tab stays
+  on it; an address naming no workout shows the first workout;
 - a footer with the build id — the commit and the time it was built.
 
 The page only reads. There is no sign-in, no backend and no logging of what was done yet; the
 content lives in files in this repository until the backend replaces them (`ADR-260008`). The
 programme's rationale lives in the owner's private notes, which are deliberately kept out of this
-repository; the days themselves are in `content/plan.json`.
+repository; the workouts themselves are in `content/plan.json`.
 
 **Little else is ratified yet.** The owner has accepted the workout domain model (`ADR-260001`),
 the frontend stack (`ADR-260007`: TypeScript, React and Vite) and the first slice's file-based
@@ -75,14 +75,14 @@ own:
 README.md                      this file
 CLAUDE.md                      thin pointer to docs/governance/
 content/                       what the page shows — edit these
-  plan.json                    the planned days, in paging order
+  plan.json                    the planned workouts, in paging order
   exercises.json               the exercise catalogue: names, cues, pictures
   pictures/                    two pictures per exercise
 src/
   main.tsx                     entry point: gives the app the file-backed content source
   workout/                     domain types and the WorkoutSource interface (imports nothing)
   content-source/              reads content/, checks it, and answers WorkoutSource
-  features/today-workout/      the day pager and the day view, with their styles
+  features/today-workout/      the workout pager and the workout view, with their styles
   app-shell/                   the app's composition and the build-id footer
   styles/                      tokens.css (every colour) and the base page styles
   architecture.test.ts         fails the tests if an import crosses a module boundary
@@ -158,11 +158,11 @@ CI runs these in this order, and publishes only if all of them pass.
 `npm run build` first, and again after every change. It serves the site under `/liftrack/`, the
 way GitHub Pages serves a project site, on a 360 × 640 touch screen, and checks that:
 
-- every day in `content/plan.json`, opened at its own address, shows the right exercises, cues,
-  sets, reps and both pictures loaded, and tapping "Next day" reaches every day in order;
+- every workout in `content/plan.json`, opened at its own address, shows the right exercises, cues,
+  sets, reps and both pictures loaded, and tapping "Next workout" reaches every workout in order;
 - every picture is shown whole in a square frame that keeps its size, so an upright photo is
   neither cropped nor able to move the page;
-- a reload keeps the day, and an unknown `#…` shows the first day;
+- a reload keeps the workout, and an unknown `#…` shows the first workout;
 - the text sizes, contrast and button sizes meet `REQ-QR-260001`, and with the browser's text
   size at 150% and 200% the paging buttons still show their labels in full;
 - the footer names the commit being deployed (a local build says `local`);
@@ -182,21 +182,21 @@ PAGE_URL=<site>/ GITHUB_SHA=<commit> CHECK_DEADLINE_SECONDS=0 CHECK_INTERVAL_SEC
 Both settings are required. A deadline of 0 leaves no room for a second attempt, so that is the
 one-shot form; CI gives the check a retry window instead, described below.
 
-### Editing the workout days
+### Editing the workouts
 
-The days are in `content/plan.json`, in the order the page shows them. To add a day, add an
-entry to `days`; its position in the list is its page:
+The workouts are in `content/plan.json`, in the order the page shows them. To add a workout, add an
+entry to `workouts`; its position in the list is its page:
 
 ```json
-{ "days": [
-    { "id": "day-4", "name": "Day 4 — type B", "exercises": [
+{ "workouts": [
+    { "id": "workout-4", "name": "Workout 4 — type B", "exercises": [
         { "exercise": "bulgarian-split-squat", "sets": 4, "reps": 10, "per": "leg" },
         { "exercise": "dumbbell-romanian-deadlift", "sets": 3, "reps": { "min": 8, "max": 12 } } ] } ] }
 ```
 
-- `id` — a slug (lowercase letters and digits joined by hyphens, like `day-4`), different from
-  every other day's. It appears in the address as `#day-4`.
-- `name` — the day's heading.
+- `id` — a slug (lowercase letters and digits joined by hyphens, like `workout-4`), different from
+  every other workout's. It appears in the address as `#workout-4`.
+- `name` — the workout's heading.
 - `exercises` — the exercises in the order they are done. Each has:
   - `exercise` — the exercise's key in `content/exercises.json`;
   - `sets` — a whole number, 1 or more;
@@ -221,15 +221,15 @@ an exercise, add an entry under a key that is not in the file yet:
 - `cue` — optional, one line. Leave the field out rather than leaving it empty.
 - `pictures` — optional: up to two different file names from `content/pictures/`, in the order
   they are shown. Leave the field out until a photo exists; the page shows "Photo 1 missing" in
-  that slot and the day works as usual.
+  that slot and the rest of the workout shows as usual.
 
 **Invalid content fails CI and is never published.** The content check rejects a plan with no
-days; a day id that is not a slug or is used twice; a day with no name or no exercises; an
+workouts; a workout id that is not a slug or is used twice; a workout with no name or no exercises; an
 exercise key that `exercises.json` does not have; sets or reps that are not whole numbers of 1 or
 more; a range whose `min` is above its `max`; a `per` other than leg, arm or side; a key in
 `exercises.json` that is not a slug; an exercise without a name, with more than two pictures or
 naming the same picture file twice; an empty cue; a picture file that is missing, too large,
-of the wrong type or not plainly named; a day whose pictures weigh too much together; any field
+of the wrong type or not plainly named; a workout whose pictures weigh too much together; any field
 not listed above, so a misspelt key is caught; and any key repeated inside one object, in either
 file. Run `npm test` to see the same result before you push.
 
@@ -238,10 +238,10 @@ file. Run `npm test` to see the same result before you push.
 Each exercise has two pictures in `content/pictures/`:
 
 - at most **40 KB each** — a phone photo is several megabytes and must be resized first;
-- and at most **600 KB for one day's pictures together**, a file counting once where two of the
-  day's exercises share it; a seven-exercise day has 14 pictures, so about 40 KB each is the
-  working figure, and at that size the per-picture limit is the one that binds — the day total
-  catches a day that grows, with an eighth exercise or with exercises that stop sharing pictures;
+- and at most **600 KB for one workout's pictures together**, a file counting once where two of the
+  workout's exercises share it; a seven-exercise workout has 14 pictures, so about 40 KB each is the
+  working figure, and at that size the per-picture limit is the one that binds — the workout total
+  catches a workout that grows, with an eighth exercise or with exercises that stop sharing pictures;
 - `.webp`, `.jpg`, `.jpeg`, `.png`, `.avif` or `.svg`;
 - named with letters, digits, `.`, `_` and `-` only, starting with a letter or digit, and placed
   directly in `content/pictures/`, not in a folder — for every file there, used or not, as the
@@ -257,7 +257,7 @@ Each exercise has two pictures in `content/pictures/`:
 - **any shape** — upright, sideways or square. The page gives every picture the same square frame
   and shows all of it inside, so nothing is cropped and no photo needs trimming first.
 
-`npm test` and CI check both limits against the real files, so a picture over 40 KB, or a day
+`npm test` and CI check both limits against the real files, so a picture over 40 KB, or a workout
 whose pictures pass 600 KB together, fails the build and is never published.
 
 For now each exercise's first picture is a placeholder — the same photo of dumbbells, copied under
@@ -268,7 +268,7 @@ placeholder must be copied from one of those files, not from `default_pic.jpg` i
 which at 136 KB is over the 40 KB limit.
 
 A picture whose name is given but whose file is not there shows on the page as "Photo N missing",
-like an empty slot, so the days always load. `npm test` and CI still fail it, so a typo is never
+like an empty slot, so the workouts always load. `npm test` and CI still fail it, so a typo is never
 published — run `npm test` before you push, as the page alone will not show the mistake.
 
 ### Deploying

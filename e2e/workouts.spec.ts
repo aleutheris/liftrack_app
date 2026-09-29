@@ -1,9 +1,9 @@
 import type { Locator, Page } from '@playwright/test'
-import { readExpectedDays, type ExpectedDay, type ExpectedExercise } from './content'
-import { dayPage, type DayPage } from './day-page'
+import { readExpectedWorkouts, type ExpectedWorkout, type ExpectedExercise } from './content'
+import { workoutPage, type WorkoutPage } from './workout-page'
 import { expect, test } from './fixtures'
 
-const days = readExpectedDays()
+const workouts = readExpectedWorkouts()
 
 async function expectPictureLoaded(picture: Locator): Promise<void> {
   // Lazy pictures load only near the viewport, as they would on the phone.
@@ -22,7 +22,7 @@ async function expectExercise(item: Locator, exercise: ExpectedExercise, isFirst
   await expect(article.getByTestId('sets')).toHaveText(exercise.sets)
   await expect(article.getByTestId('reps')).toHaveText(exercise.reps)
   // Two slots, always: the photos taken so far, and a plain marker for each one still to come, so a
-  // day is shown in full whether or not its photos exist yet.
+  // workout is shown in full whether or not its photos exist yet.
   await expect(article.getByRole('img')).toHaveCount(exercise.photos)
   await expect(article.getByTestId('missing-picture')).toHaveCount(2 - exercise.photos)
   for (const number of [1, 2]) {
@@ -38,49 +38,49 @@ async function expectExercise(item: Locator, exercise: ExpectedExercise, isFirst
   }
 }
 
-async function expectDay(page: Page, view: DayPage, day: ExpectedDay, index: number): Promise<void> {
-  await expect(view.heading).toHaveText(day.name)
-  await expect(view.position).toHaveText(`Day ${index + 1} of ${days.length}`)
-  await expect(view.exercises).toHaveCount(day.exercises.length)
-  await expect(view.exerciseList.getByRole('heading', { level: 2 })).toHaveText(day.exercises.map((e) => e.name))
-  for (const [position, exercise] of day.exercises.entries()) {
+async function expectWorkout(page: Page, view: WorkoutPage, workout: ExpectedWorkout, index: number): Promise<void> {
+  await expect(view.heading).toHaveText(workout.name)
+  await expect(view.position).toHaveText(`Workout ${index + 1} of ${workouts.length}`)
+  await expect(view.exercises).toHaveCount(workout.exercises.length)
+  await expect(view.exerciseList.getByRole('heading', { level: 2 })).toHaveText(workout.exercises.map((e) => e.name))
+  for (const [position, exercise] of workout.exercises.entries()) {
     await expectExercise(view.exercises.nth(position), exercise, position === 0)
   }
   // ADR-260001's vocabulary: the owner's "sequences" are sets on the page.
   await expect(page.locator('body')).not.toContainText(/sequence/i)
 }
 
-// One test per day, so each takes the same time however long the plan grows, and they run in parallel.
-for (const [index, day] of days.entries()) {
-  test(`#${day.id} shows its day in full`, async ({ page }) => {
-    const view = dayPage(page)
-    await page.goto(`#${day.id}`)
-    await expectDay(page, view, day, index)
+// One test per workout, so each takes the same time however long the plan grows, and they run in parallel.
+for (const [index, workout] of workouts.entries()) {
+  test(`#${workout.id} shows its workout in full`, async ({ page }) => {
+    const view = workoutPage(page)
+    await page.goto(`#${workout.id}`)
+    await expectWorkout(page, view, workout, index)
   })
 }
 
-test('every planned day is reachable by tapping "Next day", in plan order', async ({ page }) => {
-  const view = dayPage(page)
+test('every planned workout is reachable by tapping "Next workout", in plan order', async ({ page }) => {
+  const view = workoutPage(page)
   await page.goto('./')
-  for (const [index, day] of days.entries()) {
+  for (const [index, workout] of workouts.entries()) {
     if (index > 0) await view.next.tap()
-    await expect(view.heading).toHaveText(day.name)
-    await expect(view.position).toHaveText(`Day ${index + 1} of ${days.length}`)
+    await expect(view.heading).toHaveText(workout.name)
+    await expect(view.position).toHaveText(`Workout ${index + 1} of ${workouts.length}`)
     await expect(view.previous).toBeEnabled({ enabled: index > 0 })
-    await expect(view.next).toBeEnabled({ enabled: index < days.length - 1 })
+    await expect(view.next).toBeEnabled({ enabled: index < workouts.length - 1 })
   }
 })
 
-test('"Previous day" pages back to the first day, in reverse order', async ({ page }) => {
-  const view = dayPage(page)
-  const last = days.at(-1)
-  if (!last) throw new Error('content/plan.json has no days')
+test('"Previous workout" pages back to the first workout, in reverse order', async ({ page }) => {
+  const view = workoutPage(page)
+  const last = workouts.at(-1)
+  if (!last) throw new Error('content/plan.json has no workouts')
   await page.goto(`#${last.id}`)
   await expect(view.heading).toHaveText(last.name)
-  for (const [index, day] of [...days.entries()].slice(0, -1).reverse()) {
+  for (const [index, workout] of [...workouts.entries()].slice(0, -1).reverse()) {
     await view.previous.tap()
-    await expect(view.heading).toHaveText(day.name)
-    await expect(view.position).toHaveText(`Day ${index + 1} of ${days.length}`)
+    await expect(view.heading).toHaveText(workout.name)
+    await expect(view.position).toHaveText(`Workout ${index + 1} of ${workouts.length}`)
   }
   await expect(view.previous).toBeDisabled()
 })

@@ -27,7 +27,7 @@ const TOKEN = /"(?:[^"\\]|\\.)*"|[{}[\],]/g
 
 /**
  * One problem per key that appears more than once within the same object, in the order of each
- * first repeat, e.g. 'plan.json days[0].exercises[1]: key "sets" appears twice'. The same key in
+ * first repeat, e.g. 'plan.json workouts[0].exercises[1]: key "sets" appears twice'. The same key in
  * different objects is fine. Expects JSON: the caller's JSON.parse reports text that is not.
  */
 export function repeatedKeys(fileName: string, text: string): string[] {

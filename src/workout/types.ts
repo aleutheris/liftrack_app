@@ -1,5 +1,5 @@
 // Domain vocabulary for planned workouts, mirroring ADR-260001: a plan is an ordered list of planned
-// days; a day is an ordered list of prescriptions; a prescription names an exercise, its sets and reps.
+// workouts; a workout is an ordered list of prescriptions; a prescription names an exercise, its sets and reps.
 // Feature code speaks only these terms — never file formats or backend atoms.
 
 /** Reps counted for each side separately: "per leg", "per arm", "per side" (ADR-260008). */
@@ -35,13 +35,13 @@ export interface Prescription {
   readonly per?: RepSide
 }
 
-export interface PlannedDay {
+export interface PlannedWorkout {
   readonly id: string
   readonly name: string
   readonly prescriptions: readonly Prescription[]
 }
 
 export interface WorkoutPlan {
-  /** Planned days in the order they are paged. */
-  readonly days: readonly PlannedDay[]
+  /** Planned workouts in the order they are paged. */
+  readonly workouts: readonly PlannedWorkout[]
 }

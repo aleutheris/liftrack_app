@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react'
 import type { WorkoutSource } from '../workout/workout-source'
-import { sourceOf, threeDays } from '../features/today-workout/test-support/fake-plan'
+import { sourceOf, threeWorkouts } from '../features/today-workout/test-support/fake-plan'
 import { App } from './App'
 
 const buildId = () => within(screen.getByRole('contentinfo')).getByTestId('build-id')
@@ -10,14 +10,14 @@ beforeEach(() => {
 })
 
 describe('App', () => {
-  it('shows the planned days from the source it is given', async () => {
-    render(<App source={sourceOf(threeDays)} />)
-    expect(await screen.findByRole('heading', { level: 1, name: 'Day 1 — type A' })).toBeInTheDocument()
+  it('shows the planned workouts from the source it is given', async () => {
+    render(<App source={sourceOf(threeWorkouts)} />)
+    expect(await screen.findByRole('heading', { level: 1, name: 'Workout 1 — type A' })).toBeInTheDocument()
     expect(screen.getByRole('main')).toContainElement(screen.getByRole('list', { name: 'Exercises' }))
   })
 
   it('names the build in the footer: its commit and when it was built, in UTC', async () => {
-    render(<App source={sourceOf(threeDays)} />)
+    render(<App source={sourceOf(threeWorkouts)} />)
     await screen.findByRole('heading', { level: 1 })
     expect(buildId().textContent).toMatch(/^Build \S+ · \d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC$/)
     expect(buildId()).toHaveTextContent(`Build ${__BUILD_COMMIT__} · `)

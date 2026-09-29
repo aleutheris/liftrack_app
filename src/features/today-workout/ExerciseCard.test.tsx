@@ -20,7 +20,7 @@ describe('ExerciseCard', () => {
     expect(screen.queryByTestId('cue')).not.toBeInTheDocument()
   })
 
-  // The owner adds photos one at a time, and a day must never wait for them.
+  // The owner adds photos one at a time, and a workout must never wait for them.
   it.each<[photos: 0 | 1 | 2, missing: string[]]>([
     [2, []],
     [1, ['Photo 2 missing']],

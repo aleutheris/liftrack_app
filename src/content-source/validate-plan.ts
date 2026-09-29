@@ -17,33 +17,33 @@ const PER_EXPECTATION = `${quotedSides.slice(0, -1).join(', ')} or ${quotedSides
 /** Checks content/plan.json against ADR-260008's plan format and the catalogue's exercise slugs. */
 export function validatePlan(plan: unknown, exerciseSlugs: ReadonlySet<string>): string[] {
   if (!isObject(plan)) {
-    return [expected('plan.json', 'an object with "days"', plan)]
+    return [expected('plan.json', 'an object with "workouts"', plan)]
   }
-  const { days } = plan
-  const fieldProblems = unknownFields('plan.json', plan, ['days'])
-  if (!Array.isArray(days) || days.length === 0) {
-    return [...fieldProblems, expected('plan.json days', 'a non-empty list of days', days)]
+  const { workouts } = plan
+  const fieldProblems = unknownFields('plan.json', plan, ['workouts'])
+  if (!Array.isArray(workouts) || workouts.length === 0) {
+    return [...fieldProblems, expected('plan.json workouts', 'a non-empty list of workouts', workouts)]
   }
   return [
     ...fieldProblems,
-    ...days.flatMap((day, index) => validateDay(`plan.json days[${index}]`, day, exerciseSlugs)),
-    ...repeatedIds(days),
+    ...workouts.flatMap((workout, index) => validateWorkout(`plan.json workouts[${index}]`, workout, exerciseSlugs)),
+    ...repeatedIds(workouts),
   ]
 }
 
-function validateDay(location: string, day: unknown, exerciseSlugs: ReadonlySet<string>): string[] {
-  if (!isObject(day)) {
-    return [expected(location, 'an object with "id", "name" and "exercises"', day)]
+function validateWorkout(location: string, workout: unknown, exerciseSlugs: ReadonlySet<string>): string[] {
+  if (!isObject(workout)) {
+    return [expected(location, 'an object with "id", "name" and "exercises"', workout)]
   }
-  const rows = day.exercises
+  const rows = workout.exercises
   const rowProblems =
     Array.isArray(rows) && rows.length > 0
       ? rows.flatMap((row, index) => validateRow(`${location}.exercises[${index}]`, row, exerciseSlugs))
       : [expected(`${location}.exercises`, 'a non-empty list of exercises', rows)]
   return [
-    ...unknownFields(location, day, ['id', 'name', 'exercises']),
-    ...unless(isSlug(day.id), expected(`${location}.id`, 'a slug such as "day-1"', day.id)),
-    ...unless(isText(day.name), expected(`${location}.name`, 'a non-empty string', day.name)),
+    ...unknownFields(location, workout, ['id', 'name', 'exercises']),
+    ...unless(isSlug(workout.id), expected(`${location}.id`, 'a slug such as "workout-1"', workout.id)),
+    ...unless(isText(workout.name), expected(`${location}.name`, 'a non-empty string', workout.name)),
     ...rowProblems,
   ]
 }
@@ -95,16 +95,16 @@ function validateReps(location: string, reps: unknown): string[] {
   ]
 }
 
-function repeatedIds(days: readonly unknown[]): string[] {
+function repeatedIds(workouts: readonly unknown[]): string[] {
   const firstIndexById = new Map<string, number>()
-  return days.flatMap((day, index) => {
-    const id = isObject(day) ? day.id : undefined
+  return workouts.flatMap((workout, index) => {
+    const id = isObject(workout) ? workout.id : undefined
     if (typeof id !== 'string') return []
     const firstIndex = firstIndexById.get(id)
     if (firstIndex === undefined) {
       firstIndexById.set(id, index)
       return []
     }
-    return [`plan.json days[${index}].id: ${JSON.stringify(id)} is already used by days[${firstIndex}]`]
+    return [`plan.json workouts[${index}].id: ${JSON.stringify(id)} is already used by workouts[${firstIndex}]`]
   })
 }

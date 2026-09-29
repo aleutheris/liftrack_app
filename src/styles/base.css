@@ -11,7 +11,7 @@ html {
 
 body {
   margin: 0;
-  /* The day pager is fixed to the bottom of the viewport; this keeps the last exercise and the
+  /* The workout pager is fixed to the bottom of the viewport; this keeps the last exercise and the
      footer scrollable clear of it, at its taller large-text height too. */
   padding-bottom: var(--pager-bar-height-stacked);
   background: var(--color-page);

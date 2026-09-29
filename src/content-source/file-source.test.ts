@@ -17,8 +17,8 @@ describe('createFileSource', () => {
   it('resolves the decoded plan, with each picture at the URL the build serves it from', async () => {
     const plan = await sourceWith().loadPlan()
 
-    expect(plan.days.map((day) => day.id)).toEqual(['day-1', 'day-2'])
-    expect(plan.days[0]?.prescriptions[1]?.exercise.pictures).toEqual([
+    expect(plan.workouts.map((workout) => workout.id)).toEqual(['workout-1', 'workout-2'])
+    expect(plan.workouts[0]?.prescriptions[1]?.exercise.pictures).toEqual([
       { src: '/assets/pallof-press-1.png?v=1', alt: 'Pallof press — picture 1 of 2' },
       { src: '/assets/pallof-press-2.svg?v=1', alt: 'Pallof press — picture 2 of 2' },
     ])
@@ -26,7 +26,7 @@ describe('createFileSource', () => {
 
   it('rejects with an error listing every problem when the content is invalid', async () => {
     const source = sourceWith(
-      [['plan', 'days', 0, 'id'], 'Day 1'],
+      [['plan', 'workouts', 0, 'id'], 'Workout 1'],
       [['exercises', 'leg-press', 'name'], ''],
     )
 
@@ -35,17 +35,17 @@ describe('createFileSource', () => {
         [
           'The content has 2 problem(s):',
           'exercises.json leg-press.name: expected a non-empty string, found ""',
-          'plan.json days[0].id: expected a slug such as "day-1", found "Day 1"',
+          'plan.json workouts[0].id: expected a slug such as "workout-1", found "Workout 1"',
         ].join('\n'),
       ),
     )
   })
 
   // The CI content check still fails such a picture, so a typo cannot deploy (catalogue-defects.test.ts).
-  it('shows a picture named but not in content/pictures/ as missing, rather than failing every day', async () => {
+  it('shows a picture named but not in content/pictures/ as missing, rather than failing every workout', async () => {
     const plan = await sourceWith([['pictureSizes', 'leg-press-2.jpg'], undefined]).loadPlan()
 
-    expect(plan.days[0]?.prescriptions[0]?.exercise.pictures).toEqual([
+    expect(plan.workouts[0]?.prescriptions[0]?.exercise.pictures).toEqual([
       { src: '/assets/leg-press-1.webp?v=1', alt: 'Leg press — picture 1 of 2' },
       null,
     ])

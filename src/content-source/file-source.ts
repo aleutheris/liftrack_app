@@ -24,7 +24,7 @@ function readPlan({ exercises, groups, plan, pictureModules }: BundledContent): 
   )
   // Sizes are unknown here; the CI content check (real-content.node.test.ts) reads them from disk.
   const pictureSizes = new Map([...urls.keys()].map((fileName) => [fileName, null]))
-  // A picture named but not in content/pictures/ shows as missing rather than failing every day; CI
+  // A picture named but not in content/pictures/ shows as missing rather than failing every workout; CI
   // still fails it, so a typo cannot deploy.
   const problems = validateContent({ exercises, groups, plan, pictureSizes }, { picturesMustExist: false })
   if (problems.length > 0) {

@@ -78,7 +78,7 @@ const rules: Rule[] = [
     name: 'a feature imports only its own slice, src/workout and src/ui-primitives',
     applies: (e) => e.from.startsWith('features/'),
     allows: (e) => e.to === e.from || e.to === 'workout' || e.to === 'ui-primitives',
-    counterexample: { 'src/features/today-workout/day.tsx': "import { source } from '../../content-source/source'" },
+    counterexample: { 'src/features/today-workout/workout.tsx': "import { source } from '../../content-source/source'" },
   },
   {
     name: 'src/ui-primitives imports nothing project-specific',
