@@ -267,9 +267,9 @@ finish loading. To lower them again, change `PICTURE_BYTES_MAX` in
 `src/content-source/validate-catalogue.ts` and `WORKOUT_PICTURE_BYTES_MAX` in
 `src/content-source/validate-workout-pictures.ts`.
 
-For now each exercise's first picture is a placeholder — the same photo of dumbbells, copied under
-the name `content/exercises.json` gives it — and every second slot shows "Photo 2 missing". To put
-in the real photo, overwrite that file under the same name; nothing else changes. To add a second
+An exercise whose real photo is not in yet shows a placeholder — the same photo of dumbbells, copied
+under the name `content/exercises.json` gives it — and a second slot not yet filled shows "Photo 2
+missing". To put in the real photo, overwrite that file under the same name; nothing else changes. To add a second
 picture, put the file in `content/pictures/` and add its name to that exercise's `pictures`. A new
 placeholder must be copied from one of those files, not from `default_pic.jpg` in the project root,
 which at 136 KB is over the 100 KB limit.

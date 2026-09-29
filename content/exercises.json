@@ -52,7 +52,7 @@
     "group": "legs-knee-dominant-unilateral",
     "cue": "Drive through the working leg, don't push off the trailing foot",
     "pictures": [
-      "step-up-1.jpg"
+      "step-up-1.jpg", "step-up-2.jpg"
     ]
   },
   "single-leg-press": {
@@ -68,7 +68,7 @@
     "group": "legs-hip-hamstring",
     "cue": "Slow on the way back, 3 seconds",
     "pictures": [
-      "seated-leg-curl-1.jpg"
+      "seated-leg-curl-1.jpg", "seated-leg-curl-2.jpg"
     ]
   },
   "dumbbell-romanian-deadlift": {
@@ -108,7 +108,7 @@
     "group": "chest",
     "cue": "Upper arms rest on floor briefly each rep",
     "pictures": [
-      "dumbbell-floor-press-1.jpg"
+      "dumbbell-floor-press-1.jpg", "dumbbell-floor-press-2.jpg"
     ]
   },
   "machine-chest-press": {
@@ -148,7 +148,7 @@
     "group": "back",
     "cue": "Chest stays on the bench; elbow stops at the ribs",
     "pictures": [
-      "chest-down-dumbbell-row-1.jpg"
+      "chest-down-dumbbell-row-1.jpg", "chest-down-dumbbell-row-2.jpg"
     ]
   },
   "seated-cable-row": {
@@ -260,7 +260,7 @@
     "group": "core",
     "cue": "Lower back stays flat against the floor",
     "pictures": [
-      "dead-bug-1.jpg"
+      "dead-bug-1.jpg", "dead-bug-2.jpg"
     ]
   },
   "ab-roller": {
