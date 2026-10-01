@@ -28,7 +28,7 @@
     "group": "legs-knee-dominant-bilateral",
     "cue": "Dumbbells hang at your sides, neutral grip; chest tall",
     "pictures": [
-      "dumbbell-squat-1.jpg"
+      "dumbbell-squat-1.jpg", "dumbbell-squat-2.jpg"
     ]
   },
   "bulgarian-split-squat": {
@@ -76,7 +76,7 @@
     "group": "legs-hip-hamstring",
     "cue": "Hips back, soft knees, neutral grip",
     "pictures": [
-      "dumbbell-romanian-deadlift-1.jpg"
+      "dumbbell-romanian-deadlift-1.jpg", "dumbbell-romanian-deadlift-2.jpg"
     ]
   },
   "prone-leg-curl": {
@@ -116,7 +116,7 @@
     "group": "chest",
     "cue": "Stop when elbows reach torso level",
     "pictures": [
-      "machine-chest-press-1.jpg"
+      "machine-chest-press-1.jpg", "machine-chest-press-2.jpg"
     ]
   },
   "flat-dumbbell-press": {
@@ -134,6 +134,11 @@
     "pictures": [
       "elevated-push-up-1.jpg"
     ]
+  },
+  "standing-cable-press": {
+    "name": "Standing cable chest press",
+    "group": "chest",
+    "cue": "Handles start level with your chest, elbows never behind the torso; press straight forward"
   },
   "neutral-grip-lat-pulldown": {
     "name": "Neutral-grip lat pulldown",
@@ -156,7 +161,7 @@
     "group": "back",
     "cue": "Chest up, elbows stop at the ribs",
     "pictures": [
-      "seated-cable-row-1.jpg"
+      "seated-cable-row-1.jpg", "seated-cable-row-2.jpg"
     ]
   },
   "half-kneeling-cable-row": {
@@ -196,7 +201,7 @@
     "group": "triceps",
     "cue": "Upper arm parallel to the floor, only the forearm moves",
     "pictures": [
-      "dumbbell-kickback-1.jpg"
+      "dumbbell-kickback-1.jpg", "dumbbell-kickback-2.jpg"
     ]
   },
   "cable-external-rotation": {
@@ -250,9 +255,9 @@
   "plank": {
     "name": "Plank",
     "group": "core",
-    "cue": "Long holds, ribs down, don't let the hips sag",
+    "cue": "Reps are seconds held. Ribs down, don't let the hips sag",
     "pictures": [
-      "plank-1.jpg"
+      "plank-1.jpg", "plank-2.jpg"
     ]
   },
   "dead-bug": {
@@ -274,7 +279,7 @@
   "side-plank": {
     "name": "Side plank",
     "group": "core",
-    "cue": "Hips stacked, don't rotate forward or back",
+    "cue": "Reps are seconds held, per side. Hips stacked, don't rotate forward or back",
     "pictures": [
       "side-plank-1.jpg"
     ]
