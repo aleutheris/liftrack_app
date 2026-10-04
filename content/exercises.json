@@ -308,12 +308,20 @@
       "cable-crunch-1.jpg"
     ]
   },
-  "standing-calf-raise": {
-    "name": "Standing calf raise",
+  "leg-press-calf-raise": {
+    "name": "Calf raise on the leg press",
     "group": "calves",
-    "cue": "Full stretch at the bottom",
+    "cue": "Balls of the feet on the platform's bottom edge, knees straight; full stretch at the bottom",
     "pictures": [
-      "standing-calf-raise-1.jpg"
+      "leg-press-calf-raise-1.jpg"
+    ]
+  },
+  "single-leg-calf-raise": {
+    "name": "Single-leg calf raise on a step",
+    "group": "calves",
+    "cue": "Dumbbell in the left hand only, right hand just steadies; heel drops below the step",
+    "pictures": [
+      "single-leg-calf-raise-1.jpg"
     ]
   }
 }

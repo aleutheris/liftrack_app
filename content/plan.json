@@ -8,7 +8,7 @@
         { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
         { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 3, "reps": 12 },
         { "exercise": "pallof-press", "sets": 3, "reps": 12, "per": "side" }
       ]
     },
@@ -32,7 +32,7 @@
         { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
         { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
         { "exercise": "seated-cable-row", "sets": 4, "reps": 10 },
-        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 3, "reps": 12, "per": "leg" },
         { "exercise": "ab-roller", "sets": 3, "reps": 8 }
       ]
     },
@@ -56,7 +56,7 @@
         { "exercise": "back-extension-45", "sets": 4, "reps": 10 },
         { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 3, "reps": 12 },
         { "exercise": "cable-crunch", "sets": 3, "reps": 12 }
       ]
     },
@@ -68,7 +68,7 @@
         { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
         { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
         { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
-        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
+        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
         { "exercise": "dead-bug", "sets": 3, "reps": 12 }
       ]
     },
@@ -80,7 +80,7 @@
         { "exercise": "dumbbell-romanian-deadlift", "sets": 4, "reps": 10 },
         { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
         { "exercise": "seated-cable-row", "sets": 4, "reps": 10 },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 3, "reps": 12, "per": "leg" },
         { "exercise": "side-plank", "sets": 3, "reps": 20, "per": "side" }
       ]
     },
@@ -104,7 +104,7 @@
         { "exercise": "prone-leg-curl", "sets": 4, "reps": 10 },
         { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 3, "reps": 12 },
         { "exercise": "pallof-press", "sets": 3, "reps": 12, "per": "side" }
       ]
     },
@@ -128,7 +128,7 @@
         { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
         { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
         { "exercise": "seated-cable-row", "sets": 4, "reps": 10 },
-        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 3, "reps": 12, "per": "leg" },
         { "exercise": "ab-roller", "sets": 3, "reps": 8 }
       ]
     },
@@ -152,7 +152,7 @@
         { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
         { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 3, "reps": 12 },
         { "exercise": "cable-crunch", "sets": 3, "reps": 12 }
       ]
     },
@@ -176,7 +176,7 @@
         { "exercise": "back-extension-45", "sets": 4, "reps": 10 },
         { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
         { "exercise": "seated-cable-row", "sets": 4, "reps": 10 },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 3, "reps": 12, "per": "leg" },
         { "exercise": "side-plank", "sets": 3, "reps": 20, "per": "side" }
       ]
     },
@@ -200,7 +200,7 @@
         { "exercise": "dumbbell-romanian-deadlift", "sets": 4, "reps": 10 },
         { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 3, "reps": 12 },
         { "exercise": "pallof-press", "sets": 3, "reps": 12, "per": "side" }
       ]
     },
@@ -224,7 +224,7 @@
         { "exercise": "prone-leg-curl", "sets": 4, "reps": 10 },
         { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
         { "exercise": "seated-cable-row", "sets": 4, "reps": 10 },
-        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 3, "reps": 12, "per": "leg" },
         { "exercise": "ab-roller", "sets": 3, "reps": 8 }
       ]
     },
@@ -248,7 +248,7 @@
         { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
         { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 3, "reps": 12 },
         { "exercise": "cable-crunch", "sets": 3, "reps": 12 }
       ]
     },
@@ -272,7 +272,7 @@
         { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
         { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
         { "exercise": "seated-cable-row", "sets": 4, "reps": 10 },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 3, "reps": 12, "per": "leg" },
         { "exercise": "side-plank", "sets": 3, "reps": 20, "per": "side" }
       ]
     },
@@ -296,7 +296,7 @@
         { "exercise": "back-extension-45", "sets": 4, "reps": 10 },
         { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 3, "reps": 12 },
         { "exercise": "pallof-press", "sets": 3, "reps": 12, "per": "side" }
       ]
     },
@@ -320,7 +320,7 @@
         { "exercise": "dumbbell-romanian-deadlift", "sets": 4, "reps": 10 },
         { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
         { "exercise": "seated-cable-row", "sets": 4, "reps": 10 },
-        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 3, "reps": 12, "per": "leg" },
         { "exercise": "ab-roller", "sets": 3, "reps": 8 }
       ]
     },
@@ -344,7 +344,7 @@
         { "exercise": "prone-leg-curl", "sets": 4, "reps": 10 },
         { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 3, "reps": 12 },
         { "exercise": "cable-crunch", "sets": 3, "reps": 12 }
       ]
     },
@@ -368,7 +368,7 @@
         { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
         { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
         { "exercise": "seated-cable-row", "sets": 4, "reps": 10 },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 3, "reps": 12, "per": "leg" },
         { "exercise": "side-plank", "sets": 3, "reps": 20, "per": "side" }
       ]
     },
@@ -392,7 +392,7 @@
         { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
         { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 3, "reps": 12 },
         { "exercise": "pallof-press", "sets": 3, "reps": 12, "per": "side" }
       ]
     },
@@ -416,7 +416,7 @@
         { "exercise": "back-extension-45", "sets": 4, "reps": 10 },
         { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
         { "exercise": "seated-cable-row", "sets": 4, "reps": 10 },
-        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 3, "reps": 12, "per": "leg" },
         { "exercise": "ab-roller", "sets": 3, "reps": 8 }
       ]
     },
@@ -440,7 +440,7 @@
         { "exercise": "dumbbell-romanian-deadlift", "sets": 4, "reps": 10 },
         { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 3, "reps": 12 },
         { "exercise": "cable-crunch", "sets": 3, "reps": 12 }
       ]
     },
@@ -464,7 +464,7 @@
         { "exercise": "prone-leg-curl", "sets": 4, "reps": 10 },
         { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
         { "exercise": "seated-cable-row", "sets": 4, "reps": 10 },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 3, "reps": 12, "per": "leg" },
         { "exercise": "side-plank", "sets": 3, "reps": 20, "per": "side" }
       ]
     },

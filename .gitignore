@@ -19,6 +19,10 @@ coverage
 .idea
 .DS_Store
 
+# Python bytecode cache (tools/workout_projection.py)
+__pycache__/
+*.pyc
+
 # The owner's private programme notes — never committed (the repository is public)
 program-context.md
 # Its slots and pools, the input of tools/workout_projection.py — private for the same reason
