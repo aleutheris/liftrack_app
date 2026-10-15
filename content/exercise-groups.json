@@ -2,6 +2,7 @@
   "legs-knee-dominant-bilateral": { "name": "Legs — knee-dominant, bilateral" },
   "legs-knee-dominant-unilateral": { "name": "Legs — knee-dominant, unilateral" },
   "legs-hip-hamstring": { "name": "Legs — hip/hamstring-dominant" },
+  "legs-hip-ab-adduction": { "name": "Legs — hip abduction/adduction" },
   "chest": { "name": "Chest" },
   "back": { "name": "Back" },
   "triceps": { "name": "Triceps" },

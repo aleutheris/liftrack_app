@@ -78,6 +78,7 @@ content/                       what the page shows — edit these
   plan.json                    the planned workouts, in paging order
   exercises.json               the exercise catalogue: names, cues, pictures
   pictures/                    two pictures per exercise
+  picture-credits.json         who made each picture taken from elsewhere, and its license
 src/
   main.tsx                     entry point: gives the app the file-backed content source
   workout/                     domain types and the WorkoutSource interface (imports nothing)
@@ -267,12 +268,48 @@ finish loading. To lower them again, change `PICTURE_BYTES_MAX` in
 `src/content-source/validate-catalogue.ts` and `WORKOUT_PICTURE_BYTES_MAX` in
 `src/content-source/validate-workout-pictures.ts`.
 
-An exercise whose real photo is not in yet shows a placeholder — the same photo of dumbbells, copied
-under the name `content/exercises.json` gives it — and a second slot not yet filled shows "Photo 2
-missing". To put in the real photo, overwrite that file under the same name; nothing else changes. To add a second
-picture, put the file in `content/pictures/` and add its name to that exercise's `pictures`. A new
-placeholder must be copied from one of those files, not from `default_pic.jpg` in the project root,
-which at 136 KB is over the 100 KB limit.
+An exercise with no picture yet shows "Photo 1 missing" and "Photo 2 missing". To add one, put the
+file in `content/pictures/` and add its name to that exercise's `pictures`.
+
+### How the pictures are made
+
+Every picture is a black-and-white line drawing in one style, generated on 2026-10-14 with Google's
+Gemini 3.1 Flash Image model (through the `make_video` project's `scripts/gen.py`, which holds the API
+key) and saved as greyscale WebP. Each drawing was checked against its exercise's cue before it went
+in. To draw a new exercise in the same style, give the model
+`content/pictures/elevated-push-up-1.webp` as the style reference and ask for ONE 16:9 image with two
+side-by-side panels — the start position on the left, the end position on the right, an empty white gap
+between them, the same man, equipment, camera angle and scale in both — then split it down the middle
+into picture 1 and picture 2. One image keeps the pair consistent, which two separate requests do not.
+Begin every prompt with:
+
+> Instructional fitness illustration. Clean black line art with even, bold outlines on a pure white
+> background, like the drawing on a gym machine's instruction placard. One athletic man with short dark
+> hair, plain t-shirt, shorts and sneakers. No shading, no colour, no gradients, no text, no letters, no
+> numbers, no labels, no arrows, no logos, no watermark, no highlighted muscles. The whole body and the
+> equipment fully in frame and centred, nothing else in the scene.
+
+Check every drawing against the cue — the model often gets depth, grip width, which arm works and
+where the elbows stop wrong. Small movements are its weak spot: neither calf raise could be drawn with
+the heel dropped below the edge, so their cues carry that part.
+
+### Picture credits
+
+A picture taken from somewhere else — not your own photo — needs an entry in
+`content/picture-credits.json`, keyed by its file name:
+
+```json
+"back-squat-1.png": { "author": "Everkinetic", "license": "CC BY-SA 4.0",
+                      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+                      "source": "https://github.com/everkinetic/data" }
+```
+
+The page shows it under the picture as "author · license", linking to the source and the license,
+which is what attribution licenses such as CC BY-SA ask for. Both links must be `https://`, and a
+credit for a file not in `content/pictures/` fails `npm test` and CI. Your own photos need no entry.
+Only use pictures whose license allows publishing them on a public site. No picture needs a credit
+at the moment, so the file is `{}`: every picture is a drawing made for this app (see "How the
+pictures are made").
 
 A picture whose name is given but whose file is not there shows on the page as "Photo N missing",
 like an empty slot, so the workouts always load. `npm test` and CI still fail it, so a typo is never

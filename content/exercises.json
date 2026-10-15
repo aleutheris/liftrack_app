@@ -4,7 +4,7 @@
     "group": "legs-knee-dominant-bilateral",
     "cue": "Feet mid-platform, knees track over toes",
     "pictures": [
-      "leg-press-1.jpg", "leg-press-2.jpg"
+      "leg-press-1.webp", "leg-press-2.webp"
     ]
   },
   "goblet-squat": {
@@ -12,7 +12,7 @@
     "group": "legs-knee-dominant-bilateral",
     "cue": "Elbows inside the knees, chest tall",
     "pictures": [
-      "goblet-squat-1.jpg"
+      "goblet-squat-1.webp", "goblet-squat-2.webp"
     ]
   },
   "back-squat": {
@@ -20,7 +20,7 @@
     "group": "legs-knee-dominant-bilateral",
     "cue": "Hands wide so the shoulders aren't pulled back; chest tall",
     "pictures": [
-      "back-squat-1.jpg"
+      "back-squat-1.webp", "back-squat-2.webp"
     ]
   },
   "dumbbell-squat": {
@@ -28,7 +28,7 @@
     "group": "legs-knee-dominant-bilateral",
     "cue": "Dumbbells hang at your sides, neutral grip; chest tall",
     "pictures": [
-      "dumbbell-squat-1.jpg", "dumbbell-squat-2.jpg"
+      "dumbbell-squat-1.webp", "dumbbell-squat-2.webp"
     ]
   },
   "bulgarian-split-squat": {
@@ -36,7 +36,7 @@
     "group": "legs-knee-dominant-unilateral",
     "cue": "Dumbbells at your sides, never front-racked. Start light",
     "pictures": [
-      "bulgarian-split-squat-1.jpg"
+      "bulgarian-split-squat-1.webp", "bulgarian-split-squat-2.webp"
     ]
   },
   "reverse-lunge": {
@@ -44,7 +44,7 @@
     "group": "legs-knee-dominant-unilateral",
     "cue": "Step back, not forward; dumbbells at your sides",
     "pictures": [
-      "reverse-lunge-1.jpg"
+      "reverse-lunge-1.webp", "reverse-lunge-2.webp"
     ]
   },
   "step-up": {
@@ -52,7 +52,7 @@
     "group": "legs-knee-dominant-unilateral",
     "cue": "Drive through the working leg, don't push off the trailing foot",
     "pictures": [
-      "step-up-1.jpg", "step-up-2.jpg"
+      "step-up-1.webp", "step-up-2.webp"
     ]
   },
   "single-leg-press": {
@@ -60,7 +60,7 @@
     "group": "legs-knee-dominant-unilateral",
     "cue": "Control the negative",
     "pictures": [
-      "single-leg-press-1.jpg"
+      "single-leg-press-1.webp", "single-leg-press-2.webp"
     ]
   },
   "seated-leg-curl": {
@@ -68,7 +68,7 @@
     "group": "legs-hip-hamstring",
     "cue": "Slow on the way back, 3 seconds",
     "pictures": [
-      "seated-leg-curl-1.jpg", "seated-leg-curl-2.jpg"
+      "seated-leg-curl-1.webp", "seated-leg-curl-2.webp"
     ]
   },
   "dumbbell-romanian-deadlift": {
@@ -76,7 +76,7 @@
     "group": "legs-hip-hamstring",
     "cue": "Hips back, soft knees, neutral grip",
     "pictures": [
-      "dumbbell-romanian-deadlift-1.jpg", "dumbbell-romanian-deadlift-2.jpg"
+      "dumbbell-romanian-deadlift-1.webp", "dumbbell-romanian-deadlift-2.webp"
     ]
   },
   "prone-leg-curl": {
@@ -84,7 +84,7 @@
     "group": "legs-hip-hamstring",
     "cue": "Hips stay pressed into the pad; slow on the way back",
     "pictures": [
-      "prone-leg-curl-1.jpg"
+      "prone-leg-curl-1.webp", "prone-leg-curl-2.webp"
     ]
   },
   "hip-thrust": {
@@ -92,7 +92,7 @@
     "group": "legs-hip-hamstring",
     "cue": "Chin tucked, ribs down; don't arch the lower back at the top",
     "pictures": [
-      "hip-thrust-1.jpg"
+      "hip-thrust-1.webp", "hip-thrust-2.webp"
     ]
   },
   "back-extension-45": {
@@ -100,7 +100,23 @@
     "group": "legs-hip-hamstring",
     "cue": "Hinge at the hips, not the lower back",
     "pictures": [
-      "back-extension-45-1.jpg"
+      "back-extension-45-1.webp", "back-extension-45-2.webp"
+    ]
+  },
+  "hip-abduction-machine": {
+    "name": "Hip abduction machine",
+    "group": "legs-hip-ab-adduction",
+    "cue": "Sit tall, hands on the side handles; push the knees out, slow on the way back",
+    "pictures": [
+      "hip-abduction-machine-1.webp", "hip-abduction-machine-2.webp"
+    ]
+  },
+  "hip-adduction-machine": {
+    "name": "Hip adduction machine",
+    "group": "legs-hip-ab-adduction",
+    "cue": "Start at a comfortable stretch, not a forced one; squeeze the knees together, slow on the way back",
+    "pictures": [
+      "hip-adduction-machine-1.webp", "hip-adduction-machine-2.webp"
     ]
   },
   "dumbbell-floor-press": {
@@ -108,7 +124,7 @@
     "group": "chest",
     "cue": "Upper arms rest on floor briefly each rep",
     "pictures": [
-      "dumbbell-floor-press-1.jpg", "dumbbell-floor-press-2.jpg"
+      "dumbbell-floor-press-1.webp", "dumbbell-floor-press-2.webp"
     ]
   },
   "machine-chest-press": {
@@ -116,7 +132,7 @@
     "group": "chest",
     "cue": "Stop when elbows reach torso level",
     "pictures": [
-      "machine-chest-press-1.jpg", "machine-chest-press-2.jpg"
+      "machine-chest-press-1.webp", "machine-chest-press-2.webp"
     ]
   },
   "flat-dumbbell-press": {
@@ -124,28 +140,39 @@
     "group": "chest",
     "cue": "Stop at torso level, never let elbows drop below",
     "pictures": [
-      "flat-dumbbell-press-1.jpg"
+      "flat-dumbbell-press-1.webp", "flat-dumbbell-press-2.webp"
     ]
   },
   "elevated-push-up": {
     "name": "Elevated-hands push-up",
     "group": "chest",
-    "cue": "Hands raised on a bench or low bar; keeps elbows from traveling behind the torso",
+    "cue": "Hands on a bench or low bar; lower only until the elbows reach torso level, chest stays off the bench",
     "pictures": [
-      "elevated-push-up-1.jpg"
+      "elevated-push-up-1.webp", "elevated-push-up-2.webp"
     ]
   },
   "standing-cable-press": {
     "name": "Standing cable chest press",
     "group": "chest",
-    "cue": "Handles start level with your chest, elbows never behind the torso; press straight forward"
+    "cue": "Handles start level with your chest, elbows never behind the torso; press straight forward",
+    "pictures": [
+      "standing-cable-press-1.webp", "standing-cable-press-2.webp"
+    ]
+  },
+  "pec-fly-machine": {
+    "name": "Pec fly machine, limited range",
+    "group": "chest",
+    "cue": "Set the handles so they start in front of the chest; the arms never open behind the torso",
+    "pictures": [
+      "pec-fly-machine-1.webp", "pec-fly-machine-2.webp"
+    ]
   },
   "neutral-grip-lat-pulldown": {
     "name": "Neutral-grip lat pulldown",
     "group": "back",
     "cue": "Elbows to ribs, don't drive them behind you",
     "pictures": [
-      "neutral-grip-lat-pulldown-1.jpg"
+      "neutral-grip-lat-pulldown-1.webp", "neutral-grip-lat-pulldown-2.webp"
     ]
   },
   "chest-down-dumbbell-row": {
@@ -153,7 +180,7 @@
     "group": "back",
     "cue": "Chest stays on the bench; elbow stops at the ribs",
     "pictures": [
-      "chest-down-dumbbell-row-1.jpg", "chest-down-dumbbell-row-2.jpg"
+      "chest-down-dumbbell-row-1.webp", "chest-down-dumbbell-row-2.webp"
     ]
   },
   "seated-cable-row": {
@@ -161,7 +188,7 @@
     "group": "back",
     "cue": "Chest up, elbows stop at the ribs",
     "pictures": [
-      "seated-cable-row-1.jpg", "seated-cable-row-2.jpg"
+      "seated-cable-row-1.webp", "seated-cable-row-2.webp"
     ]
   },
   "half-kneeling-cable-row": {
@@ -169,7 +196,31 @@
     "group": "back",
     "cue": "Elbow stops at the ribs, same as the other rows",
     "pictures": [
-      "half-kneeling-cable-row-1.jpg"
+      "half-kneeling-cable-row-1.webp", "half-kneeling-cable-row-2.webp"
+    ]
+  },
+  "diverging-lat-pulldown": {
+    "name": "Diverging lat pulldown machine",
+    "group": "back",
+    "cue": "Neutral handles, never palms up; elbows to ribs, don't drive them behind you",
+    "pictures": [
+      "diverging-lat-pulldown-1.webp", "diverging-lat-pulldown-2.webp"
+    ]
+  },
+  "machine-seated-row": {
+    "name": "Seated row machine",
+    "group": "back",
+    "cue": "Chest on the pad, neutral handles; elbows stop at the ribs",
+    "pictures": [
+      "machine-seated-row-1.webp", "machine-seated-row-2.webp"
+    ]
+  },
+  "diverging-seated-row": {
+    "name": "Diverging seated row machine",
+    "group": "back",
+    "cue": "Chest on the pad, upper handles at shoulder height; elbows stop at the ribs",
+    "pictures": [
+      "diverging-seated-row-1.webp", "diverging-seated-row-2.webp"
     ]
   },
   "cable-pushdown": {
@@ -177,7 +228,7 @@
     "group": "triceps",
     "cue": "Elbows pinned to your sides",
     "pictures": [
-      "cable-pushdown-1.jpg"
+      "cable-pushdown-1.webp", "cable-pushdown-2.webp"
     ]
   },
   "close-grip-floor-press": {
@@ -185,7 +236,7 @@
     "group": "triceps",
     "cue": "Hands shoulder-width, elbows tucked in, dumbbells angled slightly toward each other",
     "pictures": [
-      "close-grip-floor-press-1.jpg"
+      "close-grip-floor-press-1.webp", "close-grip-floor-press-2.webp"
     ]
   },
   "machine-triceps-extension": {
@@ -193,7 +244,7 @@
     "group": "triceps",
     "cue": "Elbows fixed, don't let them drift",
     "pictures": [
-      "machine-triceps-extension-1.jpg"
+      "machine-triceps-extension-1.webp", "machine-triceps-extension-2.webp"
     ]
   },
   "dumbbell-kickback": {
@@ -201,7 +252,7 @@
     "group": "triceps",
     "cue": "Upper arm parallel to the floor, only the forearm moves",
     "pictures": [
-      "dumbbell-kickback-1.jpg", "dumbbell-kickback-2.jpg"
+      "dumbbell-kickback-1.webp", "dumbbell-kickback-2.webp"
     ]
   },
   "cable-external-rotation": {
@@ -209,7 +260,7 @@
     "group": "shoulder-health",
     "cue": "Elbow pinned to the ribs, only the forearm moves",
     "pictures": [
-      "cable-external-rotation-1.jpg", "cable-external-rotation-2.jpg"
+      "cable-external-rotation-1.webp", "cable-external-rotation-2.webp"
     ]
   },
   "rear-delt-fly": {
@@ -217,7 +268,15 @@
     "group": "shoulder-health",
     "cue": "Incline bench 30–45°, arms hang then arc out to the sides",
     "pictures": [
-      "rear-delt-fly-1.jpg"
+      "rear-delt-fly-1.webp", "rear-delt-fly-2.webp"
+    ]
+  },
+  "rear-delt-fly-machine": {
+    "name": "Rear delt fly machine",
+    "group": "shoulder-health",
+    "cue": "Light. Chest on the pad; arms open until level with the body, no further",
+    "pictures": [
+      "rear-delt-fly-machine-1.webp", "rear-delt-fly-machine-2.webp"
     ]
   },
   "band-pull-apart": {
@@ -225,7 +284,7 @@
     "group": "shoulder-health",
     "cue": "Arms straight, pull the band apart at chest height",
     "pictures": [
-      "band-pull-apart-1.jpg"
+      "band-pull-apart-1.webp", "band-pull-apart-2.webp"
     ]
   },
   "prone-y-t-raise": {
@@ -233,7 +292,7 @@
     "group": "shoulder-health",
     "cue": "Thumbs up on the Y, arms straight out to the sides on the T",
     "pictures": [
-      "prone-y-t-raise-1.jpg"
+      "prone-y-t-raise-1.webp", "prone-y-t-raise-2.webp"
     ]
   },
   "pallof-press": {
@@ -241,7 +300,7 @@
     "group": "core",
     "cue": "Resist the rotation, don't twist",
     "pictures": [
-      "pallof-press-1.jpg"
+      "pallof-press-1.webp", "pallof-press-2.webp"
     ]
   },
   "cable-chop": {
@@ -249,7 +308,7 @@
     "group": "core",
     "cue": "Arms stay in front, rotate from the torso",
     "pictures": [
-      "cable-chop-1.jpg"
+      "cable-chop-1.webp", "cable-chop-2.webp"
     ]
   },
   "plank": {
@@ -257,7 +316,7 @@
     "group": "core",
     "cue": "Reps are seconds held. Ribs down, don't let the hips sag",
     "pictures": [
-      "plank-1.jpg", "plank-2.jpg"
+      "plank-1.webp", "plank-2.webp"
     ]
   },
   "dead-bug": {
@@ -265,7 +324,7 @@
     "group": "core",
     "cue": "Lower back stays flat against the floor",
     "pictures": [
-      "dead-bug-1.jpg", "dead-bug-2.jpg"
+      "dead-bug-1.webp", "dead-bug-2.webp"
     ]
   },
   "ab-roller": {
@@ -273,7 +332,7 @@
     "group": "core",
     "cue": "Stop when arms reach shoulder height, build range slowly",
     "pictures": [
-      "ab-roller-1.jpg"
+      "ab-roller-1.webp", "ab-roller-2.webp"
     ]
   },
   "side-plank": {
@@ -281,15 +340,15 @@
     "group": "core",
     "cue": "Reps are seconds held, per side. Hips stacked, don't rotate forward or back",
     "pictures": [
-      "side-plank-1.jpg"
+      "side-plank-1.webp", "side-plank-2.webp"
     ]
   },
   "suitcase-carry": {
     "name": "Suitcase carry",
     "group": "core",
-    "cue": "Shoulders level, don't lean",
+    "cue": "Reps are seconds walked, per side. Same weight in each hand; shoulders level, don't lean",
     "pictures": [
-      "suitcase-carry-1.jpg"
+      "suitcase-carry-1.webp", "suitcase-carry-2.webp"
     ]
   },
   "knee-raise": {
@@ -297,7 +356,7 @@
     "group": "core",
     "cue": "Arms supported, curl the pelvis, don't swing",
     "pictures": [
-      "knee-raise-1.jpg"
+      "knee-raise-1.webp", "knee-raise-2.webp"
     ]
   },
   "cable-crunch": {
@@ -305,7 +364,7 @@
     "group": "core",
     "cue": "Hands stay by your head, arms don't move; curl from the ribs, not the hips",
     "pictures": [
-      "cable-crunch-1.jpg"
+      "cable-crunch-1.webp", "cable-crunch-2.webp"
     ]
   },
   "leg-press-calf-raise": {
@@ -313,15 +372,15 @@
     "group": "calves",
     "cue": "Balls of the feet on the platform's bottom edge, knees straight; full stretch at the bottom",
     "pictures": [
-      "leg-press-calf-raise-1.jpg"
+      "leg-press-calf-raise-1.webp", "leg-press-calf-raise-2.webp"
     ]
   },
   "single-leg-calf-raise": {
     "name": "Single-leg calf raise on a step",
     "group": "calves",
-    "cue": "Dumbbell in the left hand only, right hand just steadies; heel drops below the step",
+    "cue": "Dumbbell in the hand on the working leg's side, the other hand steadies; heel drops below the step",
     "pictures": [
-      "single-leg-calf-raise-1.jpg"
+      "single-leg-calf-raise-1.webp", "single-leg-calf-raise-2.webp"
     ]
   }
 }
