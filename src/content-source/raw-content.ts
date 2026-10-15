@@ -27,6 +27,17 @@ export interface RawGroup {
 /** content/exercise-groups.json: group slug → group. */
 export type RawGroupCatalogue = Readonly<Record<string, RawGroup>>
 
+/** An entry of content/picture-credits.json: who made a picture, its license, and where it came from. */
+export interface RawPictureCredit {
+  readonly author: string
+  readonly license: string
+  readonly licenseUrl: string
+  readonly source: string
+}
+
+/** content/picture-credits.json: picture file name → credit; a picture without one is the owner's own. */
+export type RawCredits = Readonly<Record<string, RawPictureCredit>>
+
 /** A row of a planned workout; `exercise` is a slug of content/exercises.json. */
 export interface RawRow {
   readonly exercise: string

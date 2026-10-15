@@ -37,6 +37,14 @@ const VALID = {
       },
     ],
   },
+  credits: {
+    'pallof-press-2.svg': {
+      author: 'Everkinetic',
+      license: 'CC BY-SA 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+      source: 'https://github.com/everkinetic/data',
+    },
+  },
   // Picture file name → bytes; exactly at the budget, tiny, and unknown (null) are all valid.
   pictureSizes: {
     'leg-press-1.webp': 102_400,
@@ -59,6 +67,7 @@ export function contentWith(...edits: readonly Edit[]): ContentFiles {
     exercises: content.exercises,
     groups: content.groups,
     plan: content.plan,
+    credits: content.credits,
     pictureSizes: new Map(Object.entries(content.pictureSizes as Record<string, number | null>)),
   }
 }

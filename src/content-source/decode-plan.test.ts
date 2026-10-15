@@ -92,6 +92,22 @@ describe('decodePlan', () => {
     ])
   })
 
+  it('attaches a credit to the picture it names, and to no other', () => {
+    const credit = {
+      author: 'Everkinetic',
+      license: 'CC BY-SA 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+      source: 'https://github.com/everkinetic/data',
+    }
+
+    const [workout] = decodePlan(catalogue, plan, pictureUrl, { 'leg-press-2.webp': credit }).workouts
+
+    expect(workout?.prescriptions[0]?.exercise.pictures).toEqual([
+      { src: '/assets/leg-press-1.webp', alt: 'Leg press — picture 1 of 2' },
+      { src: '/assets/leg-press-2.webp', alt: 'Leg press — picture 2 of 2', credit },
+    ])
+  })
+
   it('refuses a row naming an exercise the catalogue lacks, rather than decoding an incomplete plan', () => {
     const unchecked: RawPlan = {
       workouts: [{ id: 'workout-1', name: 'Workout 1', exercises: [{ exercise: 'squat', sets: 1, reps: 1 }] }],

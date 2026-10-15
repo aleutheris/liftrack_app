@@ -1,6 +1,7 @@
 import { isObject } from './json-checks'
 import type { RawCatalogue, RawPlan } from './raw-content'
 import { validateCatalogue, validateGroups, type PictureSizes } from './validate-catalogue'
+import { validateCredits } from './validate-credits'
 import { validateWorkoutPictures } from './validate-workout-pictures'
 import { validatePlan } from './validate-plan'
 
@@ -11,6 +12,8 @@ export interface ContentFiles {
   readonly groups?: unknown
   /** content/plan.json, parsed. */
   readonly plan: unknown
+  /** content/picture-credits.json, parsed — only pictures from elsewhere need one; may be absent entirely. */
+  readonly credits?: unknown
   /** The browser cannot read file sizes, so there each is null; CI reads them from disk. */
   readonly pictureSizes: PictureSizes
 }
@@ -25,15 +28,17 @@ export interface ContentCheckOptions {
 
 /** Every way the content departs from ADR-260008's format, as messages naming file and field. */
 export function validateContent(
-  { exercises, groups, plan, pictureSizes }: ContentFiles,
+  { exercises, groups, plan, credits, pictureSizes }: ContentFiles,
   { picturesMustExist = true }: ContentCheckOptions = {},
 ): string[] {
   const groupSlugs = new Set(isObject(groups) ? Object.keys(groups) : [])
   const exerciseSlugs = new Set(isObject(exercises) ? Object.keys(exercises) : [])
+  const pictures = { sizes: pictureSizes, mustExist: picturesMustExist }
   const problems = [
     ...validateGroups(groups),
-    ...validateCatalogue(exercises, groupSlugs, { sizes: pictureSizes, mustExist: picturesMustExist }),
+    ...validateCatalogue(exercises, groupSlugs, pictures),
     ...validatePlan(plan, exerciseSlugs),
+    ...validateCredits(credits, pictures),
   ]
   if (problems.length > 0) {
     return problems

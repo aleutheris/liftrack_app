@@ -1,4 +1,4 @@
-import type { Exercise, Prescription } from '../../workout/types'
+import type { Exercise, PictureCredit, Prescription } from '../../workout/types'
 import { describePrescription } from './describe-prescription'
 
 interface ExerciseCardProps {
@@ -50,19 +50,36 @@ function Pictures({ exercise, eager }: { readonly exercise: Exercise; readonly e
             Photo {index + 1} missing
           </p>
         ) : (
-          // A square reserves the frame's own space before the picture arrives, so nothing jumps.
-          <img
-            key={index}
-            src={picture.src}
-            alt={picture.alt}
-            width={400}
-            height={400}
-            loading={eager ? 'eager' : 'lazy'}
-            fetchPriority={eager ? 'high' : undefined}
-            decoding="async"
-          />
+          <figure className="exercise__picture" key={index}>
+            {/* A square reserves the frame's own space before the picture arrives, so nothing jumps. */}
+            <img
+              src={picture.src}
+              alt={picture.alt}
+              width={400}
+              height={400}
+              loading={eager ? 'eager' : 'lazy'}
+              fetchPriority={eager ? 'high' : undefined}
+              decoding="async"
+            />
+            {picture.credit && <Credit credit={picture.credit} />}
+          </figure>
         ),
       )}
     </div>
+  )
+}
+
+// Attribution licenses ask for the author, the license and the source next to the work itself.
+function Credit({ credit }: { readonly credit: PictureCredit }) {
+  return (
+    <figcaption className="exercise__credit" data-testid="picture-credit">
+      <a href={credit.source} target="_blank" rel="noreferrer">
+        {credit.author}
+      </a>
+      {' · '}
+      <a href={credit.licenseUrl} target="_blank" rel="noreferrer">
+        {credit.license}
+      </a>
+    </figcaption>
   )
 }

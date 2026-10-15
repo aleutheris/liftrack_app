@@ -50,6 +50,25 @@ describe('ExerciseCard', () => {
     }
   })
 
+  it('credits a picture taken from elsewhere with links to its source and license, and only that one', () => {
+    const credit = {
+      author: 'Everkinetic',
+      license: 'CC BY-SA 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+      source: 'https://github.com/everkinetic/data',
+    }
+    const [first, second] = legPress.pictures
+    const credited = { ...legPress, pictures: [first, second && { ...second, credit }] } as const
+
+    render(<ExerciseCard prescription={prescription(credited, 4, 10)} eager />)
+
+    const credits = screen.getAllByTestId('picture-credit')
+    expect(credits).toHaveLength(1)
+    expect(credits[0]).toHaveTextContent('Everkinetic · CC BY-SA 4.0')
+    expect(within(credits[0]!).getByRole('link', { name: 'Everkinetic' })).toHaveAttribute('href', credit.source)
+    expect(within(credits[0]!).getByRole('link', { name: 'CC BY-SA 4.0' })).toHaveAttribute('href', credit.licenseUrl)
+  })
+
   it.each([
     [true, 'eager', 'high'],
     [false, 'lazy', null],

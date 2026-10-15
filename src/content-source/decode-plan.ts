@@ -1,24 +1,41 @@
 import type { Exercise, PlannedWorkout, Prescription, RepTarget, WorkoutPlan } from '../workout/types'
-import type { RawCatalogue, RawWorkout, RawExercise, RawPlan, RawReps, RawRow } from './raw-content'
+import type {
+  RawCatalogue,
+  RawCredits,
+  RawWorkout,
+  RawExercise,
+  RawPlan,
+  RawReps,
+  RawRow,
+} from './raw-content'
 
 /** Resolves a file name in content/pictures/ to the URL the build serves it at; undefined if none. */
 type PictureUrl = (fileName: string) => string | undefined
 
 /** Turns content that validateContent has passed into the domain plan, in file order. */
-export function decodePlan(catalogue: RawCatalogue, plan: RawPlan, pictureUrl: PictureUrl): WorkoutPlan {
+export function decodePlan(
+  catalogue: RawCatalogue,
+  plan: RawPlan,
+  pictureUrl: PictureUrl,
+  credits: RawCredits = {},
+): WorkoutPlan {
   const exercises = new Map(
-    Object.entries(catalogue).map(([slug, raw]) => [slug, decodeExercise(slug, raw, pictureUrl)]),
+    Object.entries(catalogue).map(([slug, raw]) => [slug, decodeExercise(slug, raw, pictureUrl, credits)]),
   )
   return { workouts: plan.workouts.map((workout) => decodeWorkout(workout, exercises)) }
 }
 
-function decodeExercise(slug: string, raw: RawExercise, pictureUrl: PictureUrl): Exercise {
+function decodeExercise(slug: string, raw: RawExercise, pictureUrl: PictureUrl, credits: RawCredits): Exercise {
   // A slot whose photo has not been added yet — not named, or named with no file — stays empty; the
   // page shows it as missing.
   const picture = (index: 0 | 1) => {
     const fileName = raw.pictures?.[index]
     const src = fileName === undefined ? undefined : pictureUrl(fileName)
-    return src === undefined ? null : { src, alt: `${raw.name} — picture ${index + 1} of 2` }
+    if (fileName === undefined || src === undefined) {
+      return null
+    }
+    const credit = Object.hasOwn(credits, fileName) ? credits[fileName] : undefined
+    return { src, alt: `${raw.name} — picture ${index + 1} of 2`, ...(credit === undefined ? {} : { credit }) }
   }
   return {
     key: slug,

@@ -3,24 +3,28 @@ import { createFileSource } from './file-source'
 
 // The build hands the source its pictures as import.meta.glob does: module path → served URL.
 function sourceWith(...edits: readonly Edit[]) {
-  const { exercises, groups, plan, pictureSizes } = contentWith(...edits)
+  const { exercises, groups, plan, credits, pictureSizes } = contentWith(...edits)
   const pictureModules = Object.fromEntries(
     [...pictureSizes.keys()].map((fileName) => [
       `../../content/pictures/${fileName}`,
       `/assets/${fileName}?v=1`,
     ]),
   )
-  return createFileSource({ exercises, groups, plan, pictureModules })
+  return createFileSource({ exercises, groups, plan, credits, pictureModules })
 }
 
 describe('createFileSource', () => {
-  it('resolves the decoded plan, with each picture at the URL the build serves it from', async () => {
+  it('resolves the decoded plan, with each picture at the URL the build serves it from and its credit', async () => {
     const plan = await sourceWith().loadPlan()
 
     expect(plan.workouts.map((workout) => workout.id)).toEqual(['workout-1', 'workout-2'])
     expect(plan.workouts[0]?.prescriptions[1]?.exercise.pictures).toEqual([
       { src: '/assets/pallof-press-1.png?v=1', alt: 'Pallof press — picture 1 of 2' },
-      { src: '/assets/pallof-press-2.svg?v=1', alt: 'Pallof press — picture 2 of 2' },
+      {
+        src: '/assets/pallof-press-2.svg?v=1',
+        alt: 'Pallof press — picture 2 of 2',
+        credit: expect.objectContaining({ author: 'Everkinetic', license: 'CC BY-SA 4.0' }),
+      },
     ])
   })
 

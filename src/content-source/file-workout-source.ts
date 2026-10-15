@@ -1,5 +1,6 @@
 import exercises from '../../content/exercises.json'
 import groups from '../../content/exercise-groups.json'
+import credits from '../../content/picture-credits.json'
 import plan from '../../content/plan.json'
 import { createFileSource } from './file-source'
 
@@ -8,6 +9,7 @@ export const fileWorkoutSource = createFileSource({
   exercises,
   groups,
   plan,
+  credits,
   // `no-inline` keeps every picture a file of its own, however small: an inlined picture would load
   // with the script whether or not it is ever scrolled to, defeating lazy loading (EPIC-260007).
   pictureModules: import.meta.glob<string>('../../content/pictures/*', {

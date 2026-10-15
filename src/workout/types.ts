@@ -11,9 +11,20 @@ export interface RepTarget {
   readonly max: number
 }
 
+/** Who made a picture and under which license — shown with it, as attribution licenses require. */
+export interface PictureCredit {
+  readonly author: string
+  readonly license: string
+  readonly licenseUrl: string
+  /** Where the picture was taken from. */
+  readonly source: string
+}
+
 interface Picture {
   readonly src: string
   readonly alt: string
+  /** Absent for the owner's own photos. */
+  readonly credit?: PictureCredit
 }
 
 /** A picture of how to do the exercise, or `null` where no photo has been added yet (ADR-260008). */
