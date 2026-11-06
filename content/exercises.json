@@ -79,6 +79,14 @@
       "dumbbell-romanian-deadlift-1.webp", "dumbbell-romanian-deadlift-2.webp"
     ]
   },
+  "barbell-romanian-deadlift": {
+    "name": "Barbell Romanian deadlift",
+    "group": "legs-hip-hamstring",
+    "cue": "Palms facing you, never one palm up; arms straight. Hips back, soft knees, bar close to the legs; lower until the plates kiss the floor or your back starts to round, then come straight back up",
+    "pictures": [
+      "barbell-romanian-deadlift-1.webp", "barbell-romanian-deadlift-2.webp"
+    ]
+  },
   "prone-leg-curl": {
     "name": "Prone leg curl",
     "group": "legs-hip-hamstring",
@@ -89,7 +97,7 @@
   },
   "hip-thrust": {
     "name": "Hip thrust",
-    "group": "legs-hip-hamstring",
+    "group": "legs-glutes",
     "cue": "Chin tucked, ribs down; don't arch the lower back at the top",
     "pictures": [
       "hip-thrust-1.webp", "hip-thrust-2.webp"
@@ -105,7 +113,7 @@
   },
   "hip-abduction-machine": {
     "name": "Hip abduction machine",
-    "group": "legs-hip-ab-adduction",
+    "group": "legs-glutes",
     "cue": "Sit tall, hands on the side handles; push the knees out, slow on the way back",
     "pictures": [
       "hip-abduction-machine-1.webp", "hip-abduction-machine-2.webp"
@@ -113,7 +121,7 @@
   },
   "hip-adduction-machine": {
     "name": "Hip adduction machine",
-    "group": "legs-hip-ab-adduction",
+    "group": "legs-adductors",
     "cue": "Start at a comfortable stretch, not a forced one; squeeze the knees together, slow on the way back",
     "pictures": [
       "hip-adduction-machine-1.webp", "hip-adduction-machine-2.webp"
@@ -233,7 +241,7 @@
   },
   "close-grip-floor-press": {
     "name": "Close-grip floor press",
-    "group": "triceps",
+    "group": "chest",
     "cue": "Hands shoulder-width, elbows tucked in, dumbbells angled slightly toward each other",
     "pictures": [
       "close-grip-floor-press-1.webp", "close-grip-floor-press-2.webp"
@@ -250,7 +258,7 @@
   "dumbbell-kickback": {
     "name": "Dumbbell kickback",
     "group": "triceps",
-    "cue": "Upper arm parallel to the floor, only the forearm moves",
+    "cue": "Upper arm alongside your torso, never behind it; only the forearm moves",
     "pictures": [
       "dumbbell-kickback-1.webp", "dumbbell-kickback-2.webp"
     ]
