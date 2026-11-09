@@ -75,3 +75,17 @@ export function readExpectedWorkouts(): ExpectedWorkout[] {
     exercises: workout.exercises.map((row) => expectedExercise(row, catalogue)),
   }))
 }
+
+export interface ExpectedGuide {
+  title: string
+  sections: { heading: string; table?: { columns: string[]; rows: string[][] }; items?: string[] }[]
+}
+
+/** The sets guide (ICR-260005), or null when content/ has no guide.json and the page shows no panel. */
+export function readExpectedGuide(): ExpectedGuide | null {
+  try {
+    return readContent<ExpectedGuide>('guide.json')
+  } catch {
+    return null
+  }
+}

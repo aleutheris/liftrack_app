@@ -45,6 +45,13 @@ const VALID = {
       source: 'https://github.com/everkinetic/data',
     },
   },
+  guide: {
+    title: 'How to do the sets',
+    sections: [
+      { heading: 'The sets', table: { columns: ['Set', 'Weight'], rows: [['1', '60%'], ['4', '100%']] } },
+      { heading: 'Good to know', items: ['Round to the nearest weight.'] },
+    ],
+  },
   // Picture file name → bytes; exactly at the budget, tiny, and unknown (null) are all valid.
   pictureSizes: {
     'leg-press-1.webp': 102_400,
@@ -68,6 +75,7 @@ export function contentWith(...edits: readonly Edit[]): ContentFiles {
     groups: content.groups,
     plan: content.plan,
     credits: content.credits,
+    guide: content.guide,
     pictureSizes: new Map(Object.entries(content.pictureSizes as Record<string, number | null>)),
   }
 }

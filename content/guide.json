@@ -1,0 +1,38 @@
+{
+  "title": "How to do the sets",
+  "sections": [
+    {
+      "heading": "The four sets",
+      "table": {
+        "columns": ["Set", "Weight", "Reps"],
+        "rows": [
+          ["1", "60% of top weight", "10, easy (about 5 if already warm)"],
+          ["2", "90%", "10"],
+          ["3", "95%", "10"],
+          ["4", "100% — top weight", "10, with 1–2 more possible"]
+        ]
+      }
+    },
+    {
+      "heading": "Set 4 by session",
+      "table": {
+        "columns": ["Session", "Set 4"],
+        "rows": [
+          ["Upper body", "10 reps, 1–2 more possible"],
+          ["Legs, no Friday match", "10 reps, 1–2 more possible"],
+          ["Legs, Friday match", "Stop at 8, same weights"],
+          ["Saturday, no Sunday match", "Legs: about 1 more possible. Presses and rows: 1–2"]
+        ]
+      }
+    },
+    {
+      "heading": "Good to know",
+      "items": [
+        "Top weight: the weight where set 4 lands at about 10 reps, close to failure.",
+        "Set 4 reaches 10 clean reps: next time, raise the top weight by the smallest step. Sets 1–3 follow.",
+        "Round to the nearest weight the machine or dumbbells allow.",
+        "Bodyweight exercises and holds: 4 equal sets. The light 3-set exercises: no build-up, never near failure."
+      ]
+    }
+  ]
+}

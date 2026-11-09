@@ -1,3 +1,4 @@
+import type { SetsGuide } from '../../workout/types'
 import type { WorkoutSource } from '../../workout/workout-source'
 import { WorkoutPager } from './WorkoutPager'
 import { hasWorkouts } from './use-workout-in-fragment'
@@ -5,7 +6,7 @@ import { usePlan } from './use-plan'
 import './workout.css'
 
 /** The planned workouts, read through whichever source the app is given (ADR-260008). */
-export function Workouts({ source }: { readonly source: WorkoutSource }) {
+export function Workouts({ source, guide }: { readonly source: WorkoutSource; readonly guide?: SetsGuide }) {
   const state = usePlan(source)
   if (state.status === 'loading') {
     return <p role="status">Loading the plan…</p>
@@ -16,5 +17,5 @@ export function Workouts({ source }: { readonly source: WorkoutSource }) {
   if (!hasWorkouts(state.plan.workouts)) {
     return <p>No workouts planned yet.</p>
   }
-  return <WorkoutPager workouts={state.plan.workouts} />
+  return <WorkoutPager workouts={state.plan.workouts} guide={guide} />
 }

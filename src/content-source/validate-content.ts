@@ -2,6 +2,7 @@ import { isObject } from './json-checks'
 import type { RawCatalogue, RawPlan } from './raw-content'
 import { validateCatalogue, validateGroups, type PictureSizes } from './validate-catalogue'
 import { validateCredits } from './validate-credits'
+import { validateGuide } from './validate-guide'
 import { validateWorkoutPictures } from './validate-workout-pictures'
 import { validatePlan } from './validate-plan'
 
@@ -14,6 +15,8 @@ export interface ContentFiles {
   readonly plan: unknown
   /** content/picture-credits.json, parsed — only pictures from elsewhere need one; may be absent entirely. */
   readonly credits?: unknown
+  /** content/guide.json, parsed — the sets guide shown on every workout; may be absent entirely. */
+  readonly guide?: unknown
   /** The browser cannot read file sizes, so there each is null; CI reads them from disk. */
   readonly pictureSizes: PictureSizes
 }
@@ -28,7 +31,7 @@ export interface ContentCheckOptions {
 
 /** Every way the content departs from ADR-260008's format, as messages naming file and field. */
 export function validateContent(
-  { exercises, groups, plan, credits, pictureSizes }: ContentFiles,
+  { exercises, groups, plan, credits, guide, pictureSizes }: ContentFiles,
   { picturesMustExist = true }: ContentCheckOptions = {},
 ): string[] {
   const groupSlugs = new Set(isObject(groups) ? Object.keys(groups) : [])
@@ -39,6 +42,7 @@ export function validateContent(
     ...validateCatalogue(exercises, groupSlugs, pictures),
     ...validatePlan(plan, exerciseSlugs),
     ...validateCredits(credits, pictures),
+    ...validateGuide(guide),
   ]
   if (problems.length > 0) {
     return problems

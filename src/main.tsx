@@ -3,10 +3,10 @@ import './styles/base.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { App } from './app-shell/App'
-import { fileWorkoutSource } from './content-source'
+import { fileGuide, fileWorkoutSource } from './content-source'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App source={fileWorkoutSource} />
+    <App source={fileWorkoutSource} guide={fileGuide} />
   </StrictMode>,
 )

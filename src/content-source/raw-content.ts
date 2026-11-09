@@ -56,3 +56,16 @@ export interface RawWorkout {
 export interface RawPlan {
   readonly workouts: readonly RawWorkout[]
 }
+
+/** A section of content/guide.json: a heading and either a table or a list of short lines. */
+export interface RawGuideSection {
+  readonly heading: string
+  readonly table?: { readonly columns: readonly string[]; readonly rows: readonly (readonly string[])[] }
+  readonly items?: readonly string[]
+}
+
+/** content/guide.json: the sets guide shown on every workout (ICR-260005); optional. */
+export interface RawGuide {
+  readonly title: string
+  readonly sections: readonly RawGuideSection[]
+}

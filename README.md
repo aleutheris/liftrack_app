@@ -79,6 +79,7 @@ content/                       what the page shows — edit these
   exercises.json               the exercise catalogue: names, cues, pictures
   pictures/                    two pictures per exercise
   picture-credits.json         who made each picture taken from elsewhere, and its license
+  guide.json                   the "How to do the sets" panel shown on every workout (optional)
 src/
   main.tsx                     entry point: gives the app the file-backed content source
   workout/                     domain types and the WorkoutSource interface (imports nothing)
@@ -314,6 +315,24 @@ pictures are made").
 A picture whose name is given but whose file is not there shows on the page as "Photo N missing",
 like an empty slot, so the workouts always load. `npm test` and CI still fail it, so a typo is never
 published — run `npm test` before you push, as the page alone will not show the mistake.
+
+### The sets guide
+
+`content/guide.json` is the "How to do the sets" panel: closed at the top of every workout, one tap to
+open. Delete the file and the panel disappears. It holds a `title` and `sections`; each section has a
+`heading` and either a `table` or `items`:
+
+```json
+{ "title": "How to do the sets",
+  "sections": [
+    { "heading": "The four sets",
+      "table": { "columns": ["Set", "Weight"], "rows": [["1", "60%"], ["4", "100%"]] } },
+    { "heading": "Good to know", "items": ["Round to the nearest weight."] } ] }
+```
+
+Every row needs one cell per column, and no cell or line may be empty. `npm test` and CI fail any
+mistake; the page itself leaves a broken guide out rather than hide the workouts. The site is public:
+keep training rules here and health details in your private notes.
 
 ### Deploying
 

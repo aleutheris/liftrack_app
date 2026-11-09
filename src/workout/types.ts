@@ -56,3 +56,16 @@ export interface WorkoutPlan {
   /** Planned workouts in the order they are paged. */
   readonly workouts: readonly PlannedWorkout[]
 }
+
+/** A section of the sets guide: a heading, then a table or a list of short lines. */
+export interface GuideSection {
+  readonly heading: string
+  readonly table?: { readonly columns: readonly string[]; readonly rows: readonly (readonly string[])[] }
+  readonly items?: readonly string[]
+}
+
+/** Text that belongs to every workout rather than to one exercise: how to do the sets (ICR-260005). */
+export interface SetsGuide {
+  readonly title: string
+  readonly sections: readonly GuideSection[]
+}

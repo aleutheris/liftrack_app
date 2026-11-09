@@ -1,18 +1,18 @@
 import { type RefObject, useRef } from 'react'
 import { flushSync } from 'react-dom'
-import type { PlannedWorkout } from '../../workout/types'
+import type { PlannedWorkout, SetsGuide } from '../../workout/types'
 import { WorkoutView } from './WorkoutView'
 import { type PlannedWorkouts, useWorkoutInFragment } from './use-workout-in-fragment'
 
 /** Every planned workout, one at a time in plan order, with previous/next in a bar at thumb reach. */
-export function WorkoutPager({ workouts }: { readonly workouts: PlannedWorkouts }) {
+export function WorkoutPager({ workouts, guide }: { readonly workouts: PlannedWorkouts; readonly guide?: SetsGuide }) {
   const { workout, goTo } = useWorkoutInFragment(workouts)
   const position = workouts.indexOf(workout)
   const previous = useRef<HTMLButtonElement>(null)
   const next = useRef<HTMLButtonElement>(null)
   return (
     <>
-      <WorkoutView key={workout.id} workout={workout} />
+      <WorkoutView key={workout.id} workout={workout} guide={guide} />
       <nav className="pager" aria-label="Workouts">
         <div className="pager__bar">
           <PageButton ref={previous} other={next} label="Previous workout" target={workouts[position - 1]} onGo={goTo} />
