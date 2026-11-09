@@ -32,6 +32,11 @@ describe('validateContent — guide.json', () => {
       'a section with neither', [...SECTION, 'table'], undefined,
       `${AT}: expected either "table" or "items", not both and not neither`,
     ],
+    [
+      'a section that is not an object', SECTION, 'text',
+      `${AT}: expected an object with "heading" and a "table" or "items", found "text"`,
+    ],
+    ['a table that is not an object', TABLE, 'text', `${AT}.table: expected an object with "columns" and "rows", found "text"`],
     ['a table with no columns', [...TABLE, 'columns'], [], `${AT}.table.columns: expected a non-empty list of strings, found []`],
     ['a table with no rows', [...TABLE, 'rows'], [], `${AT}.table.rows: expected a non-empty list, found []`],
     [
