@@ -18,10 +18,10 @@
       "table": {
         "columns": ["Session", "Set 4"],
         "rows": [
-          ["Upper body", "10 reps, 1–2 more possible"],
+          ["Upper", "10 reps, 1–2 more possible"],
           ["Legs, no Friday match", "10 reps, 1–2 more possible"],
           ["Legs, Friday match", "Stop at 8, same weights"],
-          ["Saturday, no Sunday match", "Legs: about 1 more possible. Presses and rows: 1–2"]
+          ["All, no Sunday match", "Legs: about 1 more possible. Presses and rows: 1–2"]
         ]
       }
     },

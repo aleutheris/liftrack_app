@@ -1,347 +1,347 @@
 {
   "workouts": [
     {
-      "id": "week-1-monday",
-      "name": "Week 1 · Monday · Upper body",
+      "id": "week-1-upper-1",
+      "name": "Week 1 · Upper 1",
       "exercises": [
         { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
         { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
         { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
         { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
-        { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-1-wednesday",
-      "name": "Week 1 · Wednesday · Legs",
-      "exercises": [
-        { "exercise": "leg-press", "sets": 4, "reps": 10 },
-        { "exercise": "bulgarian-split-squat", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
-        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
-        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "dead-bug", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-1-thursday",
-      "name": "Week 1 · Thursday · Upper body",
-      "exercises": [
-        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
-        { "exercise": "rear-delt-fly-machine", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-1-saturday",
-      "name": "Week 1 · Saturday · Full body, no Sunday match",
-      "exercises": [
-        { "exercise": "back-squat", "sets": 4, "reps": 10 },
-        { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
-        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-2-monday",
-      "name": "Week 2 · Monday · Upper body",
-      "exercises": [
-        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
-        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
-        { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "side-plank", "sets": 4, "reps": 20, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-2-wednesday",
-      "name": "Week 2 · Wednesday · Legs",
-      "exercises": [
-        { "exercise": "goblet-squat", "sets": 4, "reps": 10 },
-        { "exercise": "reverse-lunge", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "barbell-romanian-deadlift", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "plank", "sets": 4, "reps": 30 }
-      ]
-    },
-    {
-      "id": "week-2-thursday",
-      "name": "Week 2 · Thursday · Upper body",
-      "exercises": [
-        { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "cable-chop", "sets": 4, "reps": 10, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-2-saturday",
-      "name": "Week 2 · Saturday · Full body, no Sunday match",
-      "exercises": [
-        { "exercise": "bulgarian-split-squat", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "cable-chop", "sets": 4, "reps": 10, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-3-monday",
-      "name": "Week 3 · Monday · Upper body",
-      "exercises": [
-        { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
-        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
-        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
-        { "exercise": "cable-crunch", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-3-wednesday",
-      "name": "Week 3 · Wednesday · Legs",
-      "exercises": [
-        { "exercise": "back-squat", "sets": 4, "reps": 10 },
-        { "exercise": "step-up", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "prone-leg-curl", "sets": 4, "reps": 10 },
-        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
-        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
         { "exercise": "ab-roller", "sets": 4, "reps": 10 }
       ]
     },
     {
-      "id": "week-3-thursday",
-      "name": "Week 3 · Thursday · Upper body",
-      "exercises": [
-        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
-        { "exercise": "rear-delt-fly-machine", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "suitcase-carry", "sets": 4, "reps": 30, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-3-saturday",
-      "name": "Week 3 · Saturday · Full body, no Sunday match",
+      "id": "week-1-legs",
+      "name": "Week 1 · Legs",
       "exercises": [
         { "exercise": "leg-press", "sets": 4, "reps": 10 },
+        { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
         { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
-        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "suitcase-carry", "sets": 4, "reps": 30, "per": "side" }
+        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
+        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "side-plank", "sets": 4, "reps": 20, "per": "side" }
       ]
     },
     {
-      "id": "week-4-monday",
-      "name": "Week 4 · Monday · Upper body",
+      "id": "week-1-upper-2",
+      "name": "Week 1 · Upper 2",
       "exercises": [
         { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "rear-delt-fly-machine", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-1-all",
+      "name": "Week 1 · All (instead of Upper 2)",
+      "exercises": [
+        { "exercise": "dumbbell-squat", "sets": 4, "reps": 10 },
+        { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
+        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-2-upper-1",
+      "name": "Week 2 · Upper 1",
+      "exercises": [
+        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
+        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
         { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
-        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
         { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-2-legs",
+      "name": "Week 2 · Legs",
+      "exercises": [
+        { "exercise": "goblet-squat", "sets": 4, "reps": 10 },
+        { "exercise": "back-squat", "sets": 4, "reps": 10 },
+        { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
+        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-2-upper-2",
+      "name": "Week 2 · Upper 2",
+      "exercises": [
+        { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
+        { "exercise": "suitcase-carry", "sets": 4, "reps": 30, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-2-all",
+      "name": "Week 2 · All (instead of Upper 2)",
+      "exercises": [
+        { "exercise": "back-extension-45", "sets": 4, "reps": 10 },
+        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
+        { "exercise": "suitcase-carry", "sets": 4, "reps": 30, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-3-upper-1",
+      "name": "Week 3 · Upper 1",
+      "exercises": [
+        { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
+        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
+        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
+        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
         { "exercise": "cable-chop", "sets": 4, "reps": 10, "per": "side" }
       ]
     },
     {
-      "id": "week-4-wednesday",
-      "name": "Week 4 · Wednesday · Legs",
+      "id": "week-3-legs",
+      "name": "Week 3 · Legs",
       "exercises": [
         { "exercise": "dumbbell-squat", "sets": 4, "reps": 10 },
+        { "exercise": "barbell-romanian-deadlift", "sets": 4, "reps": 10 },
+        { "exercise": "prone-leg-curl", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
+        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "cable-crunch", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-3-upper-2",
+      "name": "Week 3 · Upper 2",
+      "exercises": [
+        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
+        { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-3-all",
+      "name": "Week 3 · All (instead of Upper 2)",
+      "exercises": [
+        { "exercise": "step-up", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "single-leg-press", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-4-upper-1",
+      "name": "Week 4 · Upper 1",
+      "exercises": [
+        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
+        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
+        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
+        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
+        { "exercise": "side-plank", "sets": 4, "reps": 20, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-4-legs",
+      "name": "Week 4 · Legs",
+      "exercises": [
+        { "exercise": "bulgarian-split-squat", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "reverse-lunge", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
+        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-4-upper-2",
+      "name": "Week 4 · Upper 2",
+      "exercises": [
+        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "rear-delt-fly-machine", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "cable-crunch", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-4-all",
+      "name": "Week 4 · All (instead of Upper 2)",
+      "exercises": [
+        { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
+        { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-5-upper-1",
+      "name": "Week 5 · Upper 1",
+      "exercises": [
+        { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
+        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
+        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
+        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
+        { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-5-legs",
+      "name": "Week 5 · Legs",
+      "exercises": [
+        { "exercise": "step-up", "sets": 4, "reps": 10, "per": "leg" },
         { "exercise": "single-leg-press", "sets": 4, "reps": 10, "per": "leg" },
         { "exercise": "back-extension-45", "sets": 4, "reps": 10 },
         { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
         { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "dead-bug", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-4-thursday",
-      "name": "Week 4 · Thursday · Upper body",
-      "exercises": [
-        { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "cable-crunch", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-4-saturday",
-      "name": "Week 4 · Saturday · Full body, no Sunday match",
-      "exercises": [
-        { "exercise": "reverse-lunge", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "cable-crunch", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-5-monday",
-      "name": "Week 5 · Monday · Upper body",
-      "exercises": [
-        { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
-        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
-        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
         { "exercise": "suitcase-carry", "sets": 4, "reps": 30, "per": "side" }
       ]
     },
     {
-      "id": "week-5-wednesday",
-      "name": "Week 5 · Wednesday · Legs",
-      "exercises": [
-        { "exercise": "goblet-squat", "sets": 4, "reps": 10 },
-        { "exercise": "bulgarian-split-squat", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "prone-leg-curl", "sets": 4, "reps": 10 },
-        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
-        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "plank", "sets": 4, "reps": 30 }
-      ]
-    },
-    {
-      "id": "week-5-thursday",
-      "name": "Week 5 · Thursday · Upper body",
-      "exercises": [
-        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
-        { "exercise": "rear-delt-fly-machine", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-5-saturday",
-      "name": "Week 5 · Saturday · Full body, no Sunday match",
-      "exercises": [
-        { "exercise": "dumbbell-squat", "sets": 4, "reps": 10 },
-        { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
-        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-6-monday",
-      "name": "Week 6 · Monday · Upper body",
-      "exercises": [
-        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
-        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
-        { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-6-wednesday",
-      "name": "Week 6 · Wednesday · Legs",
-      "exercises": [
-        { "exercise": "leg-press", "sets": 4, "reps": 10 },
-        { "exercise": "step-up", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "barbell-romanian-deadlift", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-6-thursday",
-      "name": "Week 6 · Thursday · Upper body",
+      "id": "week-5-upper-2",
+      "name": "Week 5 · Upper 2",
       "exercises": [
         { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "side-plank", "sets": 4, "reps": 20, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-6-saturday",
-      "name": "Week 6 · Saturday · Full body, no Sunday match",
-      "exercises": [
-        { "exercise": "single-leg-press", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "side-plank", "sets": 4, "reps": 20, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-7-monday",
-      "name": "Week 7 · Monday · Upper body",
-      "exercises": [
-        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
         { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
         { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
         { "exercise": "cable-chop", "sets": 4, "reps": 10, "per": "side" }
       ]
     },
     {
-      "id": "week-7-wednesday",
-      "name": "Week 7 · Wednesday · Legs",
-      "exercises": [
-        { "exercise": "dumbbell-squat", "sets": 4, "reps": 10 },
-        { "exercise": "reverse-lunge", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
-        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
-        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "plank", "sets": 4, "reps": 30 }
-      ]
-    },
-    {
-      "id": "week-7-thursday",
-      "name": "Week 7 · Thursday · Upper body",
-      "exercises": [
-        { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
-        { "exercise": "rear-delt-fly-machine", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "cable-crunch", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-7-saturday",
-      "name": "Week 7 · Saturday · Full body, no Sunday match",
+      "id": "week-5-all",
+      "name": "Week 5 · All (instead of Upper 2)",
       "exercises": [
         { "exercise": "goblet-squat", "sets": 4, "reps": 10 },
-        { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
-        { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "cable-crunch", "sets": 4, "reps": 10 }
+        { "exercise": "barbell-romanian-deadlift", "sets": 4, "reps": 10 },
+        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "cable-chop", "sets": 4, "reps": 10, "per": "side" }
       ]
     },
     {
-      "id": "week-8-monday",
-      "name": "Week 8 · Monday · Upper body",
+      "id": "week-6-upper-1",
+      "name": "Week 6 · Upper 1",
+      "exercises": [
+        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
+        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
+        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-6-legs",
+      "name": "Week 6 · Legs",
+      "exercises": [
+        { "exercise": "dumbbell-squat", "sets": 4, "reps": 10 },
+        { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
+        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
+        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-6-upper-2",
+      "name": "Week 6 · Upper 2",
       "exercises": [
         { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
+        { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "side-plank", "sets": 4, "reps": 20, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-6-all",
+      "name": "Week 6 · All (instead of Upper 2)",
+      "exercises": [
+        { "exercise": "back-squat", "sets": 4, "reps": 10 },
+        { "exercise": "back-extension-45", "sets": 4, "reps": 10 },
+        { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "side-plank", "sets": 4, "reps": 20, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-7-upper-1",
+      "name": "Week 7 · Upper 1",
+      "exercises": [
+        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
+        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
+        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
+        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
+        { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-7-legs",
+      "name": "Week 7 · Legs",
+      "exercises": [
+        { "exercise": "leg-press", "sets": 4, "reps": 10 },
+        { "exercise": "bulgarian-split-squat", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "barbell-romanian-deadlift", "sets": 4, "reps": 10 },
+        { "exercise": "prone-leg-curl", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-7-upper-2",
+      "name": "Week 7 · Upper 2",
+      "exercises": [
+        { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "rear-delt-fly-machine", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-7-all",
+      "name": "Week 7 · All (instead of Upper 2)",
+      "exercises": [
+        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
+        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-8-upper-1",
+      "name": "Week 8 · Upper 1",
+      "exercises": [
+        { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
         { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
         { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
         { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
@@ -349,231 +349,231 @@
       ]
     },
     {
-      "id": "week-8-wednesday",
-      "name": "Week 8 · Wednesday · Legs",
+      "id": "week-8-legs",
+      "name": "Week 8 · Legs",
       "exercises": [
-        { "exercise": "back-squat", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-press", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "back-extension-45", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "goblet-squat", "sets": 4, "reps": 10 },
+        { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
+        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
         { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "cable-chop", "sets": 4, "reps": 10, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-8-upper-2",
+      "name": "Week 8 · Upper 2",
+      "exercises": [
+        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
+        { "exercise": "cable-crunch", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-8-all",
+      "name": "Week 8 · All (instead of Upper 2)",
+      "exercises": [
+        { "exercise": "leg-press", "sets": 4, "reps": 10 },
+        { "exercise": "prone-leg-curl", "sets": 4, "reps": 10 },
+        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
+        { "exercise": "cable-crunch", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-9-upper-1",
+      "name": "Week 9 · Upper 1",
+      "exercises": [
+        { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
+        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
+        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
+        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
         { "exercise": "ab-roller", "sets": 4, "reps": 10 }
       ]
     },
     {
-      "id": "week-8-thursday",
-      "name": "Week 8 · Thursday · Upper body",
-      "exercises": [
-        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-8-saturday",
-      "name": "Week 8 · Saturday · Full body, no Sunday match",
-      "exercises": [
-        { "exercise": "step-up", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-9-monday",
-      "name": "Week 9 · Monday · Upper body",
-      "exercises": [
-        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
-        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
-        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
-        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-9-wednesday",
-      "name": "Week 9 · Wednesday · Legs",
-      "exercises": [
-        { "exercise": "leg-press", "sets": 4, "reps": 10 },
-        { "exercise": "reverse-lunge", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "prone-leg-curl", "sets": 4, "reps": 10 },
-        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
-        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "dead-bug", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-9-thursday",
-      "name": "Week 9 · Thursday · Upper body",
-      "exercises": [
-        { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
-        { "exercise": "rear-delt-fly-machine", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "side-plank", "sets": 4, "reps": 20, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-9-saturday",
-      "name": "Week 9 · Saturday · Full body, no Sunday match",
+      "id": "week-9-legs",
+      "name": "Week 9 · Legs",
       "exercises": [
         { "exercise": "back-squat", "sets": 4, "reps": 10 },
-        { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
-        { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "reverse-lunge", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "back-extension-45", "sets": 4, "reps": 10 },
+        { "exercise": "barbell-romanian-deadlift", "sets": 4, "reps": 10 },
+        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
         { "exercise": "side-plank", "sets": 4, "reps": 20, "per": "side" }
       ]
     },
     {
-      "id": "week-10-monday",
-      "name": "Week 10 · Monday · Upper body",
+      "id": "week-9-upper-2",
+      "name": "Week 9 · Upper 2",
       "exercises": [
-        { "exercise": "elevated-push-up", "sets": 4, "reps": 10 },
+        { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
-        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
         { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
         { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
       ]
     },
     {
-      "id": "week-10-wednesday",
-      "name": "Week 10 · Wednesday · Legs",
+      "id": "week-9-all",
+      "name": "Week 9 · All (instead of Upper 2)",
       "exercises": [
-        { "exercise": "goblet-squat", "sets": 4, "reps": 10 },
         { "exercise": "bulgarian-split-squat", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "back-extension-45", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
         { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-10-thursday",
-      "name": "Week 10 · Thursday · Upper body",
-      "exercises": [
-        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
+        { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
         { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
+        { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
       ]
     },
     {
-      "id": "week-10-saturday",
-      "name": "Week 10 · Saturday · Full body, no Sunday match",
+      "id": "week-10-upper-1",
+      "name": "Week 10 · Upper 1",
       "exercises": [
-        { "exercise": "reverse-lunge", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
+        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
         { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
-      ]
-    },
-    {
-      "id": "week-11-monday",
-      "name": "Week 11 · Monday · Upper body",
-      "exercises": [
-        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
-        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
         { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
+        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
         { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
-        { "exercise": "side-plank", "sets": 4, "reps": 20, "per": "side" }
+        { "exercise": "cable-crunch", "sets": 4, "reps": 10 }
       ]
     },
     {
-      "id": "week-11-wednesday",
-      "name": "Week 11 · Wednesday · Legs",
+      "id": "week-10-legs",
+      "name": "Week 10 · Legs",
       "exercises": [
-        { "exercise": "back-squat", "sets": 4, "reps": 10 },
+        { "exercise": "step-up", "sets": 4, "reps": 10, "per": "leg" },
         { "exercise": "single-leg-press", "sets": 4, "reps": 10, "per": "leg" },
         { "exercise": "seated-leg-curl", "sets": 4, "reps": 10 },
-        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
         { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "plank", "sets": 4, "reps": 30 }
+        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
       ]
     },
     {
-      "id": "week-11-thursday",
-      "name": "Week 11 · Thursday · Upper body",
+      "id": "week-10-upper-2",
+      "name": "Week 10 · Upper 2",
       "exercises": [
         { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
         { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
         { "exercise": "rear-delt-fly-machine", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "suitcase-carry", "sets": 4, "reps": 30, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-10-all",
+      "name": "Week 10 · All (instead of Upper 2)",
+      "exercises": [
+        { "exercise": "reverse-lunge", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
+        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "rear-delt-fly-machine", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "suitcase-carry", "sets": 4, "reps": 30, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-11-upper-1",
+      "name": "Week 11 · Upper 1",
+      "exercises": [
+        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
+        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
+        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
+        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
+        { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
         { "exercise": "cable-chop", "sets": 4, "reps": 10, "per": "side" }
       ]
     },
     {
-      "id": "week-11-saturday",
-      "name": "Week 11 · Saturday · Full body, no Sunday match",
+      "id": "week-11-legs",
+      "name": "Week 11 · Legs",
       "exercises": [
         { "exercise": "leg-press", "sets": 4, "reps": 10 },
         { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
-        { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
-        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "cable-chop", "sets": 4, "reps": 10, "per": "side" }
+        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "leg-press-calf-raise", "sets": 4, "reps": 10 },
+        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
       ]
     },
     {
-      "id": "week-12-monday",
-      "name": "Week 12 · Monday · Upper body",
+      "id": "week-11-upper-2",
+      "name": "Week 11 · Upper 2",
       "exercises": [
-        { "exercise": "standing-cable-press", "sets": 4, "reps": 10 },
+        { "exercise": "flat-dumbbell-press", "sets": 4, "reps": 10 },
         { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
-        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
-        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
-        { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "cable-crunch", "sets": 4, "reps": 10 }
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "cable-pushdown", "sets": 4, "reps": 10 },
+        { "exercise": "cable-external-rotation", "sets": 3, "reps": 15, "per": "arm" },
+        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
       ]
     },
     {
-      "id": "week-12-wednesday",
-      "name": "Week 12 · Wednesday · Legs",
+      "id": "week-11-all",
+      "name": "Week 11 · All (instead of Upper 2)",
       "exercises": [
         { "exercise": "dumbbell-squat", "sets": 4, "reps": 10 },
-        { "exercise": "step-up", "sets": 4, "reps": 10, "per": "leg" },
         { "exercise": "barbell-romanian-deadlift", "sets": 4, "reps": 10 },
-        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "dead-bug", "sets": 4, "reps": 10 }
+        { "exercise": "back-extension-45", "sets": 4, "reps": 10 },
+        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "ab-roller", "sets": 4, "reps": 10 }
       ]
     },
     {
-      "id": "week-12-thursday",
-      "name": "Week 12 · Thursday · Upper body",
+      "id": "week-12-upper-1",
+      "name": "Week 12 · Upper 1",
       "exercises": [
+        { "exercise": "dumbbell-floor-press", "sets": 4, "reps": 10 },
+        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
+        { "exercise": "chest-down-dumbbell-row", "sets": 4, "reps": 10 },
+        { "exercise": "machine-triceps-extension", "sets": 4, "reps": 10 },
+        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "side-plank", "sets": 4, "reps": 20, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-12-legs",
+      "name": "Week 12 · Legs",
+      "exercises": [
+        { "exercise": "goblet-squat", "sets": 4, "reps": 10 },
+        { "exercise": "back-squat", "sets": 4, "reps": 10 },
+        { "exercise": "prone-leg-curl", "sets": 4, "reps": 10 },
+        { "exercise": "hip-thrust", "sets": 4, "reps": 10 },
+        { "exercise": "single-leg-calf-raise", "sets": 4, "reps": 10, "per": "leg" },
+        { "exercise": "pallof-press", "sets": 4, "reps": 10, "per": "side" }
+      ]
+    },
+    {
+      "id": "week-12-upper-2",
+      "name": "Week 12 · Upper 2",
+      "exercises": [
+        { "exercise": "machine-chest-press", "sets": 4, "reps": 10 },
+        { "exercise": "neutral-grip-lat-pulldown", "sets": 4, "reps": 10 },
+        { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
+        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
+        { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
+      ]
+    },
+    {
+      "id": "week-12-all",
+      "name": "Week 12 · All (instead of Upper 2)",
+      "exercises": [
+        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
+        { "exercise": "hip-adduction-machine", "sets": 4, "reps": 10 },
         { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
         { "exercise": "machine-seated-row", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "dumbbell-kickback", "sets": 4, "reps": 10 },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "suitcase-carry", "sets": 4, "reps": 30, "per": "side" }
-      ]
-    },
-    {
-      "id": "week-12-saturday",
-      "name": "Week 12 · Saturday · Full body, no Sunday match",
-      "exercises": [
-        { "exercise": "single-leg-press", "sets": 4, "reps": 10, "per": "leg" },
-        { "exercise": "hip-abduction-machine", "sets": 4, "reps": 10 },
-        { "exercise": "close-grip-floor-press", "sets": 4, "reps": 10 },
-        { "exercise": "half-kneeling-cable-row", "sets": 4, "reps": 10, "per": "arm" },
-        { "exercise": "band-pull-apart", "sets": 3, "reps": { "min": 15, "max": 20 } },
-        { "exercise": "suitcase-carry", "sets": 4, "reps": 30, "per": "side" }
+        { "exercise": "prone-y-t-raise", "sets": 3, "reps": { "min": 15, "max": 20 } },
+        { "exercise": "knee-raise", "sets": 4, "reps": 10 }
       ]
     }
   ]
