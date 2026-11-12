@@ -21,7 +21,9 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest moved to 26.04 in 2026-11, where Playwright 1.59.1 cannot install Chromium.
+    # Move to the next LTS once Playwright supports it.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
 
@@ -78,7 +80,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     outputs:
       page_url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       # Calls the Pages API, so it runs here, where the rights are. Fails if Pages is not enabled.
       - uses: actions/configure-pages@v6
@@ -93,7 +95,7 @@ jobs:
   # commit (REQ-OR-260001). The pictures are checked by the end-to-end step, before the deploy.
   check-live-site:
     needs: deploy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # A backstop only. The check's own window closes at 720 s, and the attempt running then is never
     # cut off: at worst it adds the page plus its three files at the 10 s request timeout each, about
     # 40 s. So a real run, checkout and Node included, ends around 13 min — roughly two minutes under
