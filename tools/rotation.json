@@ -7,17 +7,65 @@
   ],
   "instead": {"id": "all", "name": "All (instead of Upper 2)", "session": "all", "replaces": "upper-2"},
   "sessions": {
-    "upper": { "slots": 6, "groups": {"chest": {"priority": 100}, "back": {"priority": 200}, "arms": {"priority": 100}, "shoulders": {"priority": 100}, "core": {"priority": 100}} },
-    "legs": { "slots": 6, "groups": {"legs": {"priority": 500}, "core": {"priority": 100}} },
-    "all": { "slots": 6, "groups": {"legs": {"priority": 250}, "chest": {"priority": 100}, "back": {"priority": 100}, "shoulders": {"priority": 50}, "core": {"priority": 100}} }
+    "upper": {
+        "slots": 6,
+        "groups": {
+            "chest": {
+                "priority": 100
+            },
+            "back": {
+                "priority": 200
+            },
+            "arms": {
+                "priority": 100
+            },
+            "shoulders": {
+                "priority": 100
+            },
+            "core": {
+                "priority": 100
+            }
+        }
+    },
+    "legs": {
+        "slots": 6,
+        "groups": {
+            "legs": {
+                "priority": 500
+            },
+            "core": {
+                "priority": 100
+            }
+        }
+    },
+    "all": {
+        "slots": 6,
+        "groups": {
+            "legs": {
+                "priority": 250
+            },
+            "chest": {
+                "priority": 100
+            },
+            "back": {
+                "priority": 100
+            },
+            "shoulders": {
+                "priority": 50
+            },
+            "core": {
+                "priority": 100
+            }
+        }
+    }
   },
   "groups": {
     "legs": { "muscles": {
       "quads": { "priority": 120, "exercises": {
           "leg-press": {"priority": 100, "trains": {"quads": 70, "glute-max": 30}},
-          "goblet-squat": {"priority": 100, "trains": {"quads": 70, "glute-max": 30}},
+          "goblet-squat": {"priority": 0, "trains": {"quads": 70, "glute-max": 30}},
           "back-squat": {"priority": 100, "trains": {"quads": 60, "glute-max": 30, "adductors": 10}},
-          "dumbbell-squat": {"priority": 100, "trains": {"quads": 70, "glute-max": 30}},
+          "dumbbell-squat": {"priority": 0, "trains": {"quads": 70, "glute-max": 30}},
           "bulgarian-split-squat": {"priority": 100, "trains": {"quads": 60, "glute-max": 40}, "per": "leg"},
           "reverse-lunge": {"priority": 100, "trains": {"quads": 50, "glute-max": 50}, "per": "leg"},
           "step-up": {"priority": 100, "trains": {"quads": 60, "glute-max": 40}, "per": "leg"},
@@ -58,7 +106,7 @@
           "dumbbell-floor-press": {"priority": 100, "trains": {"chest": 70, "triceps": 30}},
           "machine-chest-press": {"priority": 100, "trains": {"chest": 80, "triceps": 20}},
           "flat-dumbbell-press": {"priority": 100, "trains": {"chest": 80, "triceps": 20}},
-          "elevated-push-up": {"priority": 100, "trains": {"chest": 80, "triceps": 20}},
+          "elevated-push-up": {"priority": 0, "trains": {"chest": 80, "triceps": 20}},
           "standing-cable-press": {"priority": 100, "trains": {"chest": 80, "triceps": 20}},
           "close-grip-floor-press": {"priority": 100, "trains": {"chest": 50, "triceps": 50}}
       } }
@@ -90,7 +138,7 @@
       } },
       "side": { "priority": 100, "exercises": {
           "side-plank": {"priority": 100, "reps": 20, "per": "side"},
-          "suitcase-carry": {"priority": 100, "reps": 30, "per": "side"}
+          "suitcase-carry": {"priority": 0, "reps": 30, "per": "side"}
       } },
       "rotation": { "priority": 100, "exercises": {
           "pallof-press": {"priority": 100, "per": "side"},
